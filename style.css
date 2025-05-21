@@ -58,9 +58,11 @@ section {
 .donor img {
     border-radius: 50%;
     border: 3px solid #d32f2f;
-    max-width: 150px;
-    height: auto;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
     transition: opacity 0.3s ease;
+}
 }
 
 .warning {
