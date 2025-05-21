@@ -3,170 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXPOSED: Top 10 Donors to Trump</title>
+    <title>EXPOSED: Boycott Trump's Top 10 Mega Donors</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Join the boycott movement! Expose the top 10 donors to Donald Trump, switch to ethical alternatives, and take action against Trump’s agenda.">
-    <meta name="keywords" content="boycott Trump donors, ethical alternatives, Trump funding, Timothy Mellon, Elon Musk, Miriam Adelson">
-    <meta property="og:title" content="EXPOSED: Top 10 Donors to Trump">
-    <meta property="og:description" content="Join the boycott movement! Expose the top 10 donors to Trump and switch to ethical alternatives.">
+    <meta name="description" content="Join the global boycott movement! Expose Trump's top 10 mega donors, switch to ethical alternatives, and fight back with your wallet!">
+    <meta name="keywords" content="boycott Trump donors, ethical alternatives, Trump funding, Elon Musk, Timothy Mellon, Miriam Adelson">
+    <meta property="og:title" content="EXPOSED: Boycott Trump's Top 10 Mega Donors">
+    <meta property="og:description" content="Join the global boycott movement! Expose Trump's top 10 donors and switch to ethical alternatives.">
     <meta property="og:image" content="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg">
     <meta property="og:url" content="https://your-username.github.io/trump-donors-boycott">
     <meta property="og:type" content="website">
 </head>
 <body>
     <header>
-        <h1>EXPOSED: The Top 10 Donors Fueling Trump’s Agenda</h1>
-        <p>Join the Fight—Boycott and Switch Today!</p>
-        <button onclick="document.getElementById('donors').scrollIntoView()">Take Action Now</button>
+        <div class="lang-switch">
+            <select id="languageSelect" onchange="switchLanguage()">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+        <h1 data-lang="en">EXPOSED: Trump's Top 10 Mega Donors</h1>
+        <h1 data-lang="es" style="display: none;">REVELADO: Los 10 mayores donantes de Trump</h1>
+        <h1 data-lang="zh" style="display: none;">曝光：特朗普的十大资助者</h1>
+        <p data-lang="en">These billionaires are funding Trump's agenda—fight back by boycotting their brands!</p>
+        <p data-lang="es" style="display: none;">¡Estos multimillonarios están financiando la agenda de Trump—lucha boicoteando sus marcas!</p>
+        <p data-lang="zh" style="display: none;">这些亿万富翁正在资助特朗普的议程——通过抵制他们的品牌反击吧！</p>
+        <button onclick="document.getElementById('donors').scrollIntoView()" data-lang="en">Join the Movement Now!</button>
+        <button onclick="document.getElementById('donors').scrollIntoView()" data-lang="es" style="display: none;">¡Únete al movimiento ahora!</button>
+        <button onclick="document.getElementById('donors').scrollIntoView()" data-lang="zh" style="display: none;">现在加入运动！</button>
     </header>
 
     <section id="stats">
-        <h2>Participants</h2>
-        <p>Total Participants: <span id="pledgeCount">0</span></p>
+        <h2 data-lang="en">Movement Impact</h2>
+        <h2 data-lang="es" style="display: none;">Impacto del movimiento</h2>
+        <h2 data-lang="zh" style="display: none;">运动影响</h2>
+        <p data-lang="en">Total Participants: <span id="pledgeCount">0</span></p>
+        <p data-lang="es" style="display: none;">Participantes totales: <span id="pledgeCount">0</span></p>
+        <p data-lang="zh" style="display: none;">总参与人数：<span id="pledgeCount">0</span></p>
+        <canvas id="voteChart" width="400" height="200"></canvas>
     </section>
 
     <section id="donors">
-        <h2>Top 10 Mega Donors to Trump</h2>
-        <input type="text" id="searchInput" placeholder="Search for a donor..." onkeyup="searchDonors()">
+        <h2 data-lang="en">Top 10 Mega Donors to Trump</h2>
+        <h2 data-lang="es" style="display: none;">Los 10 mayores donantes de Trump</h2>
+        <h2 data-lang="zh" style="display: none;">特朗普的十大资助者</h2>
+        <input type="text" id="searchInput" placeholder="Search for a donor..." onkeyup="searchDonors()" data-lang="en">
+        <input type="text" id="searchInput-es" placeholder="Buscar un donante..." onkeyup="searchDonors()" data-lang="es" style="display: none;">
+        <input type="text" id="searchInput-zh" placeholder="搜索资助者..." onkeyup="searchDonors()" data-lang="zh" style="display: none;">
         <div class="filter-buttons">
-            <button onclick="filterAlternatives('all')"><i class="fas fa-globe"></i> All</button>
-            <button onclick="filterAlternatives('finance')"><i class="fas fa-dollar-sign"></i> Finance</button>
-            <button onclick="filterAlternatives('tech')"><i class="fas fa-laptop"></i> Tech</button>
-            <button onclick="filterAlternatives('casino')"><i class="fas fa-dice"></i> Casino</button>
-            <button onclick="filterAlternatives('retail')"><i class="fas fa-shopping-cart"></i> Retail</button>
-            <button onclick="filterAlternatives('energy')"><i class="fas fa-bolt"></i> Energy</button>
+            <button onclick="filterAlternatives('all')" data-lang="en"><i class="fas fa-globe"></i> All</button>
+            <button onclick="filterAlternatives('all')" data-lang="es" style="display: none;"><i class="fas fa-globe"></i> Todos</button>
+            <button onclick="filterAlternatives('all')" data-lang="zh" style="display: none;"><i class="fas fa-globe"></i> 全部</button>
+            <button onclick="filterAlternatives('finance')" data-lang="en"><i class="fas fa-dollar-sign"></i> Finance</button>
+            <button onclick="filterAlternatives('finance')" data-lang="es" style="display: none;"><i class="fas fa-dollar-sign"></i> Finanzas</button>
+            <button onclick="filterAlternatives('finance')" data-lang="zh" style="display: none;"><i class="fas fa-dollar-sign"></i> 金融</button>
+            <button onclick="filterAlternatives('tech')" data-lang="en"><i class="fas fa-laptop"></i> Tech</button>
+            <button onclick="filterAlternatives('tech')" data-lang="es" style="display: none;"><i class="fas fa-laptop"></i> Tecnología</button>
+            <button onclick="filterAlternatives('tech')" data-lang="zh" style="display: none;"><i class="fas fa-laptop"></i> 科技</button>
+            <button onclick="filterAlternatives('casino')" data-lang="en"><i class="fas fa-dice"></i> Casino</button>
+            <button onclick="filterAlternatives('casino')" data-lang="es" style="display: none;"><i class="fas fa-dice"></i> Casino</button>
+            <button onclick="filterAlternatives('casino')" data-lang="zh" style="display: none;"><i class="fas fa-dice"></i> 赌场</button>
+            <button onclick="filterAlternatives('retail')" data-lang="en"><i class="fas fa-shopping-cart"></i> Retail</button>
+            <button onclick="filterAlternatives('retail')" data-lang="es" style="display: none;"><i class="fas fa-shopping-cart"></i> Venta al por menor</button>
+            <button onclick="filterAlternatives('retail')" data-lang="zh" style="display: none;"><i class="fas fa-shopping-cart"></i> 零售</button>
+            <button onclick="filterAlternatives('energy')" data-lang="en"><i class="fas fa-bolt"></i> Energy</button>
+            <button onclick="filterAlternatives('energy')" data-lang="es" style="display: none;"><i class="fas fa-bolt"></i> Energía</button>
+            <button onclick="filterAlternatives('energy')" data-lang="zh" style="display: none;"><i class="fas fa-bolt"></i> 能源</button>
         </div>
         <div id="donorList">
             <!-- 1. Timothy Mellon -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Pan Am Systems">
                 <img src="https://images.pexels.com/photos/1632790/pexels-photo-1632790.jpeg" alt="Pan Am Systems - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Pan Am Systems (Timothy Mellon): Donated $125M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Pan Am Systems (Timothy Mellon): Donated $125M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Pan Am Systems (Timothy Mellon): Donó $125M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Pan Am Systems (Timothy Mellon)：2024年向特朗普捐款$125M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="finance"><a href="#" target="_blank">EthicalBank</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Pan Am Systems')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Pan Am Systems">0</span></p>
+                <button onclick="voteForBoycott('Pan Am Systems')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Pan Am Systems')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Pan Am Systems')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Pan Am Systems">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Pan Am Systems">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Pan Am Systems">0</span></p>
             </div>
             <!-- 2. Elon Musk -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Tesla">
                 <img src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg" alt="Tesla - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Tesla (Elon Musk): Donated $75M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Tesla (Elon Musk): Donated $75M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Tesla (Elon Musk): Donó $75M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Tesla (Elon Musk)：2024年向特朗普捐款$75M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="tech"><a href="#" target="_blank">Rivian</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Tesla')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Tesla">0</span></p>
+                <button onclick="voteForBoycott('Tesla')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Tesla')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Tesla')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Tesla">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Tesla">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Tesla">0</span></p>
             </div>
             <!-- 3. Miriam Adelson -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Las Vegas Sands">
                 <img src="https://images.pexels.com/photos/1058277/pexels-photo-1058277.jpeg" alt="Las Vegas Sands - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Las Vegas Sands (Miriam Adelson): Donated $45M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Las Vegas Sands (Miriam Adelson): Donated $45M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Las Vegas Sands (Miriam Adelson): Donó $45M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Las Vegas Sands (Miriam Adelson)：2024年向特朗普捐款$45M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="casino"><a href="#" target="_blank">EthicalCasino</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Las Vegas Sands')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Las Vegas Sands">0</span></p>
+                <button onclick="voteForBoycott('Las Vegas Sands')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Las Vegas Sands')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Las Vegas Sands')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Las Vegas Sands">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Las Vegas Sands">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Las Vegas Sands">0</span></p>
             </div>
             <!-- 4. Richard Uihlein -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Uline">
                 <img src="https://images.pexels.com/photos/4397728/pexels-photo-4397728.jpeg" alt="Uline (Richard Uihlein) - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Uline (Richard Uihlein): Donated $40M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Uline (Richard Uihlein): Donated $40M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Uline (Richard Uihlein): Donó $40M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Uline (Richard Uihlein)：2024年向特朗普捐款$40M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="retail"><a href="#" target="_blank">EcoPack Solutions</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Uline-Richard')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Uline-Richard">0</span></p>
+                <button onclick="voteForBoycott('Uline-Richard')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Uline-Richard')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Uline-Richard')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Uline-Richard">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Uline-Richard">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Uline-Richard">0</span></p>
             </div>
             <!-- 5. Liz Uihlein -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Uline">
                 <img src="https://images.pexels.com/photos/970576/pexels-photo-970576.jpeg" alt="Uline (Liz Uihlein) - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Uline (Liz Uihlein): Donated $35M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Uline (Liz Uihlein): Donated $35M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Uline (Liz Uihlein): Donó $35M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Uline (Liz Uihlein)：2024年向特朗普捐款$35M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="retail"><a href="#" target="_blank">PackSavvy</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Uline-Liz')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Uline-Liz">0</span></p>
+                <button onclick="voteForBoycott('Uline-Liz')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Uline-Liz')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Uline-Liz')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Uline-Liz">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Uline-Liz">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Uline-Liz">0</span></p>
             </div>
             <!-- 6. Stephen Schwarzman -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Blackstone">
                 <img src="https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg" alt="Blackstone - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Blackstone (Stephen Schwarzman): Donated $30M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Blackstone (Stephen Schwarzman): Donated $30M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Blackstone (Stephen Schwarzman): Donó $30M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Blackstone (Stephen Schwarzman)：2024年向特朗普捐款$30M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="finance"><a href="#" target="_blank">EthicalInvest</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Blackstone')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Blackstone">0</span></p>
+                <button onclick="voteForBoycott('Blackstone')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Blackstone')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Blackstone')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Blackstone">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Blackstone">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Blackstone">0</span></p>
             </div>
             <!-- 7. Harold Hamm -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Continental Resources">
                 <img src="https://images.pexels.com/photos/221027/pexels-photo-221027.jpeg" alt="Continental Resources - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Continental Resources (Harold Hamm): Donated $25M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Continental Resources (Harold Hamm): Donated $25M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Continental Resources (Harold Hamm): Donó $25M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Continental Resources (Harold Hamm)：2024年向特朗普捐款$25M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="energy"><a href="#" target="_blank">NextEra Energy</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Continental Resources')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Continental Resources">0</span></p>
+                <button onclick="voteForBoycott('Continental Resources')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Continental Resources')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Continental Resources')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Continental Resources">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Continental Resources">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Continental Resources">0</span></p>
             </div>
             <!-- 8. Kelcy Warren -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Energy Transfer Partners">
                 <img src="https://images.pexels.com/photos/434249/pexels-photo-434249.jpeg" alt="Energy Transfer Partners - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Energy Transfer Partners (Kelcy Warren): Donated $20M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Energy Transfer Partners (Kelcy Warren): Donated $20M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Energy Transfer Partners (Kelcy Warren): Donó $20M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Energy Transfer Partners (Kelcy Warren)：2024年向特朗普捐款$20M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="energy"><a href="#" target="_blank">Enphase Energy</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Energy Transfer Partners')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Energy Transfer Partners">0</span></p>
+                <button onclick="voteForBoycott('Energy Transfer Partners')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Energy Transfer Partners')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Energy Transfer Partners')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Energy Transfer Partners">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Energy Transfer Partners">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Energy Transfer Partners">0</span></p>
             </div>
             <!-- 9. Jeff Yass -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Susquehanna International Group">
                 <img src="https://images.pexels.com/photos/6801868/pexels-photo-6801868.jpeg" alt="Susquehanna International Group - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Susquehanna International Group (Jeff Yass): Donated $15M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Susquehanna International Group (Jeff Yass): Donated $15M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Susquehanna International Group (Jeff Yass): Donó $15M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Susquehanna International Group (Jeff Yass)：2024年向特朗普捐款$15M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="finance"><a href="#" target="_blank">GreenInvest</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Susquehanna International Group')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Susquehanna International Group">0</span></p>
+                <button onclick="voteForBoycott('Susquehanna International Group')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Susquehanna International Group')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Susquehanna International Group')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Susquehanna International Group">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Susquehanna International Group">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Susquehanna International Group">0</span></p>
             </div>
             <!-- 10. Bernard Marcus -->
             <div class="donor animate__animated animate__fadeInUp" data-brand="Home Depot">
                 <img src="https://images.pexels.com/photos/7679725/pexels-photo-7679725.jpeg" alt="Home Depot - a mega donor to Trump" loading="lazy">
                 <span class="warning">MEGA DONOR</span>
-                <p>Home Depot (Bernard Marcus): Donated $10M to Trump in 2024</p>
-                <h3>Switch to This Alternative:</h3>
+                <p data-lang="en">Home Depot (Bernard Marcus): Donated $10M to Trump in 2024</p>
+                <p data-lang="es" style="display: none;">Home Depot (Bernard Marcus): Donó $10M a Trump en 2024</p>
+                <p data-lang="zh" style="display: none;">Home Depot (Bernard Marcus)：2024年向特朗普捐款$10M</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
                 <ul>
                     <li data-category="retail"><a href="#" target="_blank">LocalHardware</a> (Affiliate Link)</li>
                 </ul>
-                <button onclick="voteForBoycott('Home Depot')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Home Depot">0</span></p>
+                <button onclick="voteForBoycott('Home Depot')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Home Depot')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Home Depot')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Home Depot">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Home Depot">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Home Depot">0</span></p>
             </div>
         </div>
     </section>
 
+    <section id="community">
+        <h2 data-lang="en">Community Voices</h2>
+        <h2 data-lang="es" style="display: none;">Voces de la comunidad</h2>
+        <h2 data-lang="zh" style="display: none;">社区声音</h2>
+        <div id="comments">
+            <div class="comment-box">
+                <textarea id="commentInput" placeholder="Share your boycott story..." data-lang="en"></textarea>
+                <textarea id="commentInput-es" placeholder="Comparte tu historia de boicot..." data-lang="es" style="display: none;"></textarea>
+                <textarea id="commentInput-zh" placeholder="分享你的抵制故事..." data-lang="zh" style="display: none;"></textarea>
+                <button onclick="submitComment()" data-lang="en">Submit Comment</button>
+                <button onclick="submitComment()" data-lang="es" style="display: none;">Enviar comentario</button>
+                <button onclick="submitComment()" data-lang="zh" style="display: none;">提交评论</button>
+            </div>
+            <div id="commentList"></div>
+        </div>
+        <div class="upload-section">
+            <h3 data-lang="en">Upload Your Boycott Proof</h3>
+            <h3 data-lang="es" style="display: none;">Sube tu prueba de boicot</h3>
+            <h3 data-lang="zh" style="display: none;">上传你的抵制证明</h3>
+            <input type="file" id="imageUpload" accept="image/*">
+            <button onclick="uploadImage()" data-lang="en">Upload Image</button>
+            <button onclick="uploadImage()" data-lang="es" style="display: none;">Subir imagen</button>
+            <button onclick="uploadImage()" data-lang="zh" style="display: none;">上传图片</button>
+            <div id="imageGallery"></div>
+        </div>
+    </section>
+
+    <section id="social-feed">
+        <h2 data-lang="en">What People Are Saying on X</h2>
+        <h2 data-lang="es" style="display: none;">Lo que dice la gente en X</h2>
+        <h2 data-lang="zh" style="display: none;">X平台上的声音</h2>
+        <div id="x-feed">
+            <!-- X posts will be embedded here via JavaScript -->
+        </div>
+    </section>
+
     <section id="pledges">
-        <h2>Boycott Pledges for Social Media</h2>
-        <p>Select a brand to boycott:</p>
+        <h2 data-lang="en">Share Your Pledge</h2>
+        <h2 data-lang="es" style="display: none;">Comparte tu compromiso</h2>
+        <h2 data-lang="zh" style="display: none;">分享你的承诺</h2>
+        <p data-lang="en">Select a brand to boycott:</p>
+        <p data-lang="es" style="display: none;">Selecciona una marca para boicotear:</p>
+        <p data-lang="zh" style="display: none;">选择一个品牌进行抵制：</p>
         <select id="brandSelect" onchange="updatePledge()">
-            <option value="">Select a Brand</option>
+            <option value="" data-lang="en">Select a Brand</option>
+            <option value="" data-lang="es" style="display: none;">Selecciona una marca</option>
+            <option value="" data-lang="zh" style="display: none;">选择一个品牌</option>
             <option value="Pan Am Systems|EthicalBank">Pan Am Systems</option>
             <option value="Tesla|Rivian">Tesla</option>
             <option value="Las Vegas Sands|EthicalCasino">Las Vegas Sands</option>
@@ -179,32 +335,35 @@
             <option value="Home Depot|LocalHardware">Home Depot</option>
         </select>
         <div class="pledge">
-            <p id="pledge-text">Select a brand to generate your pledge.</p>
-            <button onclick="copyPledge()"><i class="fas fa-copy"></i> Copy Pledge</button>
+            <p id="pledge-text" data-lang="en">Select a brand to generate your pledge.</p>
+            <p id="pledge-text-es" data-lang="es" style="display: none;">Selecciona una marca para generar tu compromiso.</p>
+            <p id="pledge-text-zh" data-lang="zh" style="display: none;">选择一个品牌以生成你的承诺。</p>
+            <button onclick="copyPledge()" data-lang="en"><i class="fas fa-copy"></i> Copy Pledge</button>
+            <button onclick="copyPledge()" data-lang="es" style="display: none;"><i class="fas fa-copy"></i> Copiar compromiso</button>
+            <button onclick="copyPledge()" data-lang="zh" style="display: none;"><i class="fas fa-copy"></i> 复制承诺</button>
             <a id="shareX" href="#" target="_blank"><i class="fab fa-x-twitter"></i> Share on X</a>
             <a id="shareFacebook" href="#" target="_blank"><i class="fab fa-facebook"></i> Share on Facebook</a>
             <a id="shareReddit" href="#" target="_blank"><i class="fab fa-reddit"></i> Share on Reddit</a>
         </div>
     </section>
 
-    <section id="feedback">
-        <h2>Join the Movement</h2>
-        <p>Use this link to submit feedback: <a href="https://forms.gle/your-google-form-link" target="_blank">Feedback Form</a></p>
-    </section>
-
     <footer>
-        <p>Join the Movement—Share This Page!</p>
+        <p data-lang="en">Join the Global Movement—Share This Page!</p>
+        <p data-lang="es" style="display: none;">¡Únete al movimiento global—comparte esta página!</p>
+        <p data-lang="zh" style="display: none;">加入全球运动——分享这个页面！</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "EXPOSED: Top 10 Donors to Trump",
-      "description": "Join the boycott movement! Expose the top 10 donors to Donald Trump, switch to ethical alternatives, and take action against Trump’s agenda.",
+      "name": "EXPOSED: Boycott Trump's Top 10 Mega Donors",
+      "description": "Join the global boycott movement! Expose Trump's top 10 mega donors, switch to ethical alternatives, and fight back with your wallet!",
       "url": "https://your-username.github.io/trump-donors-boycott",
       "publisher": {
         "@type": "Organization",
