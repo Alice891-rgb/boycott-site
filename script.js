@@ -10,6 +10,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Dark Mode Toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+    }
+    darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+    });
+
+    // Image Loading Animation
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+        img.addEventListener('load', () => {
+            img.classList.add('loaded');
+            img.previousElementSibling.style.display = 'none';
+        });
+    });
+
     // Initialize pledge count and votes
     let pledgeCount = localStorage.getItem('pledgeCount') || 0;
     document.getElementById('pledgeCount').innerText = pledgeCount;
@@ -43,44 +61,31 @@ document.addEventListener("DOMContentLoaded", () => {
             scales: {
                 y: {
                     beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Number of Votes'
-                    }
+                    title: { display: true, text: 'Number of Votes' }
                 },
                 x: {
-                    title: {
-                        display: true,
-                        text: 'Brands'
-                    }
+                    title: { display: true, text: 'Brands' }
                 }
             },
-            plugins: {
-                legend: {
-                    display: false
-                }
-            }
+            plugins: { legend: { display: false } }
         }
     });
 
-    // Load comments from localStorage
+    // Load comments, images, boycotts, and volunteers from localStorage
     const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
     savedComments.forEach(comment => addComment(comment));
 
-    // Load images from localStorage
     const savedImages = JSON.parse(localStorage.getItem('images')) || [];
     savedImages.forEach(image => addImageToGallery(image));
 
-    // Initialize leaderboard
-    updateLeaderboard();
-
-    // Load boycott progress from localStorage
     const savedBoycotts = JSON.parse(localStorage.getItem('boycotts')) || [];
     savedBoycotts.forEach(boycott => addBoycottProgress(boycott.brand));
 
-    // Load volunteers from localStorage
     const savedVolunteers = JSON.parse(localStorage.getItem('volunteers')) || [];
     savedVolunteers.forEach(volunteer => addVolunteerEntry(volunteer));
+
+    // Initialize leaderboard with points
+    updateLeaderboard();
 
     // Embed X posts (mocked due to API limitations)
     const xFeed = document.getElementById('x-feed');
@@ -96,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (window.twttr) window.twttr.widgets.load();
 
     // Update boycott progress periodically
-    setInterval(updateBoycottProgress, 60000); // Update every minute for simulation
+    setInterval(updateBoycottProgress, 60000);
 });
 
 function searchDonors() {
@@ -149,6 +154,7 @@ function copyPledge() {
     const pledgeText = document.getElementById('pledge-text').innerText;
     navigator.clipboard.writeText(pledgeText).then(() => {
         alert("Pledge copied to clipboard!");
+        addPoints("Anonymous", 2); // 2 points for copying pledge
     });
 }
 
@@ -173,13 +179,31 @@ function voteForBoycott(brand) {
     voteChart.data.datasets[0].data = voteData;
     voteChart.update();
 
-    // Record user vote (assuming anonymous user)
+    // Record user vote and add points
     const users = JSON.parse(localStorage.getItem('users')) || [];
-    let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0 };
+    let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0, points: 0 };
     user.votes += 1;
+    user.points = (user.points || 0) + 5; // 5 points for voting
     if (!users.find(u => u.name === "Anonymous")) users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
     updateLeaderboard();
+
+    // Show CTA popup
+    document.getElementById('ctaPopup').style.display = 'flex';
+}
+
+function shareAfterVote() {
+    const pledgeText = document.getElementById('pledge-text').innerText;
+    if (pledgeText !== "Select a brand to generate your pledge.") {
+        const encodedPledge = encodeURIComponent(pledgeText);
+        window.open(`https://x.com/intent/tweet?text=${encodedPledge}`, '_blank');
+        addPoints("Anonymous", 10); // 10 points for sharing
+    }
+    closePopup();
+}
+
+function closePopup() {
+    document.getElementById('ctaPopup').style.display = 'none';
 }
 
 function submitComment() {
@@ -196,10 +220,11 @@ function submitComment() {
         comments.push(comment);
         localStorage.setItem('comments', JSON.stringify(comments));
 
-        // Record user comment
+        // Record user comment and add points
         const users = JSON.parse(localStorage.getItem('users')) || [];
-        let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0 };
+        let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0, points: 0 };
         user.comments += 1;
+        user.points = (user.points || 0) + 3; // 3 points for commenting
         if (!users.find(u => u.name === "Anonymous")) users.push(user);
         localStorage.setItem('users', JSON.stringify(users));
         updateLeaderboard();
@@ -228,6 +253,9 @@ function uploadImage() {
             const images = JSON.parse(localStorage.getItem('images')) || [];
             images.push(imageData);
             localStorage.setItem('images', JSON.stringify(images));
+
+            // Add points for uploading
+            addPoints("Anonymous", 5); // 5 points for uploading image
         };
         reader.readAsDataURL(file);
         fileInput.value = '';
@@ -245,33 +273,34 @@ function updateLeaderboard() {
     const leaderboardList = document.getElementById('leaderboard-list');
     leaderboardList.innerHTML = '';
 
-    // Simulate user data: retrieve votes and comments from localStorage
     const users = JSON.parse(localStorage.getItem('users')) || [
-        { name: "User1", votes: 5, comments: 2 },
-        { name: "User2", votes: 3, comments: 4 },
-        { name: "User3", votes: 2, comments: 1 }
+        { name: "User1", votes: 5, comments: 2, points: 16 },
+        { name: "User2", votes: 3, comments: 4, points: 23 },
+        { name: "User3", votes: 2, comments: 1, points: 12 }
     ];
 
-    // Calculate total score (votes + comments * 2)
-    users.forEach(user => {
-        user.score = user.votes + user.comments * 2;
-    });
+    users.sort((a, b) => (b.points || 0) - (a.points || 0));
 
-    // Sort by score
-    users.sort((a, b) => b.score - a.score);
-
-    // Display top 5
     users.slice(0, 5).forEach((user, index) => {
         const item = document.createElement('div');
         item.className = 'leaderboard-item';
         item.innerHTML = `
             <span class="rank">${index + 1}. ${user.name}</span>
-            <span class="score">${user.score} points (Votes: ${user.votes}, Comments: ${user.comments})</span>
+            <span class="score">${user.points || 0} points (Votes: ${user.votes}, Comments: ${user.comments})</span>
         `;
         leaderboardList.appendChild(item);
     });
 
     localStorage.setItem('users', JSON.stringify(users));
+}
+
+function addPoints(username, points) {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let user = users.find(u => u.name === username) || { name: username, votes: 0, comments: 0, points: 0 };
+    user.points = (user.points || 0) + points;
+    if (!users.find(u => u.name === username)) users.push(user);
+    localStorage.setItem('users', JSON.stringify(users));
+    updateLeaderboard();
 }
 
 function addBoycottBrand() {
@@ -288,8 +317,11 @@ function addBoycottBrand() {
             boycotts.push(boycott);
             localStorage.setItem('boycotts', JSON.stringify(boycotts));
             addBoycottProgress(brand);
+
+            // Add points for starting a boycott
+            addPoints("Anonymous", 5); // 5 points for starting boycott
         }
-        select.value = ''; // Reset the dropdown
+        select.value = '';
     }
 }
 
@@ -359,6 +391,9 @@ function submitVolunteer() {
         volunteers.push(volunteer);
         localStorage.setItem('volunteers', JSON.stringify(volunteers));
         addVolunteerEntry(volunteer);
+
+        // Add points for volunteering
+        addPoints("Anonymous", 10); // 10 points for volunteering
 
         nameInput.value = '';
         emailInput.value = '';
