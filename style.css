@@ -63,7 +63,6 @@ section {
     object-fit: cover;
     transition: opacity 0.3s ease;
 }
-}
 
 .warning {
     display: block;
