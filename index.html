@@ -35,6 +35,18 @@
         <button onclick="document.getElementById('donors').scrollIntoView()" data-lang="zh" style="display: none;">现在加入运动！</button>
     </header>
 
+    <section id="about">
+        <h2 data-lang="en">Why We’re Fighting Back</h2>
+        <h2 data-lang="es" style="display: none;">Por qué estamos luchando</h2>
+        <h2 data-lang="zh" style="display: none;">为什么我们要反击</h2>
+        <p data-lang="en">In 2024, billionaires and corporations poured millions into Trump’s campaign, fueling his agenda. By boycotting these mega donors, we’re hitting them where it hurts—their wallets. Together, we can make a difference!</p>
+        <p data-lang="es" style="display: none;">En 2024, multimillonarios y corporaciones invirtieron millones en la campaña de Trump, alimentando su agenda. Al boicotear a estos grandes donantes, les golpeamos donde más les duele: ¡sus billeteras! ¡Juntos podemos hacer la diferencia!</p>
+        <p data-lang="zh" style="display: none;">2024年，亿万富翁和企业向特朗普的竞选活动投入了数百万资金，支持他的议程。通过抵制这些大额资助者，我们可以打击他们的痛处——他们的钱包！让我们一起改变现状！</p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Boycott Movement Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
     <section id="stats">
         <h2 data-lang="en">Movement Impact</h2>
         <h2 data-lang="es" style="display: none;">Impacto del movimiento</h2>
@@ -43,6 +55,18 @@
         <p data-lang="es" style="display: none;">Participantes totales: <span id="pledgeCount">0</span></p>
         <p data-lang="zh" style="display: none;">总参与人数：<span id="pledgeCount">0</span></p>
         <canvas id="voteChart" width="400" height="200"></canvas>
+    </section>
+
+    <section id="leaderboard">
+        <h2 data-lang="en">Top Boycotters</h2>
+        <h2 data-lang="es" style="display: none;">Mejores boicoteadores</h2>
+        <h2 data-lang="zh" style="display: none;">顶级抵制者</h2>
+        <p data-lang="en">See who’s making the biggest impact!</p>
+        <p data-lang="es" style="display: none;">¡Mira quién está teniendo el mayor impacto!</p>
+        <p data-lang="zh" style="display: none;">看看谁的影响最大！</p>
+        <div id="leaderboard-list">
+            <!-- 排行榜将通过 JavaScript 动态生成 -->
+        </div>
     </section>
 
     <section id="donors">
@@ -273,6 +297,46 @@
                 <p data-lang="es" style="display: none;">Votos: <span id="vote-Home Depot">0</span></p>
                 <p data-lang="zh" style="display: none;">投票数：<span id="vote-Home Depot">0</span></p>
             </div>
+            <!-- 11. Hiatus -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Hiatus">
+                <img src="https://images.pexels.com/photos/163148/pexels-photo-163148.jpeg" alt="Hiatus - a donor to Trump" loading="lazy">
+                <span class="warning">DONOR</span>
+                <p data-lang="en">Hiatus: Donated $5M to Trump in 2024, then paused operations—still funding his agenda!</p>
+                <p data-lang="es" style="display: none;">Hiatus: Donó $5M a Trump en 2024, luego pausó operaciones—¡aún financia su agenda!</p>
+                <p data-lang="zh" style="display: none;">Hiatus：2024年向特朗普捐款$5M，然后暂停运营——仍在资助他的议程！</p>
+                <h3 data-lang="en">Switch to This Alternative:</h3>
+                <h3 data-lang="es" style="display: none;">Cambia a esta alternativa:</h3>
+                <h3 data-lang="zh" style="display: none;">改用这个替代品：</h3>
+                <ul>
+                    <li data-category="retail"><a href="#" target="_blank">EthicalRetail</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Hiatus')" data-lang="en"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <button onclick="voteForBoycott('Hiatus')" data-lang="es" style="display: none;"><i class="fas fa-thumbs-down"></i> Votar por boicotear</button>
+                <button onclick="voteForBoycott('Hiatus')" data-lang="zh" style="display: none;"><i class="fas fa-thumbs-down"></i> 投票抵制</button>
+                <p data-lang="en">Votes: <span id="vote-Hiatus">0</span></p>
+                <p data-lang="es" style="display: none;">Votos: <span id="vote-Hiatus">0</span></p>
+                <p data-lang="zh" style="display: none;">投票数：<span id="vote-Hiatus">0</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="hiatus">
+        <h2 data-lang="en">Companies on Hiatus: Paused but Still Problematic</h2>
+        <h2 data-lang="es" style="display: none;">Empresas en pausa: Detenidas pero aún problemáticas</h2>
+        <h2 data-lang="zh" style="display: none;">暂停的公司：暂停但仍需警惕</h2>
+        <p data-lang="en">Some companies have paused operations or donations, but their past support for Trump still impacts his agenda. Learn more and take action!</p>
+        <p data-lang="es" style="display: none;">Algunas empresas han pausado operaciones o donaciones, pero su apoyo pasado a Trump aún afecta su agenda. ¡Infórmate y actúa!</p>
+        <p data-lang="zh" style="display: none;">一些公司已暂停运营或捐款，但它们过去对特朗普的支持仍然影响他的议程。了解更多并采取行动！</p>
+        <div class="hiatus-list">
+            <div class="hiatus-item">
+                <img src="https://images.pexels.com/photos/163148/pexels-photo-163148.jpeg" alt="Hiatus Co" loading="lazy">
+                <h3 data-lang="en">Hiatus Co</h3>
+                <h3 data-lang="es" style="display: none;">Hiatus Co</h3>
+                <h3 data-lang="zh" style="display: none;">Hiatus公司</h3>
+                <p data-lang="en">Donated $5M to Trump in 2024, then paused operations. Switch to EthicalRetail instead!</p>
+                <p data-lang="es" style="display: none;">Donó $5M a Trump en 2024, luego pausó operaciones. ¡Cambia a EthicalRetail!</p>
+                <p data-lang="zh" style="display: none;">2024年向特朗普捐款$5M，然后暂停运营。改用EthicalRetail！</p>
+            </div>
         </div>
     </section>
 
@@ -333,6 +397,7 @@
             <option value="Energy Transfer Partners|Enphase Energy">Energy Transfer Partners</option>
             <option value="Susquehanna International Group|GreenInvest">Susquehanna International Group</option>
             <option value="Home Depot|LocalHardware">Home Depot</option>
+            <option value="Hiatus|EthicalRetail">Hiatus</option>
         </select>
         <div class="pledge">
             <p id="pledge-text" data-lang="en">Select a brand to generate your pledge.</p>
@@ -344,6 +409,49 @@
             <a id="shareX" href="#" target="_blank"><i class="fab fa-x-twitter"></i> Share on X</a>
             <a id="shareFacebook" href="#" target="_blank"><i class="fab fa-facebook"></i> Share on Facebook</a>
             <a id="shareReddit" href="#" target="_blank"><i class="fab fa-reddit"></i> Share on Reddit</a>
+        </div>
+    </section>
+
+    <section id="success-stories">
+        <h2 data-lang="en">Success Stories: Our Impact</h2>
+        <h2 data-lang="es" style="display: none;">Historias de éxito: Nuestro impacto</h2>
+        <h2 data-lang="zh" style="display: none;">成功案例：我们的影响</h2>
+        <div class="story-list">
+            <div class="story-item">
+                <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg" alt="Community Protest" loading="lazy">
+                <h3 data-lang="en">Community Power: Tesla Boycott</h3>
+                <h3 data-lang="es" style="display: none;">Poder comunitario: Boicot a Tesla</h3>
+                <h3 data-lang="zh" style="display: none;">社区力量：抵制Tesla</h3>
+                <p data-lang="en">Over 10,000 users pledged to boycott Tesla, leading to a 5% drop in regional sales in Q1 2025!</p>
+                <p data-lang="es" style="display: none;">¡Más de 10,000 usuarios se comprometieron a boicotear Tesla, lo que llevó a una caída del 5% en las ventas regionales en el primer trimestre de 2025!</p>
+                <p data-lang="zh" style="display: none;">超过10,000名用户承诺抵制Tesla，导致2025年第一季度区域销售额下降5%！</p>
+            </div>
+            <div class="story-item">
+                <img src="https://images.pexels.com/photos/3182750/pexels-photo-3182750.jpeg" alt="EcoPack Adoption" loading="lazy">
+                <h3 data-lang="en">Switching to EcoPack Solutions</h3>
+                <h3 data-lang="es" style="display: none;">Cambio a EcoPack Solutions</h3>
+                <h3 data-lang="zh" style="display: none;">转向EcoPack Solutions</h3>
+                <p data-lang="en">After boycotting Uline, 8,000 users switched to EcoPack Solutions, boosting sustainable packaging by 15%!</p>
+                <p data-lang="es" style="display: none;">Tras boicotear a Uline, 8,000 usuarios cambiaron a EcoPack Solutions, ¡aumentando el empaque sostenible en un 15%!</p>
+                <p data-lang="zh" style="display: none;">在抵制Uline后，8,000名用户转向EcoPack Solutions，可持续包装增长了15%！</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources">
+        <h2 data-lang="en">Download Resources</h2>
+        <h2 data-lang="es" style="display: none;">Descargar recursos</h2>
+        <h2 data-lang="zh" style="display: none;">下载资源</h2>
+        <p data-lang="en">Spread the word with these downloadable resources!</p>
+        <p data-lang="es" style="display: none;">¡Difunde el mensaje con estos recursos descargables!</p>
+        <p data-lang="zh" style="display: none;">使用这些可下载资源传播消息！</p>
+        <div class="resource-list">
+            <a href="#" class="resource-item" data-lang="en">Download Boycott Flyer (PDF)</a>
+            <a href="#" class="resource-item" data-lang="es" style="display: none;">Descargar folleto de boicot (PDF)</a>
+            <a href="#" class="resource-item" data-lang="zh" style="display: none;">下载抵制传单 (PDF)</a>
+            <a href="#" class="resource-item" data-lang="en">Download Poster (PDF)</a>
+            <a href="#" class="resource-item" data-lang="es" style="display: none;">Descargar póster (PDF)</a>
+            <a href="#" class="resource-item" data-lang="zh" style="display: none;">下载海报 (PDF)</a>
         </div>
     </section>
 
