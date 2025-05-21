@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // Initialize pledge count and votes
     let pledgeCount = localStorage.getItem('pledgeCount') || 0;
     document.getElementById('pledgeCount').innerText = pledgeCount;
 
@@ -18,14 +19,74 @@ document.addEventListener("DOMContentLoaded", () => {
         "Blackstone", "Continental Resources", "Energy Transfer Partners",
         "Susquehanna International Group", "Home Depot"
     ];
-    brands.forEach((brand) => {
+    const voteData = brands.map(brand => {
         const voteCount = localStorage.getItem(`vote-${brand}`) || 0;
         document.getElementById(`vote-${brand}`).innerText = voteCount;
+        return parseInt(voteCount);
     });
+
+    // Initialize Chart.js for vote statistics
+    const ctx = document.getElementById('voteChart').getContext('2d');
+    const voteChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: brands,
+            datasets: [{
+                label: 'Boycott Votes',
+                data: voteData,
+                backgroundColor: '#d32f2f',
+                borderColor: '#b71c1c',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Number of Votes'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Brands'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    // Load comments from localStorage
+    const savedComments = JSON.parse(localStorage.getItem('comments')) || [];
+    savedComments.forEach(comment => addComment(comment));
+
+    // Load images from localStorage
+    const savedImages = JSON.parse(localStorage.getItem('images')) || [];
+    savedImages.forEach(image => addImageToGallery(image));
+
+    // Embed X posts (mocked due to API limitations)
+    const xFeed = document.getElementById('x-feed');
+    const mockTweets = [
+        { id: "example-tweet-id-1", text: "I’m boycotting Tesla and switching to Rivian! #BoycottTrumpDonors" },
+        { id: "example-tweet-id-2", text: "Uline supports Trump—time to switch to EcoPack Solutions! #BoycottTrumpDonors" }
+    ];
+    mockTweets.forEach(tweet => {
+        const tweetElement = document.createElement('div');
+        tweetElement.innerHTML = `<blockquote class="twitter-tweet"><p>${tweet.text}</p></blockquote>`;
+        xFeed.appendChild(tweetElement);
+    });
+    if (window.twttr) window.twttr.widgets.load();
 });
 
 function searchDonors() {
-    const input = document.getElementById("searchInput").value.toLowerCase();
+    const input = document.querySelector('[id^="searchInput"]:not([style*="display: none"])').value.toLowerCase();
     const donors = document.getElementsByClassName("donor");
     for (let donor of donors) {
         const brand = donor.getAttribute("data-brand").toLowerCase();
@@ -47,14 +108,22 @@ function filterAlternatives(category) {
 
 function updatePledge() {
     const select = document.getElementById("brandSelect");
-    const pledgeText = document.getElementById("pledge-text");
+    const pledgeText = document.querySelector('#pledge-text:not([style*="display: none"])');
     const shareX = document.getElementById("shareX");
     const shareFacebook = document.getElementById("shareFacebook");
     const shareReddit = document.getElementById("shareReddit");
 
     if (select.value) {
         const [donorBrand, altBrand] = select.value.split("|");
-        const pledge = `I’m boycotting ${donorBrand} and switching to ${altBrand} to fight Trump’s agenda! Join me! #BoycottTrumpDonors`;
+        const lang = document.getElementById("languageSelect").value;
+        let pledge;
+        if (lang === "es") {
+            pledge = `¡Estoy boicoteando ${donorBrand} y cambiando a ${altBrand} para luchar contra la agenda de Trump! ¡Únete! #BoycottTrumpDonors`;
+        } else if (lang === "zh") {
+            pledge = `我正在抵制${donorBrand}，并转向${altBrand}，以对抗特朗普的议程！加入我吧！#BoycottTrumpDonors`;
+        } else {
+            pledge = `I’m boycotting ${donorBrand} and switching to ${altBrand} to fight Trump’s agenda! Join me! #BoycottTrumpDonors`;
+        }
         pledgeText.innerText = pledge;
 
         const encodedPledge = encodeURIComponent(pledge);
@@ -63,7 +132,13 @@ function updatePledge() {
         shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
         shareReddit.href = `https://www.reddit.com/submit?url=${websiteUrl}&title=${encodedPledge}`;
     } else {
-        pledgeText.innerText = "Select a brand to generate your pledge.";
+        if (lang === "es") {
+            pledgeText.innerText = "Selecciona una marca para generar tu compromiso.";
+        } else if (lang === "zh") {
+            pledgeText.innerText = "选择一个品牌以生成你的承诺。";
+        } else {
+            pledgeText.innerText = "Select a brand to generate your pledge.";
+        }
         shareX.href = "#";
         shareFacebook.href = "#";
         shareReddit.href = "#";
@@ -71,9 +146,16 @@ function updatePledge() {
 }
 
 function copyPledge() {
-    const pledgeText = document.getElementById("pledge-text").innerText;
+    const pledgeText = document.querySelector('#pledge-text:not([style*="display: none"])').innerText;
     navigator.clipboard.writeText(pledgeText).then(() => {
-        alert("Pledge copied to clipboard!");
+        const lang = document.getElementById("languageSelect").value;
+        if (lang === "es") {
+            alert("¡Compromiso copiado al portapapeles!");
+        } else if (lang === "zh") {
+            alert("承诺已复制到剪贴板！");
+        } else {
+            alert("Pledge copied to clipboard!");
+        }
     });
 }
 
@@ -87,4 +169,68 @@ function voteForBoycott(brand) {
     pledgeCount = parseInt(pledgeCount) + 1;
     localStorage.setItem('pledgeCount', pledgeCount);
     document.getElementById('pledgeCount').innerText = pledgeCount;
+
+    // Update chart
+    const voteData = brands.map(b => parseInt(localStorage.getItem(`vote-${b}`) || 0));
+    voteChart.data.datasets[0].data = voteData;
+    voteChart.update();
+}
+
+function submitComment() {
+    const commentInput = document.querySelector('[id^="commentInput"]:not([style*="display: none"])');
+    const commentText = commentInput.value.trim();
+    if (commentText) {
+        const comment = {
+            text: commentText,
+            date: new Date().toLocaleString()
+        };
+        addComment(comment);
+
+        const comments = JSON.parse(localStorage.getItem('comments')) || [];
+        comments.push(comment);
+        localStorage.setItem('comments', JSON.stringify(comments));
+
+        commentInput.value = '';
+    }
+}
+
+function addComment(comment) {
+    const commentList = document.getElementById('commentList');
+    const commentDiv = document.createElement('div');
+    commentDiv.className = 'comment';
+    commentDiv.innerHTML = `<p>${comment.text}</p><small>${comment.date}</small>`;
+    commentList.prepend(commentDiv);
+}
+
+function uploadImage() {
+    const fileInput = document.getElementById('imageUpload');
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const imageData = e.target.result;
+            addImageToGallery(imageData);
+
+            const images = JSON.parse(localStorage.getItem('images')) || [];
+            images.push(imageData);
+            localStorage.setItem('images', JSON.stringify(images));
+        };
+        reader.readAsDataURL(file);
+        fileInput.value = '';
+    }
+}
+
+function addImageToGallery(imageData) {
+    const gallery = document.getElementById('imageGallery');
+    const img = document.createElement('img');
+    img.src = imageData;
+    gallery.appendChild(img);
+}
+
+function switchLanguage() {
+    const lang = document.getElementById("languageSelect").value;
+    document.querySelectorAll('[data-lang]').forEach(element => {
+        element.style.display = element.getAttribute('data-lang') === lang ? 'block' : 'none';
+    });
+    updatePledge(); // Update pledge text when language changes
 }
