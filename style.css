@@ -58,7 +58,34 @@ section {
     padding: 50px 20px;
 }
 
-#stats, #donors h2, #pledges h2, #community h2, #social-feed h2 {
+#about {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 宽高比 */
+    height: 0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+#stats, #donors h2, #pledges h2, #community h2, #social-feed h2, #success-stories h2, #resources h2, #leaderboard h2, #hiatus h2 {
     text-align: center;
     font-size: 2.5em;
     color: #d32f2f;
@@ -75,6 +102,40 @@ section {
 
 #voteChart {
     margin: 20px auto;
+}
+
+#leaderboard {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.leaderboard-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leaderboard-item .rank {
+    font-weight: bold;
+    color: #d32f2f;
+}
+
+.leaderboard-item .score {
+    color: #388e3c;
 }
 
 .donor {
@@ -145,7 +206,7 @@ section {
 #searchInput, #searchInput-es, #searchInput-zh {
     width: 100%;
     max-width: 400px;
-    padding: 12 thinning: 12px;
+    padding: 12px;
     margin: 20px auto;
     display: block;
     border: 2px solid #d32f2f;
@@ -187,6 +248,44 @@ section {
 
 .filter-buttons button:active {
     transform: scale(0.95);
+}
+
+#hiatus {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hiatus-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.hiatus-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hiatus-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.hiatus-item h3 {
+    color: #d32f2f;
+    margin: 10px 0;
 }
 
 #community {
@@ -312,6 +411,70 @@ section {
     margin-right: 8px;
 }
 
+#success-stories {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.story-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.story-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.story-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.story-item h3 {
+    color: #d32f2f;
+    margin: 10px 0;
+}
+
+#resources {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.resource-item {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #d32f2f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.resource-item:hover {
+    background-color: #b71c1c;
+}
+
 footer {
     text-align: center;
     padding: 30px;
@@ -340,6 +503,14 @@ footer {
     .filter-buttons button {
         padding: 8px 10px;
         font-size: 0.9em;
+    }
+
+    .video-container {
+        padding-bottom: 75%; /* 4:3 宽高比 for smaller screens */
+    }
+
+    .hiatus-item, .story-item {
+        width: 100%;
     }
 
     #imageGallery img {
