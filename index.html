@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXPOSED: Top 10 Mega Donors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Join the boycott movement! Expose the top 10 mega donors, switch to ethical alternatives, and take action against [Cause/Party].">
+    <meta name="keywords" content="boycott mega donors, ethical alternatives, [Cause], TechMega Corp, FastFood Giant, OilTycoon Inc">
+    <meta property="og:title" content="EXPOSED: Top 10 Mega Donors">
+    <meta property="og:description" content="Join the boycott movement! Expose the top 10 mega donors and switch to ethical alternatives.">
+    <meta property="og:image" content="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg">
+    <meta property="og:url" content="https://your-username.github.io/boycott-site">
+    <meta property="og:type" content="website">
+</head>
+<body>
+    <header>
+        <h1>EXPOSED: The Top 10 Donors Fueling [Cause/Party]</h1>
+        <p>Join the Fight—Boycott and Switch Today!</p>
+        <button onclick="document.getElementById('donors').scrollIntoView()">Take Action Now</button>
+    </header>
+
+    <section id="stats">
+        <h2>Participants</h2>
+        <p>Total Participants: <span id="pledgeCount">0</span></p>
+    </section>
+
+    <section id="donors">
+        <h2>Top 10 Mega Donors</h2>
+        <input type="text" id="searchInput" placeholder="Search for a donor..." onkeyup="searchDonors()">
+        <div class="filter-buttons">
+            <button onclick="filterAlternatives('all')"><i class="fas fa-globe"></i> All</button>
+            <button onclick="filterAlternatives('tech')"><i class="fas fa-laptop"></i> Tech</button>
+            <button onclick="filterAlternatives('food')"><i class="fas fa-hamburger"></i> Food</button>
+        </div>
+        <div id="donorList">
+            <div class="donor animate__animated animate__fadeInUp" data-brand="TechMega Corp">
+                <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg" alt="TechMega Corp logo - a mega donor to [Cause/Party]" loading="lazy">
+                <span class="warning">MEGA DONOR</span>
+                <p>TechMega Corp: Donated $5M to [Cause/Party] in 2024</p>
+                <h3>Switch to These Alternatives:</h3>
+                <ul>
+                    <li data-category="tech"><a href="YOUR_AFFILIATE_LINK_1" target="_blank">EcoTech Solutions</a> (Affiliate Link)</li>
+                    <li data-category="tech"><a href="YOUR_AFFILIATE_LINK_2" target="_blank">GreenGadgets</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('TechMega Corp')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-TechMega Corp">0</span></p>
+            </div>
+            <div class="donor animate__animated animate__fadeInUp" data-brand="FastFood Giant">
+                <img src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg" alt="FastFood Giant logo - a mega donor to [Cause/Party]" loading="lazy">
+                <span class="warning">MEGA DONOR</span>
+                <p>FastFood Giant: Donated $3M to [Cause/Party] in 2024</p>
+                <h3>Switch to These Alternatives:</h3>
+                <ul>
+                    <li data-category="food"><a href="YOUR_AFFILIATE_LINK_3" target="_blank">HealthyBites</a> (Affiliate Link)</li>
+                    <li data-category="food"><a href="YOUR_AFFILIATE_LINK_4" target="_blank">LocalEats</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('FastFood Giant')"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-FastFood Giant">0</span></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pledges">
+        <h2>Boycott Pledges for Social Media</h2>
+        <p>Select a brand to boycott:</p>
+        <select id="brandSelect" onchange="updatePledge()">
+            <option value="">Select a Brand</option>
+            <option value="TechMega Corp|EcoTech Solutions">TechMega Corp</option>
+            <option value="FastFood Giant|HealthyBites">FastFood Giant</option>
+        </select>
+        <div class="pledge">
+            <p id="pledge-text">Select a brand to generate your pledge.</p>
+            <button onclick="copyPledge()"><i class="fas fa-copy"></i> Copy Pledge</button>
+            <a id="shareX" href="#" target="_blank"><i class="fab fa-x-twitter"></i> Share on X</a>
+            <a id="shareFacebook" href="#" target="_blank"><i class="fab fa-facebook"></i> Share on Facebook</a>
+            <a id="shareReddit" href="#" target="_blank"><i class="fab fa-reddit"></i> Share on Reddit</a>
+        </div>
+    </section>
+
+    <section id="feedback">
+        <h2>Join the Movement</h2>
+        <p>Use this link to submit feedback: <a href="https://forms.gle/your-google-form-link" target="_blank">Feedback Form</a></p>
+    </section>
+
+    <footer>
+        <p>Join the Movement—Share This Page!</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "EXPOSED: Top 10 Mega Donors",
+      "description": "Join the boycott movement! Expose the top 10 mega donors, switch to ethical alternatives, and take action against [Cause/Party].",
+      "url": "https://your-username.github.io/boycott-site",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Boycott Team"
+      }
+    }
+    </script>
+</body>
+</html>
