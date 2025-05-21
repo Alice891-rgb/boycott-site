@@ -7,24 +7,11 @@ body {
 }
 
 header {
-    position: relative;
     text-align: center;
     padding: 60px 20px;
     background: linear-gradient(135deg, #d32f2f, #b71c1c);
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.lang-switch {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-#languageSelect {
-    padding: 5px;
-    font-size: 1em;
-    border-radius: 5px;
 }
 
 header h1 {
@@ -70,7 +57,7 @@ section {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 宽高比 */
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
     height: 0;
     overflow: hidden;
     margin-top: 20px;
@@ -85,7 +72,30 @@ section {
     border-radius: 8px;
 }
 
-#stats, #donors h2, #pledges h2, #community h2, #social-feed h2, #success-stories h2, #resources h2, #leaderboard h2, #hiatus h2 {
+#boycott-guide {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.guide-list {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.guide-list li {
+    margin: 15px 0;
+    font-size: 1.1em;
+}
+
+.guide-list strong {
+    color: #d32f2f;
+}
+
+#stats, #donors h2, #pledges h2, #community h2, #social-feed h2, #success-stories h2, #resources h2, #leaderboard h2, #hiatus h2, #progress-tracker h2, #articles h2, #volunteer h2 {
     text-align: center;
     font-size: 2.5em;
     color: #d32f2f;
@@ -203,7 +213,7 @@ section {
     background-color: #b71c1c;
 }
 
-#searchInput, #searchInput-es, #searchInput-zh {
+#searchInput {
     width: 100%;
     max-width: 400px;
     padding: 12px;
@@ -216,7 +226,7 @@ section {
     transition: border-color 0.3s ease;
 }
 
-#searchInput:focus, #searchInput-es:focus, #searchInput-zh:focus {
+#searchInput:focus {
     border-color: #b71c1c;
     outline: none;
 }
@@ -300,7 +310,7 @@ section {
     margin-bottom: 20px;
 }
 
-#commentInput, #commentInput-es, #commentInput-zh {
+#commentInput {
     width: 100%;
     height: 100px;
     padding: 10px;
@@ -411,6 +421,66 @@ section {
     margin-right: 8px;
 }
 
+#progress-tracker {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#boycottBrands {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px solid #d32f2f;
+    border-radius: 5px;
+}
+
+#progress-list {
+    margin-top: 20px;
+}
+
+.progress-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    height: 20px;
+    margin: 10px 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #388e3c;
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.milestone-badges {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.badge {
+    padding: 5px 10px;
+    background-color: #d32f2f;
+    color: white;
+    border-radius: 15px;
+    font-size: 0.9em;
+}
+
 #success-stories {
     max-width: 800px;
     margin: 0 auto;
@@ -448,6 +518,21 @@ section {
     margin: 10px 0;
 }
 
+#articles {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#articles p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 15px 0;
+}
+
 #resources {
     max-width: 600px;
     margin: 0 auto;
@@ -473,6 +558,78 @@ section {
 
 .resource-item:hover {
     background-color: #b71c1c;
+}
+
+#volunteer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.volunteer-activities {
+    margin-bottom: 20px;
+}
+
+.volunteer-activities ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.volunteer-activities li {
+    margin: 10px 0;
+}
+
+.volunteer-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.volunteer-form input,
+.volunteer-form textarea {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #d32f2f;
+    border-radius: 5px;
+}
+
+.volunteer-form textarea {
+    height: 100px;
+}
+
+.volunteer-form button {
+    padding: 10px 20px;
+    background-color: #d32f2f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.volunteer-form button:hover {
+    background-color: #b71c1c;
+}
+
+#volunteerList {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.volunteer-entry {
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -506,7 +663,7 @@ footer {
     }
 
     .video-container {
-        padding-bottom: 75%; /* 4:3 宽高比 for smaller screens */
+        padding-bottom: 75%; /* 4:3 aspect ratio for smaller screens */
     }
 
     .hiatus-item, .story-item {
