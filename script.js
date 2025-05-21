@@ -1,6 +1,4 @@
-// 初始化投票和参与人数（使用 localStorage 模拟）
 document.addEventListener("DOMContentLoaded", () => {
-    // 初始化 GSAP 动画
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray(".donor").forEach((donor, index) => {
         gsap.from(donor, {
@@ -12,12 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 初始化投票和参与人数
     let pledgeCount = localStorage.getItem('pledgeCount') || 0;
     document.getElementById('pledgeCount').innerText = pledgeCount;
 
     const brands = [
-        "Pan Am Systems", "Tesla", "Las Vegas Sands", "Uline", "Uline-Liz",
+        "Pan Am Systems", "Tesla", "Las Vegas Sands", "Uline-Richard", "Uline-Liz",
         "Blackstone", "Continental Resources", "Energy Transfer Partners",
         "Susquehanna International Group", "Home Depot"
     ];
@@ -27,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-// 搜索捐助者
 function searchDonors() {
     const input = document.getElementById("searchInput").value.toLowerCase();
     const donors = document.getElementsByClassName("donor");
@@ -37,7 +33,6 @@ function searchDonors() {
     }
 }
 
-// 筛选替代品
 function filterAlternatives(category) {
     const donors = document.getElementsByClassName("donor");
     for (let donor of donors) {
@@ -50,7 +45,6 @@ function filterAlternatives(category) {
     }
 }
 
-// 更新誓言
 function updatePledge() {
     const select = document.getElementById("brandSelect");
     const pledgeText = document.getElementById("pledge-text");
@@ -76,7 +70,6 @@ function updatePledge() {
     }
 }
 
-// 复制誓言
 function copyPledge() {
     const pledgeText = document.getElementById("pledge-text").innerText;
     navigator.clipboard.writeText(pledgeText).then(() => {
@@ -84,14 +77,12 @@ function copyPledge() {
     });
 }
 
-// 投票抵制（使用 localStorage 模拟）
 function voteForBoycott(brand) {
     let voteCount = localStorage.getItem(`vote-${brand}`) || 0;
     voteCount = parseInt(voteCount) + 1;
     localStorage.setItem(`vote-${brand}`, voteCount);
     document.getElementById(`vote-${brand}`).innerText = voteCount;
 
-    // 模拟增加参与人数
     let pledgeCount = localStorage.getItem('pledgeCount') || 0;
     pledgeCount = parseInt(pledgeCount) + 1;
     localStorage.setItem('pledgeCount', pledgeCount);
