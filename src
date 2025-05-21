@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Donors to Trump</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Top Mega Donors to Trump</h1>
+            <p>Explore the influential donors supporting Trump's campaign.</p>
+        </div>
+    </header>
+
+    <section class="donors">
+        <div class="container">
+            <h2>Key Donors</h2>
+            <div class="donor-list">
+                <!-- Donor 1 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1593642532455-5b5e1f5a2a7e?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1593642532455-5b5e1f5a2a7e?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1593642532455-5b5e1f5a2a7e" alt="Pan Am Systems - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Timothy Mellon</h3>
+                    <p>Pan Am Systems</p>
+                </div>
+                <!-- Donor 2 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1611080626919-7f2b1c9a4e34?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1611080626919-7f2b1c9a4e34?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1611080626919-7f2b1c9a4e34" alt="Tesla - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Elon Musk</h3>
+                    <p>Tesla</p>
+                </div>
+                <!-- Donor 3 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7" alt="Las Vegas Sands - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Miriam Adelson</h3>
+                    <p>Las Vegas Sands</p>
+                </div>
+                <!-- Donor 4 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98" alt="Uline (Richard Uihlein) - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Richard Uihlein</h3>
+                    <p>Uline</p>
+                </div>
+                <!-- Donor 5 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98" alt="Uline (Liz Uihlein) - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Liz Uihlein</h3>
+                    <p>Uline</p>
+                </div>
+                <!-- Donor 6 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Blackstone - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Stephen Schwarzman</h3>
+                    <p>Blackstone</p>
+                </div>
+                <!-- Donor 7 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Continental Resources - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Harold Hamm</h3>
+                    <p>Continental Resources</p>
+                </div>
+                <!-- Donor 8 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Energy Transfer Partners - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Kelcy Warren</h3>
+                    <p>Energy Transfer Partners</p>
+                </div>
+                <!-- Donor 9 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Susquehanna International Group - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Jeff Yass</h3>
+                    <p>Susquehanna International Group</p>
+                </div>
+                <!-- Donor 10 -->
+                <div class="donor-item">
+                    <div class="image-placeholder">Loading...</div>
+                    <picture>
+                        <source srcset="https://images.unsplash.com/photo-1581094281237-1d8f9c1c8a1a?w=320" media="(max-width: 600px)">
+                        <source srcset="https://images.unsplash.com/photo-1581094281237-1d8f9c1c8a1a?w=800" media="(max-width: 1200px)">
+                        <img src="https://images.unsplash.com/photo-1581094281237-1d8f9c1c8a1a" alt="Home Depot - a mega donor to Trump" loading="lazy">
+                    </picture>
+                    <h3>Bernard Marcus</h3>
+                    <p>Home Depot</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hiatus">
+        <div class="container">
+            <h2>Hiatus: A Special Mention</h2>
+            <div class="image-placeholder">Loading...</div>
+            <picture>
+                <source srcset="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=320" media="(max-width: 600px)">
+                <source srcset="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" media="(max-width: 1200px)">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Hiatus Co" loading="lazy">
+            </picture>
+            <p>Hiatus has also made significant contributions to Trump's campaign.</p>
+        </div>
+    </section>
+
+    <section class="success-stories">
+        <div class="container">
+            <h2>Success Stories</h2>
+            <div class="story-item">
+                <div class="image-placeholder">Loading...</div>
+                <picture>
+                    <source srcset="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=320" media="(max-width: 600px)">
+                    <source srcset="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" media="(max-width: 1200px)">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Community Protest" loading="lazy">
+                </picture>
+                <h3>Community Protest</h3>
+                <p>A grassroots movement that gained momentum.</p>
+            </div>
+            <div class="story-item">
+                <div class="image-placeholder">Loading...</div>
+                <picture>
+                    <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=320" media="(max-width: 600px)">
+                    <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" media="(max-width: 1200px)">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="EcoPack Adoption" loading="lazy">
+                </picture>
+                <h3>EcoPack Adoption</h3>
+                <p>Businesses adopting sustainable packaging solutions.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mega Donors to Trump</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
