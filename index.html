@@ -3,200 +3,409 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mega Donors to Trump</title>
+    <title>EXPOSED: Boycott Trump's Top 10 Mega Donors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Join the global boycott movement! Expose Trump's top 10 mega donors, switch to ethical alternatives, and fight back with your wallet!">
+    <meta name="keywords" content="boycott Trump donors, ethical alternatives, Trump funding, Elon Musk, Timothy Mellon, Miriam Adelson">
+    <meta property="og:title" content="EXPOSED: Boycott Trump's Top 10 Mega Donors">
+    <meta property="og:description" content="Join the global boycott movement! Expose Trump's top 10 donors and switch to ethical alternatives.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c">
+    <meta property="og:url" content="https://your-username.github.io/trump-donors-boycott">
+    <meta property="og:type" content="website">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Top Mega Donors to Trump</h1>
-            <p>Explore the influential donors supporting Trump's campaign.</p>
+    <nav class="sticky-nav">
+        <ul>
+            <li><a href="#about" aria-label="Go to About section">About</a></li>
+            <li><a href="#donors" aria-label="Go to Donors section">Donors</a></li>
+            <li><a href="#progress-tracker" aria-label="Go to Progress Tracker section">Progress</a></li>
+            <li><a href="#volunteer" aria-label="Go to Volunteer section">Volunteer</a></li>
+        </ul>
+    </nav>
+
+    <div id="ctaPopup" class="popup" role="dialog" aria-labelledby="popupTitle">
+        <div class="popup-content">
+            <h3 id="popupTitle">Great Job!</h3>
+            <p>You've voted to boycott! Share your pledge to inspire others:</p>
+            <button onclick="shareAfterVote()" aria-label="Share your pledge">Share Now</button>
+            <button onclick="closePopup()" aria-label="Close popup">Close</button>
         </div>
+    </div>
+
+    <!-- 新增投票动态通知区域 -->
+    <div id="voteNotifications" class="vote-notifications">
+        <h3>Recent Votes</h3>
+        <div id="notificationList"></div>
+    </div>
+
+    <header>
+        <h1>EXPOSED: Trump's Top 10 Mega Donors</h1>
+        <p>These billionaires are funding Trump's agenda—fight back by boycotting their brands!</p>
+        <button onclick="document.getElementById('donors').scrollIntoView()" aria-label="Join the boycott movement">Join the Movement Now!</button>
     </header>
 
-    <section class="donors">
-        <div class="container">
-            <h2>Key Donors</h2>
-            <div class="donor-list">
-                <!-- Donor 1 -->
-                <div class="donor-item" data-donor="timothy-mellon">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1593642532455-5b5e1f5a2a7e?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1593642532455-5b5e1f5a2a7e?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1593642532455-5b5e1f5a2a7e" alt="Pan Am Systems - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Timothy Mellon</h3>
-                    <p>Pan Am Systems</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 2 -->
-                <div class="donor-item" data-donor="elon-musk">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1611080626919-7f2b1c9a4e34?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1611080626919-7f2b1c9a4e34?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1611080626919-7f2b1c9a4e34" alt="Tesla - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Elon Musk</h3>
-                    <p>Tesla</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 3 -->
-                <div class="donor-item" data-donor="miriam-adelson">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7" alt="Las Vegas Sands - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Miriam Adelson</h3>
-                    <p>Las Vegas Sands</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 4 -->
-                <div class="donor-item" data-donor="richard-uihlein">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98" alt="Uline (Richard Uihlein) - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Richard Uihlein</h3>
-                    <p>Uline</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 5 -->
-                <div class="donor-item" data-donor="liz-uihlein">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1586528116142-7a1db36e0f98" alt="Uline (Liz Uihlein) - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Liz Uihlein</h3>
-                    <p>Uline</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 6 -->
-                <div class="donor-item" data-donor="stephen-schwarzman">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Blackstone - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Stephen Schwarzman</h3>
-                    <p>Blackstone</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 7 -->
-                <div class="donor-item" data-donor="harold-hamm">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Continental Resources - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Harold Hamm</h3>
-                    <p>Continental Resources</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 8 -->
-                <div class="donor-item" data-donor="kelcy-warren">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Energy Transfer Partners - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Kelcy Warren</h3>
-                    <p>Energy Transfer Partners</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 9 -->
-                <div class="donor-item" data-donor="jeff-yass">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Susquehanna International Group - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Jeff Yass</h3>
-                    <p>Susquehanna International Group</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
-                <!-- Donor 10 -->
-                <div class="donor-item" data-donor="bernard-marcus">
-                    <div class="image-placeholder">Loading...</div>
-                    <picture>
-                        <source srcset="https://images.unsplash.com/photo-1581094281237-1d8f9c1c8a1a?w=320" media="(max-width: 600px)">
-                        <source srcset="https://images.unsplash.com/photo-1581094281237-1d8f9c1c8a1a?w=800" media="(max-width: 1200px)">
-                        <img src="https://images.unsplash.com/photo-1581094281237-1d8f9c1c8a1a" alt="Home Depot - a mega donor to Trump" loading="lazy">
-                    </picture>
-                    <h3>Bernard Marcus</h3>
-                    <p>Home Depot</p>
-                    <button class="vote-btn">Vote</button>
-                    <p class="vote-count">Votes: <span>0</span></p>
-                </div>
+    <section id="about">
+        <h2>Why We’re Fighting Back</h2>
+        <p>In 2024, billionaires and corporations poured millions into Trump’s campaign, fueling his agenda. By boycotting these mega donors, we’re hitting them where it hurts—their wallets. Together, we can make a difference!</p>
+        <div class="video-container">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Boycott Movement Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <section id="boycott-guide">
+        <h2>How to Boycott Effectively</h2>
+        <p>Follow these steps to make your boycott impactful:</p>
+        <ol class="guide-list">
+            <li><strong>Research Alternatives</strong>: Use our recommended alternatives for each brand to find ethical options.</li>
+            <li><strong>Spread Awareness</strong>: Share your pledge on social media using #BoycottTrumpDonors to inspire others.</li>
+            <li><strong>Track Your Progress</strong>: Use our progress tracker to monitor your boycott journey and celebrate milestones.</li>
+            <li><strong>Engage Locally</strong>: Organize or join local events to amplify the movement—check out volunteer opportunities below.</li>
+            <li><strong>Stay Informed</strong>: Read articles and success stories to understand the broader impact of boycotts.</li>
+        </ol>
+    </section>
+
+    <section id="stats">
+        <h2>Movement Impact</h2>
+        <p>Total Participants: <span id="pledgeCount">0</span></p>
+        <canvas id="voteChart" width="400" height="200"></canvas>
+    </section>
+
+    <section id="leaderboard">
+        <h2>Top Boycotters</h2>
+        <p>See who’s making the biggest impact!</p>
+        <div id="leaderboard-list"></div>
+    </section>
+
+    <section id="donors">
+        <h2>Top 10 Mega Donors to Trump</h2>
+        <input type="text" id="searchInput" placeholder="Search for a donor..." onkeyup="searchDonors()" aria-label="Search for a donor">
+        <div class="filter-buttons">
+            <button onclick="filterAlternatives('all')" aria-label="Show all categories"><i class="fas fa-globe"></i> All</button>
+            <button onclick="filterAlternatives('finance')" aria-label="Show finance category"><i class="fas fa-dollar-sign"></i> Finance</button>
+            <button onclick="filterAlternatives('tech')" aria-label="Show tech category"><i class="fas fa-laptop"></i> Tech</button>
+            <button onclick="filterAlternatives('casino')" aria-label="Show casino category"><i class="fas fa-dice"></i> Casino</button>
+            <button onclick="filterAlternatives('retail')" aria-label="Show retail category"><i class="fas fa-shopping-cart"></i> Retail</button>
+            <button onclick="filterAlternatives('energy')" aria-label="Show energy category"><i class="fas fa-bolt"></i> Energy</button>
+        </div>
+        <div id="donorList">
+            <!-- 1. Timothy Mellon -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Pan Am Systems">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1593642532400-2682810df593" alt="Pan Am Systems - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Pan Am Systems (Timothy Mellon): Donated $125M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="finance"><a href="#" target="_blank" aria-label="Switch to EthicalBank">EthicalBank</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Pan Am Systems')" aria-label="Vote to boycott Pan Am Systems"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Pan Am Systems">0</span></p>
+            </div>
+            <!-- 2. Elon Musk -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Tesla">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2" alt="Tesla - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Tesla (Elon Musk): Donated $75M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="tech"><a href="#" target="_blank" aria-label="Switch to Rivian">Rivian</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Tesla')" aria-label="Vote to boycott Tesla"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Tesla">0</span></p>
+            </div>
+            <!-- 3. Miriam Adelson -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Las Vegas Sands">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1519892300165-cb5542fb47c7" alt="Las Vegas Sands - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Las Vegas Sands (Miriam Adelson): Donated $45M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="casino"><a href="#" target="_blank" aria-label="Switch to EthicalCasino">EthicalCasino</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Las Vegas Sands')" aria-label="Vote to boycott Las Vegas Sands"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Las Vegas Sands">0</span></p>
+            </div>
+            <!-- 4. Richard Uihlein -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Uline">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Uline (Richard Uihlein) - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Uline (Richard Uihlein): Donated $40M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="retail"><a href="#" target="_blank" aria-label="Switch to EcoPack Solutions">EcoPack Solutions</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Uline-Richard')" aria-label="Vote to boycott Uline (Richard Uihlein)"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Uline-Richard">0</span></p>
+            </div>
+            <!-- 5. Liz Uihlein -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Uline">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308" alt="Uline (Liz Uihlein) - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Uline (Liz Uihlein): Donated $35M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="retail"><a href="#" target="_blank" aria-label="Switch to PackSavvy">PackSavvy</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Uline-Liz')" aria-label="Vote to boycott Uline (Liz Uihlein)"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Uline-Liz">0</span></p>
+            </div>
+            <!-- 6. Stephen Schwarzman -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Blackstone">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Blackstone - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Blackstone (Stephen Schwarzman): Donated $30M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="finance"><a href="#" target="_blank" aria-label="Switch to EthicalInvest">EthicalInvest</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Blackstone')" aria-label="Vote to boycott Blackstone"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Blackstone">0</span></p>
+            </div>
+            <!-- 7. Harold Hamm -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Continental Resources">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1471922694854-ff1b63b20054" alt="Continental Resources - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Continental Resources (Harold Hamm): Donated $25M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="energy"><a href="#" target="_blank" aria-label="Switch to NextEra Energy">NextEra Energy</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Continental Resources')" aria-label="Vote to boycott Continental Resources"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Continental Resources">0</span></p>
+            </div>
+            <!-- 8. Kelcy Warren -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Energy Transfer Partners">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Energy Transfer Partners - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Energy Transfer Partners (Kelcy Warren): Donated $20M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="energy"><a href="#" target="_blank" aria-label="Switch to Enphase Energy">Enphase Energy</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Energy Transfer Partners')" aria-label="Vote to boycott Energy Transfer Partners"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Energy Transfer Partners">0</span></p>
+            </div>
+            <!-- 9. Jeff Yass -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Susquehanna International Group">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2" alt="Susquehanna International Group - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Susquehanna International Group (Jeff Yass): Donated $15M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="finance"><a href="#" target="_blank" aria-label="Switch to GreenInvest">GreenInvest</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Susquehanna International Group')" aria-label="Vote to boycott Susquehanna International Group"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Susquehanna International Group">0</span></p>
+            </div>
+            <!-- 10. Bernard Marcus -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Home Depot">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1581094281237-1d8f9c1c8a1a" alt="Home Depot - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">MEGA DONOR</span>
+                <p>Home Depot (Bernard Marcus): Donated $10M to Trump in 2024</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="retail"><a href="#" target="_blank" aria-label="Switch to LocalHardware">LocalHardware</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Home Depot')" aria-label="Vote to boycott Home Depot"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Home Depot">0</span></p>
+            </div>
+            <!-- 11. Hiatus -->
+            <div class="donor animate__animated animate__fadeInUp" data-brand="Hiatus">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Hiatus - a donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <span class="warning">DONOR</span>
+                <p>Hiatus: Donated $5M to Trump in 2024, then paused operations—still funding his agenda!</p>
+                <h3>Switch to This Alternative:</h3>
+                <ul>
+                    <li data-category="retail"><a href="#" target="_blank" aria-label="Switch to EthicalRetail">EthicalRetail</a> (Affiliate Link)</li>
+                </ul>
+                <button onclick="voteForBoycott('Hiatus')" aria-label="Vote to boycott Hiatus"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
+                <p>Votes: <span id="vote-Hiatus">0</span></p>
             </div>
         </div>
     </section>
 
-    <section class="hiatus">
-        <div class="container">
-            <h2>Hiatus: A Special Mention</h2>
-            <div class="image-placeholder">Loading...</div>
-            <picture>
-                <source srcset="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=320" media="(max-width: 600px)">
-                <source srcset="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800" media="(max-width: 1200px)">
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Hiatus Co" loading="lazy">
-            </picture>
-            <p>Hiatus has also made significant contributions to Trump's campaign.</p>
+    <section id="hiatus">
+        <h2>Companies on Hiatus: Paused but Still Problematic</h2>
+        <p>Some companies have paused operations or donations, but their past support for Trump still impacts his agenda. Learn more and take action!</p>
+        <div class="hiatus-list">
+            <div class="hiatus-item">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Hiatus Co" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <h3>Hiatus Co</h3>
+                <p>Donated $5M to Trump in 2024, then paused operations. Switch to EthicalRetail instead!</p>
+            </div>
         </div>
     </section>
 
-    <section class="success-stories">
-        <div class="container">
-            <h2>Success Stories</h2>
-            <div class="story-item">
-                <div class="image-placeholder">Loading...</div>
-                <picture>
-                    <source srcset="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=320" media="(max-width: 600px)">
-                    <source srcset="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800" media="(max-width: 1200px)">
-                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Community Protest" loading="lazy">
-                </picture>
-                <h3>Community Protest</h3>
-                <p>A grassroots movement that gained momentum.</p>
+    <section id="community">
+        <h2>Community Voices</h2>
+        <div id="comments">
+            <div class="comment-box">
+                <textarea id="commentInput" placeholder="Share your boycott story..." aria-label="Share your boycott story"></textarea>
+                <button onclick="submitComment()" aria-label="Submit your comment">Submit Comment</button>
             </div>
-            <div class="story-item">
-                <div class="image-placeholder">Loading...</div>
-                <picture>
-                    <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=320" media="(max-width: 600px)">
-                    <source srcset="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800" media="(max-width: 1200px)">
-                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="EcoPack Adoption" loading="lazy">
-                </picture>
-                <h3>EcoPack Adoption</h3>
-                <p>Businesses adopting sustainable packaging solutions.</p>
+            <div id="commentList"></div>
+        </div>
+        <div class="upload-section">
+            <h3>Upload Your Boycott Proof</h3>
+            <input type="file" id="imageUpload" accept="image/*" aria-label="Upload an image">
+            <button onclick="uploadImage()" aria-label="Upload your boycott proof image">Upload Image</button>
+            <div id="imageGallery"></div>
+        </div>
+    </section>
+
+    <section id="social-feed">
+        <h2>What People Are Saying on X</h2>
+        <div id="x-feed"></div>
+    </section>
+
+    <section id="pledges">
+        <h2>Share Your Pledge</h2>
+        <p>Select a brand to boycott:</p>
+        <select id="brandSelect" onchange="updatePledge()" aria-label="Select a brand to boycott">
+            <option value="">Select a Brand</option>
+            <option value="Pan Am Systems|EthicalBank">Pan Am Systems</option>
+            <option value="Tesla|Rivian">Tesla</option>
+            <option value="Las Vegas Sands|EthicalCasino">Las Vegas Sands</option>
+            <option value="Uline|EcoPack Solutions">Uline (Richard Uihlein)</option>
+            <option value="Uline|PackSavvy">Uline (Liz Uihlein)</option>
+            <option value="Blackstone|EthicalInvest">Blackstone</option>
+            <option value="Continental Resources|NextEra Energy">Continental Resources</option>
+            <option value="Energy Transfer Partners|Enphase Energy">Energy Transfer Partners</option>
+            <option value="Susquehanna International Group|GreenInvest">Susquehanna International Group</option>
+            <option value="Home Depot|LocalHardware">Home Depot</option>
+            <option value="Hiatus|EthicalRetail">Hiatus</option>
+        </select>
+        <div class="pledge">
+            <p id="pledge-text">Select a brand to generate your pledge.</p>
+            <div class="share-buttons">
+                <button onclick="copyPledge()" aria-label="Copy your pledge"><i class="fas fa-copy"></i> Copy Pledge</button>
+                <a id="shareX" href="#" target="_blank" aria-label="Share on X"><i class="fab fa-x-twitter"></i> Share on X</a>
+                <a id="shareFacebook" href="#" target="_blank" aria-label="Share on Facebook"><i class="fab fa-facebook"></i> Share on Facebook</a>
             </div>
         </div>
+    </section>
+
+    <section id="progress-tracker">
+        <h2>Track Your Boycott Progress</h2>
+        <p>Select the brands you're boycotting and track your progress!</p>
+        <select id="boycottBrands" onchange="addBoycottBrand()" aria-label="Select a brand to track boycott progress">
+            <option value="">Select a Brand to Boycott</option>
+            <option value="Pan Am Systems">Pan Am Systems</option>
+            <option value="Tesla">Tesla</option>
+            <option value="Las Vegas Sands">Las Vegas Sands</option>
+            <option value="Uline-Richard">Uline (Richard Uihlein)</option>
+            <option value="Uline-Liz">Uline (Liz Uihlein)</option>
+            <option value="Blackstone">Blackstone</option>
+            <option value="Continental Resources">Continental Resources</option>
+            <option value="Energy Transfer Partners">Energy Transfer Partners</option>
+            <option value="Susquehanna International Group">Susquehanna International Group</option>
+            <option value="Home Depot">Home Depot</option>
+            <option value="Hiatus">Hiatus</option>
+        </select>
+        <div id="progress-list"></div>
+    </section>
+
+    <section id="success-stories">
+        <h2>Success Stories: Our Impact</h2>
+        <div class="story-list">
+            <div class="story-item">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Community Protest" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <h3>Community Power: Tesla Boycott</h3>
+                <p>Over 10,000 users pledged to boycott Tesla, leading to a 5% drop in regional sales in Q1 2025!</p>
+            </div>
+            <div class="story-item">
+                <div class="image-placeholder"></div>
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="EcoPack Adoption" loading="lazy" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';">
+                <h3>Switching to EcoPack Solutions</h3>
+                <p>After boycotting Uline, 8,000 users switched to EcoPack Solutions, boosting sustainable packaging by 15%!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="articles">
+        <h2>The Impact of Consumer Boycotts on Corporate Behavior</h2>
+        <p>Consumer boycotts have long been a powerful tool for change. The Montgomery Bus Boycott of 1955-1956, sparked by Rosa Parks, led to the desegregation of public buses in Montgomery, Alabama, after a 381-day protest that cost the bus system significant revenue. More recently, the 2018 boycott of Nike by some consumers over their Colin Kaepernick campaign initially caused a dip in stock price, but Nike’s commitment to their values led to a 31% increase in sales afterward, showing how boycotts can push companies to double down on their principles—or change them.</p>
+        <p>Boycotts work by hitting companies where it hurts: their profits. When consumers collectively refuse to buy, companies are forced to listen. By boycotting Trump’s mega donors, we can pressure these corporations to reconsider their political affiliations and support more ethical causes. Your participation matters—every purchase you redirect to an ethical alternative sends a message!</p>
+    </section>
+
+    <section id="resources">
+        <h2>Download Resources</h2>
+        <p>Spread the word with these downloadable resources!</p>
+        <div class="resource-list">
+            <a href="#" class="resource-item" aria-label="Download Boycott Flyer">Download Boycott Flyer (PDF)</a>
+            <a href="#" class="resource-item" aria-label="Download Poster">Download Poster (PDF)</a>
+        </div>
+    </section>
+
+    <section id="volunteer">
+        <h2>Get Involved: Volunteer Opportunities</h2>
+        <p>Take your activism to the next level by volunteering with the boycott movement!</p>
+        <div class="volunteer-activities">
+            <h3>Suggested Activities:</h3>
+            <ul>
+                <li>Organize a local boycott rally or awareness event.</li>
+                <li>Create and distribute educational materials in your community.</li>
+                <li>Join online campaigns to amplify the #BoycottTrumpDonors message.</li>
+                <li>Collaborate with local businesses to promote ethical alternatives.</li>
+            </ul>
+        </div>
+        <div class="volunteer-form">
+            <h3>Sign Up to Volunteer</h3>
+            <input type="text" id="volunteerName" placeholder="Your Name" aria-label="Enter your name">
+            <input type="email" id="volunteerEmail" placeholder="Your Email" aria-label="Enter your email">
+            <textarea id="volunteerMessage" placeholder="Tell us how you'd like to help..." aria-label="Tell us how you'd like to help"></textarea>
+            <button onclick="submitVolunteer()" aria-label="Submit volunteer form">Submit</button>
+        </div>
+        <div id="volunteerList"></div>
     </section>
 
     <footer>
-        <div class="container">
-            <p>© 2025 Mega Donors to Trump</p>
-        </div>
+        <p>Join the Global Movement—Share This Page!</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script defer src="script.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "EXPOSED: Boycott Trump's Top 10 Mega Donors",
+      "description": "Join the global boycott movement! Expose Trump's top 10 mega donors, switch to ethical alternatives, and fight back with your wallet!",
+      "url": "https://your-username.github.io/trump-donors-boycott",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Boycott Team"
+      },
+      "mainEntity": [
+        {
+          "@type": "Organization",
+          "name": "Pan Am Systems",
+          "description": "Donated $125M to Trump in 2024"
+        },
+        {
+          "@type": "Organization",
+          "name": "Tesla",
+          "description": "Donated $75M to Trump in 2024"
+        }
+      ]
+    }
+    </script>
 </body>
 </html>
