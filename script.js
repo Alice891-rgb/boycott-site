@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const brands = [
         "Pan Am Systems", "Tesla", "Las Vegas Sands", "Uline-Richard", "Uline-Liz",
         "Blackstone", "Continental Resources", "Energy Transfer Partners",
-        "Susquehanna International Group", "Home Depot"
+        "Susquehanna International Group", "Home Depot", "Hiatus"
     ];
     const voteData = brands.map(brand => {
         const voteCount = localStorage.getItem(`vote-${brand}`) || 0;
@@ -70,6 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Load images from localStorage
     const savedImages = JSON.parse(localStorage.getItem('images')) || [];
     savedImages.forEach(image => addImageToGallery(image));
+
+    // Initialize leaderboard
+    updateLeaderboard();
 
     // Embed X posts (mocked due to API limitations)
     const xFeed = document.getElementById('x-feed');
@@ -174,6 +177,14 @@ function voteForBoycott(brand) {
     const voteData = brands.map(b => parseInt(localStorage.getItem(`vote-${b}`) || 0));
     voteChart.data.datasets[0].data = voteData;
     voteChart.update();
+
+    // 记录用户投票（假设当前用户为匿名用户）
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0 };
+    user.votes += 1;
+    if (!users.find(u => u.name === "Anonymous")) users.push(user);
+    localStorage.setItem('users', JSON.stringify(users));
+    updateLeaderboard();
 }
 
 function submitComment() {
@@ -189,6 +200,14 @@ function submitComment() {
         const comments = JSON.parse(localStorage.getItem('comments')) || [];
         comments.push(comment);
         localStorage.setItem('comments', JSON.stringify(comments));
+
+        // 记录用户评论
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0 };
+        user.comments += 1;
+        if (!users.find(u => u.name === "Anonymous")) users.push(user);
+        localStorage.setItem('users', JSON.stringify(users));
+        updateLeaderboard();
 
         commentInput.value = '';
     }
@@ -227,10 +246,17 @@ function addImageToGallery(imageData) {
     gallery.appendChild(img);
 }
 
-function switchLanguage() {
-    const lang = document.getElementById("languageSelect").value;
-    document.querySelectorAll('[data-lang]').forEach(element => {
-        element.style.display = element.getAttribute('data-lang') === lang ? 'block' : 'none';
-    });
-    updatePledge(); // Update pledge text when language changes
-}
+function updateLeaderboard() {
+    const leaderboardList = document.getElementById('leaderboard-list');
+    leaderboardList.innerHTML = '';
+
+    // 模拟用户数据：从 localStorage 获取投票和评论数量
+    const users = JSON.parse(localStorage.getItem('users')) || [
+        { name: "User1", votes: 5, comments: 2 },
+        { name: "User2", votes: 3, comments: 4 },
+        { name: "User3", votes: 2, comments: 1 }
+    ];
+
+    // 计算总分（votes + comments * 2）
+    users.forEach(user => {
+        user.score = user.votes + user
