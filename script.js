@@ -10,19 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        document.body.classList.add('dark-mode');
-    }
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
-    });
-
     // Image Loading Animation
     document.querySelectorAll('img[loading="lazy"]').forEach(img => {
         img.addEventListener('load', () => {
+            img.classList.add('loaded');
+            img.previousElementSibling.style.display = 'none';
+        });
+        img.addEventListener('error', () => {
+            img.src = 'https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';
             img.classList.add('loaded');
             img.previousElementSibling.style.display = 'none';
         });
@@ -100,6 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     if (window.twttr) window.twttr.widgets.load();
 
+    // Load recent vote notifications
+    const savedNotifications = JSON.parse(localStorage.getItem('voteNotifications')) || [];
+    savedNotifications.forEach(notification => addVoteNotification(notification.user, notification.brand));
+
     // Update boycott progress periodically
     setInterval(updateBoycottProgress, 60000);
 });
@@ -130,7 +129,6 @@ function updatePledge() {
     const pledgeText = document.getElementById("pledge-text");
     const shareX = document.getElementById("shareX");
     const shareFacebook = document.getElementById("shareFacebook");
-    const shareReddit = document.getElementById("shareReddit");
 
     if (select.value) {
         const [donorBrand, altBrand] = select.value.split("|");
@@ -141,12 +139,10 @@ function updatePledge() {
         const websiteUrl = encodeURIComponent("https://your-username.github.io/trump-donors-boycott");
         shareX.href = `https://x.com/intent/tweet?text=${encodedPledge}`;
         shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
-        shareReddit.href = `https://www.reddit.com/submit?url=${websiteUrl}&title=${encodedPledge}`;
     } else {
         pledgeText.innerText = "Select a brand to generate your pledge.";
         shareX.href = "#";
         shareFacebook.href = "#";
-        shareReddit.href = "#";
     }
 }
 
@@ -154,7 +150,7 @@ function copyPledge() {
     const pledgeText = document.getElementById('pledge-text').innerText;
     navigator.clipboard.writeText(pledgeText).then(() => {
         alert("Pledge copied to clipboard!");
-        addPoints("Anonymous", 2); // 2 points for copying pledge
+        addPoints("Anonymous", 2);
     });
 }
 
@@ -183,13 +179,31 @@ function voteForBoycott(brand) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0, points: 0 };
     user.votes += 1;
-    user.points = (user.points || 0) + 5; // 5 points for voting
+    user.points = (user.points || 0) + 5;
     if (!users.find(u => u.name === "Anonymous")) users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
     updateLeaderboard();
 
+    // Add vote notification
+    const randomUser = `User${Math.floor(Math.random() * 1000)}`;
+    addVoteNotification(randomUser, brand);
+
     // Show CTA popup
     document.getElementById('ctaPopup').style.display = 'flex';
+}
+
+function addVoteNotification(user, brand) {
+    const notificationList = document.getElementById('notificationList');
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.innerHTML = `<p><span>${user}</span> just voted to boycott ${brand}!</p>`;
+    notificationList.prepend(notification);
+
+    // Save to localStorage (keep only the latest 5 notifications)
+    const notifications = JSON.parse(localStorage.getItem('voteNotifications')) || [];
+    notifications.unshift({ user, brand });
+    if (notifications.length > 5) notifications.pop();
+    localStorage.setItem('voteNotifications', JSON.stringify(notifications));
 }
 
 function shareAfterVote() {
@@ -197,7 +211,7 @@ function shareAfterVote() {
     if (pledgeText !== "Select a brand to generate your pledge.") {
         const encodedPledge = encodeURIComponent(pledgeText);
         window.open(`https://x.com/intent/tweet?text=${encodedPledge}`, '_blank');
-        addPoints("Anonymous", 10); // 10 points for sharing
+        addPoints("Anonymous", 10);
     }
     closePopup();
 }
@@ -220,11 +234,10 @@ function submitComment() {
         comments.push(comment);
         localStorage.setItem('comments', JSON.stringify(comments));
 
-        // Record user comment and add points
         const users = JSON.parse(localStorage.getItem('users')) || [];
         let user = users.find(u => u.name === "Anonymous") || { name: "Anonymous", votes: 0, comments: 0, points: 0 };
         user.comments += 1;
-        user.points = (user.points || 0) + 3; // 3 points for commenting
+        user.points = (user.points || 0) + 3;
         if (!users.find(u => u.name === "Anonymous")) users.push(user);
         localStorage.setItem('users', JSON.stringify(users));
         updateLeaderboard();
@@ -254,8 +267,7 @@ function uploadImage() {
             images.push(imageData);
             localStorage.setItem('images', JSON.stringify(images));
 
-            // Add points for uploading
-            addPoints("Anonymous", 5); // 5 points for uploading image
+            addPoints("Anonymous", 5);
         };
         reader.readAsDataURL(file);
         fileInput.value = '';
@@ -318,8 +330,7 @@ function addBoycottBrand() {
             localStorage.setItem('boycotts', JSON.stringify(boycotts));
             addBoycottProgress(brand);
 
-            // Add points for starting a boycott
-            addPoints("Anonymous", 5); // 5 points for starting boycott
+            addPoints("Anonymous", 5);
         }
         select.value = '';
     }
@@ -389,29 +400,4 @@ function submitVolunteer() {
         };
         const volunteers = JSON.parse(localStorage.getItem('volunteers')) || [];
         volunteers.push(volunteer);
-        localStorage.setItem('volunteers', JSON.stringify(volunteers));
-        addVolunteerEntry(volunteer);
-
-        // Add points for volunteering
-        addPoints("Anonymous", 10); // 10 points for volunteering
-
-        nameInput.value = '';
-        emailInput.value = '';
-        messageInput.value = '';
-        alert("Thank you for volunteering!");
-    } else {
-        alert("Please fill out all fields.");
-    }
-}
-
-function addVolunteerEntry(volunteer) {
-    const volunteerList = document.getElementById('volunteerList');
-    const entry = document.createElement('div');
-    entry.className = 'volunteer-entry';
-    entry.innerHTML = `
-        <p><strong>${volunteer.name}</strong> (${volunteer.email})</p>
-        <p>${volunteer.message}</p>
-        <small>${volunteer.date}</small>
-    `;
-    volunteerList.prepend(entry);
-}
+        localStorage.setItem('volunteers', JSON
