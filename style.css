@@ -6,6 +6,9 @@
     --bg-light: #f4f4f4;
     --card-bg: #fff;
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --gradient-card: linear-gradient(145deg, #ffffff, #e6e6e6);
+    --gradient-card-hover: linear-gradient(145deg, #f9f9f9, #dcdcdc);
 }
 
 /* General Styles */
@@ -16,6 +19,8 @@ body {
     background: linear-gradient(to bottom, #f4f4f4, #e0e0e0);
     color: var(--text);
     line-height: 1.6;
+    transition: var(--transition);
+    animation: fadeIn 1s ease-in-out;
 }
 
 /* Sticky Navigation */
@@ -29,6 +34,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: var(--transition);
 }
 
 .sticky-nav ul {
@@ -47,7 +53,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1em;
-    transition: color 0.3s ease;
+    transition: var(--transition);
 }
 
 .sticky-nav ul li a:hover,
@@ -65,6 +71,7 @@ body {
     box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
+    animation: fadeIn 1s ease-in-out;
 }
 
 .hero h1 {
@@ -76,6 +83,7 @@ body {
 .hero p {
     font-size: 1.5em;
     margin: 15px 0;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 .hero button {
@@ -86,7 +94,8 @@ body {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: var(--transition);
+    animation: fadeIn 2s ease-in-out;
 }
 
 .hero button:hover,
@@ -96,235 +105,50 @@ body {
     outline: none;
 }
 
-/* Vote Notifications */
-.vote-notifications {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    text-align: center;
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
-.vote-notifications h3 {
-    font-size: 1.8em;
-    color: var(--primary);
-    margin-bottom: 15px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-#notificationList {
-    max-height: 200px;
-    overflow-y: auto;
-    padding: 10px;
-}
-
-.notification {
-    background: var(--bg-light);
-    padding: 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    font-size: 1em;
-    animation: slideIn 0.5s ease;
-}
-
-.notification span {
-    color: var(--primary);
-    font-weight: bold;
-}
-
-/* Section Styles */
-section {
-    padding: 50px 20px;
-}
-
-#about, #boycott-guide, #stats, #leaderboard, #donors, #pledges, #success-stories {
-    max-width: 800px;
-    margin: 0 auto;
-    background: var(--card-bg);
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: var(--shadow);
-}
-
-/* Headings */
-h2 {
-    text-align: center;
-    font-size: 2.5em;
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-
-/* Donor Cards */
-.donor {
-    background: var(--card-bg);
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    text-align: center;
-    border: 3px solid var(--primary);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.donor:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.donor img {
-    border-radius: 50%;
-    border: 4px solid var(--primary);
-    width: 180px;
-    height: 180px;
-    object-fit: cover;
-    display: none;
-}
-
-.donor img.loaded {
-    display: block;
-}
-
-.warning {
-    display: block;
-    color: #ff4444;
-    font-weight: bold;
-    font-size: 1.4em;
-    margin: 10px 0;
-    text-transform: uppercase;
-}
-
-.donor button {
-    padding: 12px 20px;
-    background-color: var(--primary);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 1.1em;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.donor button:hover,
-.donor button:focus {
-    background-color: var(--primary-dark);
-    transform: scale(1.05);
-    outline: none;
-}
-
-/* Success Stories Section */
-#success-stories {
-    background: var(--bg-light);
-}
-
-.story-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.story-item {
-    background: var(--card-bg);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 300px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.story-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.story-item img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    display: none;
-}
-
-.story-item img.loaded {
-    display: block;
-}
-
-.story-item h3 {
-    color: var(--primary);
-    margin: 10px 0;
-    font-size: 1.3em;
-}
-
-.story-item p {
-    font-size: 1em;
-    line-height: 1.5;
-}
-
-/* Share Buttons */
-.share-buttons {
-    display: flex;
-    justify-content: center
-    .sticky-nav {
-    position: sticky;
-    top: 0;
-    background: #fff;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
-}
-
-.sticky-nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.sticky-nav li {
-    margin: 0 20px;
-}
-
-.sticky-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.sticky-nav a:hover,
-.sticky-nav a:focus {
-    color: #d32f2f;
-    outline: none;
-}
-
-.sticky-nav a:focus {
-    border-bottom: 2px solid #d32f2f;
-}
-.hamburger {
-    display: none;
-    font-size: 24px;
-    cursor: pointer;
-    padding: 10px;
-}
-
+/* Responsive Layout */
 @media (max-width: 768px) {
-    .hamburger {
-        display: block;
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.2em;
+    }
+
+    .hero button {
+        font-size: 1em;
+        padding: 10px 30px;
     }
 
     .sticky-nav ul {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 50px;
+        top: 60px;
         left: 0;
         width: 100%;
-        background: #fff;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        background: var(--primary);
     }
 
     .sticky-nav ul.active {
@@ -335,4 +159,95 @@ h2 {
         margin: 10px 0;
         text-align: center;
     }
+
+    .hamburger {
+        display: block;
+    }
+}
+
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Add transitions and hover effects globally */
+a, button, .donor, .story-item {
+    transition: var(--transition);
+}
+
+/* Enhanced Donor & Story Card Effects */
+.donor, .story-item {
+    background: var(--gradient-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.donor:hover, .story-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    background: var(--gradient-card-hover);
+}
+
+/* Loading Animation */
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tooltips */
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+}
+
+.tooltip:hover::after {
+    opacity: 1;
+}
+
+/* Button Ripple Effect */
+.hero button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transition: transform 0.6s ease;
+    z-index: 0;
+}
+
+.hero button:active::after {
+    transform: translate(-50%, -50%) scale(1);
 }
