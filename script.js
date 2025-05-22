@@ -120,4 +120,84 @@ function addVoteNotification(user, brand) {
 
 function shareAfterVote() {
     const pledgeText = document.getElementById('pledge-text').innerText;
-    if (pledgeText !== "Select
+    if (pledgeText !== "Select a brand to generate your pledge.") {
+        const encodedPledge = encodeURIComponent(pledgeText);
+        window.open(`https://x.com/intent/tweet?text=${encodedPledge}`, '_blank');
+        addPoints("Anonymous", 10);
+        awardBadge("Anonymous", "Social Advocate");
+    }
+    closePopup();
+}
+
+function closePopup() {
+    document.getElementById('ctaPopup').style.display = 'none';
+}
+
+function updatePledge() {
+    const select = document.getElementById("brandSelect");
+    const pledgeText = document.getElementById("pledge-text");
+    const shareX = document.getElementById("shareX");
+    const shareFacebook = document.getElementById("shareFacebook");
+
+    if (select.value) {
+        const [donorBrand, altBrand] = select.value.split("|");
+        const pledge = `I’m boycotting ${donorBrand} and switching to ${altBrand} to fight Trump’s agenda! Join me! #BoycottTrumpDonors`;
+        pledgeText.innerText = pledge;
+
+        const encodedPledge = encodeURIComponent(pledge);
+        const websiteUrl = encodeURIComponent("https://boycottteam2025.github.io/trump-donors-boycott");
+        shareX.href = `https://x.com/intent/tweet?text=${encodedPledge}`;
+        shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
+    } else {
+        pledgeText.innerText = "Select a brand to generate your pledge.";
+        shareX.href = "#";
+        shareFacebook.href = "#";
+    }
+}
+
+function copyPledge() {
+    const pledgeText = document.getElementById('pledge-text').innerText;
+    navigator.clipboard.writeText(pledgeText).then(() => {
+        alert("Pledge copied to clipboard!");
+        addPoints("Anonymous", 2);
+    });
+}
+
+function awardBadge(username, badgeName) {
+    const badges = JSON.parse(localStorage.getItem('badges')) || {};
+    if (!badges[username]) badges[username] = [];
+    if (!badges[username].includes(badgeName)) {
+        badges[username].push(badgeName);
+        localStorage.setItem('badges', JSON.stringify(badges));
+        alert(`Congratulations, ${username}! You've earned the "${badgeName}" badge!`);
+    }
+}
+
+function addPoints(username, points) {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    let user = users.find(u => u.name === username) || { name: username, votes: 0, comments: 0, points: 0 };
+    user.points = (user.points || 0) + points;
+    if (!users.find(u => u.name === username)) users.push(user);
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+function searchDonors() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const donors = document.getElementsByClassName("donor");
+    for (let donor of donors) {
+        const brand = donor.getAttribute("data-brand").toLowerCase();
+        donor.style.display = brand.includes(input) ? "block" : "none";
+    }
+}
+
+function filterAlternatives(category) {
+    const donors = document.getElementsByClassName("donor");
+    for (let donor of donors) {
+        const alternatives = donor.querySelectorAll("li");
+        let show = category === "all";
+        alternatives.forEach((alt) => {
+            if (alt.getAttribute("data-category") === category) show = true;
+        });
+        donor.style.display = show ? "block" : "none";
+    }
+}
