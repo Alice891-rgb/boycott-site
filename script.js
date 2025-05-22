@@ -1,203 +1,218 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // GSAP Animations
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray(".donor, .story-item").forEach((item, index) => {
-        gsap.from(item, {
-            scrollTrigger: { trigger: item, start: "top 80%" },
-            opacity: 0,
-            y: 50,
-            duration: 0.8,
-            delay: index * 0.2,
+// script.js
+import donors from './data/donors.js';
+
+// 状态管理
+const state = {
+    votes: JSON.parse(localStorage.getItem('boycottVotes')) || {},
+    boycottedBrands: JSON.parse(localStorage.getItem('boycottedBrands')) || [],
+    boycottDays: parseInt(localStorage.getItem('boycottDays')) || 0,
+};
+
+// 防抖函数
+function debounce(fn, delay) {
+    let timeout;
+    return (...args) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => fn(...args), delay);
+    };
+}
+
+// 渲染捐助者列表
+function renderDonors(filter = 'all', searchTerm = '') {
+    const donorList = document.getElementById('donorList');
+    donorList.innerHTML = '';
+
+    donors
+        .filter(donor => filter === 'all' || donor.category === filter)
+        .filter(donor => donor.brand.toLowerCase().includes(searchTerm.toLowerCase()))
+        .forEach(donor => {
+            const donorCard = document.createElement('article');
+            donorCard.className = 'donor';
+            donorCard.dataset.brand = donor.brand;
+            donorCard.dataset.category = donor.category;
+            donorCard.setAttribute('role', 'listitem');
+            donorCard.innerHTML = `
+                <picture>
+                    <source srcset="${donor.image.webp}" type="image/webp">
+                    <img src="${donor.image.jpg}" alt="${donor.alt}" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                </picture>
+                <span class="warning" aria-label="Mega Donor Warning">MEGA DONOR</span>
+                <h3>${donor.brand}</h3>
+                <p>${donor.description}</p>
+                <h4>Why Boycott?</h4>
+                <p>${donor.whyBoycott}</p>
+                <h4>Switch to These Alternatives:</h4>
+                <ul>
+                    ${donor.alternatives.map(alt => `
+                        <li data-category="${alt.category}">
+                            <a href="${alt.url}" target="_blank" aria-label="Switch to ${alt.name}">${alt.name}</a>
+                        </li>
+                    `).join('')}
+                </ul>
+                <button class="boycott-btn" data-brand="${donor.brand}" aria-label="Vote to boycott ${donor.brand}">
+                    <i class="fas fa-thumbs-down"></i> Vote to Boycott
+                </button>
+                <p>Votes: <span id="vote-${donor.brand}">${state.votes[donor.brand] || 0}</span></p>
+            `;
+            donorList.appendChild(donorCard);
         });
+}
+
+// 更新 UI
+function updateUI() {
+    const totalVotes = Object.values(state.votes).reduce((sum, count) => sum + count, 0);
+    document.getElementById('pledgeCount').textContent = totalVotes;
+    document.getElementById('brands-boycotted').textContent = state.boycottedBrands.length;
+    document.getElementById('estimated-impact').textContent = `$${state.boycottedBrands.length * 100}`;
+    Object.keys(state.votes).forEach(brand => {
+        const voteElement = document.getElementById(`vote-${brand}`);
+        if (voteElement) voteElement.textContent = state.votes[brand];
     });
+    updateChart();
+}
 
-    // Image Loading
-    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
-        img.addEventListener('load', () => {
-            img.classList.add('loaded');
-            img.previousElementSibling.style.display = 'none';
-        });
-        img.addEventListener('error', () => {
-            img.src = 'https://images.unsplash.com/photo-1593642634315-48f5414c3ad9';
-            img.classList.add('loaded');
-            img.previousElementSibling.style.display = 'none';
-        });
-    });
-
-    // Back to Top Button Visibility
-    window.addEventListener('scroll', () => {
-        const backToTop = document.querySelector('.back-to-top');
-        if (window.scrollY > 300) {
-            backToTop.classList.add('visible');
-        } else {
-            backToTop.classList.remove('visible');
-        }
-    });
-
-    // Initialize pledge count and votes
-    let pledgeCount = localStorage.getItem('pledgeCount') || 0;
-    document.getElementById('pledgeCount').innerText = pledgeCount;
-
-    const brands = ["Pan Am Systems", "Tesla", "Adelson Family", "Uline"];
-    const voteData = brands.map(brand => {
-        const voteCount = localStorage.getItem(`vote-${brand}`) || 0;
-        document.getElementById(`vote-${brand}`).innerText = voteCount;
-        return parseInt(voteCount);
-    });
-
-    // Chart.js Initialization
+// 图表更新
+function updateChart() {
     const ctx = document.getElementById('voteChart').getContext('2d');
+    if (window.voteChart) window.voteChart.destroy();
     window.voteChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: brands,
+            labels: Object.keys(state.votes),
             datasets: [{
                 label: 'Boycott Votes',
-                data: voteData,
-                backgroundColor: '#d32f2f',
-                borderColor: '#b71c1c',
-                borderWidth: 1
-            }]
+                data: Object.values(state.votes),
+                backgroundColor: '#e74c3c',
+            }],
         },
         options: {
+            responsive: true,
             scales: {
-                y: { beginAtZero: true, title: { display: true, text: 'Number of Votes' } },
-                x: { title: { display: true, text: 'Brands' } }
+                y: { beginAtZero: true },
             },
-            plugins: { legend: { display: false } }
-        }
+        },
     });
+}
 
-    // Load vote notifications
-    const savedNotifications = JSON.parse(localStorage.getItem('voteNotifications')) || [];
-    savedNotifications.forEach(notification => addVoteNotification(notification.user, notification.brand));
-
-    // Simulate real-time vote notifications
-    setInterval(() => {
-        const randomUser = `User${Math.floor(Math.random() * 1000)}`;
-        const randomBrand = brands[Math.floor(Math.random() * brands.length)];
-        addVoteNotification(randomUser, randomBrand);
-    }, 15000);
-});
-
+// 投票功能
 function voteForBoycott(brand) {
-    let voteCount = localStorage.getItem(`vote-${brand}`) || 0;
-    voteCount = parseInt(voteCount) + 1;
-    localStorage.setItem(`vote-${brand}`, voteCount);
-    document.getElementById(`vote-${brand}`).innerText = voteCount;
-
-    let pledgeCount = localStorage.getItem('pledgeCount') || 0;
-    pledgeCount = parseInt(pledgeCount) + 1;
-    localStorage.setItem('pledgeCount', pledgeCount);
-    document.getElementById('pledgeCount').innerText = pledgeCount;
-
-    // Update chart
-    const brands = ["Pan Am Systems", "Tesla", "Adelson Family", "Uline"];
-    const voteData = brands.map(b => parseInt(localStorage.getItem(`vote-${b}`) || 0));
-    voteChart.data.datasets[0].data = voteData;
-    voteChart.update();
-
-    // Add vote notification
-    const randomUser = `User${Math.floor(Math.random() * 1000)}`;
-    addVoteNotification(randomUser, brand);
-
-    // Show CTA popup
-    document.getElementById('ctaPopup').style.display = 'flex';
-}
-
-function addVoteNotification(user, brand) {
-    const notificationList = document.getElementById('notificationList');
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.innerHTML = `<p><span>${user}</span> just voted to boycott ${brand}!</p>`;
-    notificationList.prepend(notification);
-
-    const notifications = JSON.parse(localStorage.getItem('voteNotifications')) || [];
-    notifications.unshift({ user, brand });
-    if (notifications.length > 5) notifications.pop();
-    localStorage.setItem('voteNotifications', JSON.stringify(notifications));
-}
-
-function shareAfterVote() {
-    const pledgeText = document.getElementById('pledge-text').innerText;
-    if (pledgeText !== "Select a brand to generate your pledge.") {
-        const encodedPledge = encodeURIComponent(pledgeText);
-        window.open(`https://x.com/intent/tweet?text=${encodedPledge}`, '_blank');
-        addPoints("Anonymous", 10);
-        awardBadge("Anonymous", "Social Advocate");
+    state.votes[brand] = (state.votes[brand] || 0) + 1;
+    if (!state.boycottedBrands.includes(brand)) {
+        state.boycottedBrands.push(brand);
     }
-    closePopup();
+    localStorage.setItem('boycottVotes', JSON.stringify(state.votes));
+    localStorage.setItem('boycottedBrands', JSON.stringify(state.boycottedBrands));
+    updateUI();
+    showPopup(brand);
 }
 
+// 弹出窗口
+function showPopup(brand) {
+    const popup = document.getElementById('ctaPopup');
+    popup.querySelector('p').textContent = `You've voted to boycott ${brand}! Share your pledge to inspire others:`;
+    popup.style.display = 'flex';
+}
+
+// 关闭弹出窗口
 function closePopup() {
     document.getElementById('ctaPopup').style.display = 'none';
 }
 
-function updatePledge() {
-    const select = document.getElementById("brandSelect");
-    const pledgeText = document.getElementById("pledge-text");
-    const shareX = document.getElementById("shareX");
-    const shareFacebook = document.getElementById("shareFacebook");
+// 搜索功能
+const debouncedSearch = debounce(() => {
+    const searchTerm = document.getElementById('searchInput').value;
+    const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+    renderDonors(activeFilter, searchTerm);
+}, 300);
 
-    if (select.value) {
-        const [donorBrand, altBrand] = select.value.split("|");
-        const pledge = `I’m boycotting ${donorBrand} and switching to ${altBrand} to fight Trump’s agenda! Join me! #BoycottTrumpDonors`;
-        pledgeText.innerText = pledge;
-
-        const encodedPledge = encodeURIComponent(pledge);
-        const websiteUrl = encodeURIComponent("https://boycottteam2025.github.io/trump-donors-boycott");
-        shareX.href = `https://x.com/intent/tweet?text=${encodedPledge}`;
-        shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
-    } else {
-        pledgeText.innerText = "Select a brand to generate your pledge.";
-        shareX.href = "#";
-        shareFacebook.href = "#";
-    }
-}
-
-function copyPledge() {
-    const pledgeText = document.getElementById('pledge-text').innerText;
-    navigator.clipboard.writeText(pledgeText).then(() => {
-        alert("Pledge copied to clipboard!");
-        addPoints("Anonymous", 2);
-    });
-}
-
-function awardBadge(username, badgeName) {
-    const badges = JSON.parse(localStorage.getItem('badges')) || {};
-    if (!badges[username]) badges[username] = [];
-    if (!badges[username].includes(badgeName)) {
-        badges[username].push(badgeName);
-        localStorage.setItem('badges', JSON.stringify(badges));
-        alert(`Congratulations, ${username}! You've earned the "${badgeName}" badge!`);
-    }
-}
-
-function addPoints(username, points) {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    let user = users.find(u => u.name === username) || { name: username, votes: 0, comments: 0, points: 0 };
-    user.points = (user.points || 0) + points;
-    if (!users.find(u => u.name === username)) users.push(user);
-    localStorage.setItem('users', JSON.stringify(users));
-}
-
-function searchDonors() {
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const donors = document.getElementsByClassName("donor");
-    for (let donor of donors) {
-        const brand = donor.getAttribute("data-brand").toLowerCase();
-        donor.style.display = brand.includes(input) ? "block" : "none";
-    }
-}
-
+// 过滤功能
 function filterAlternatives(category) {
-    const donors = document.getElementsByClassName("donor");
-    for (let donor of donors) {
-        const alternatives = donor.querySelectorAll("li");
-        let show = category === "all";
-        alternatives.forEach((alt) => {
-            if (alt.getAttribute("data-category") === category) show = true;
-        });
-        donor.style.display = show ? "block" : "none";
-    }
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === category);
+    });
+    renderDonors(category, document.getElementById('searchInput').value);
 }
+
+// 表单验证
+function validateForm() {
+    const name = document.getElementById('volunteer-name');
+    const email = document.getElementById('volunteer-email');
+    const location = document.getElementById('volunteer-location');
+    let isValid = true;
+
+    if (!name.value.trim()) {
+        document.getElementById('name-error').hidden = false;
+        isValid = false;
+    } else {
+        document.getElementById('name-error').hidden = true;
+    }
+
+    if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        document.getElementById('email-error').hidden = false;
+        isValid = false;
+    } else {
+        document.getElementById('email-error').hidden = true;
+    }
+
+    if (!location.value.trim()) {
+        document.getElementById('location-error').hidden = false;
+        isValid = false;
+    } else {
+        document.getElementById('location-error').hidden = true;
+    }
+
+    return isValid;
+}
+
+// 事件监听
+document.addEventListener('DOMContentLoaded', () => {
+    renderDonors();
+    updateUI();
+
+    document.querySelector('.hamburger').addEventListener('click', () => {
+        const menu = document.getElementById('nav-menu');
+        const isExpanded = menu.classList.toggle('show');
+        document.querySelector('.hamburger').setAttribute('aria-expanded', isExpanded);
+    });
+
+    document.getElementById('donorList').addEventListener('click', e => {
+        const btn = e.target.closest('.boycott-btn');
+        if (btn) voteForBoycott(btn.dataset.brand);
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => filterAlternatives(btn.dataset.filter));
+    });
+
+    document.getElementById('searchInput').addEventListener('input', debouncedSearch);
+
+    document.getElementById('volunteer-form').addEventListener('submit', e => {
+        e.preventDefault();
+        if (validateForm()) {
+            alert('Thank you for volunteering!');
+            e.target.reset();
+        }
+    });
+
+    document.querySelector('.close-popup').addEventListener('click', closePopup);
+
+    document.querySelector('.cta-btn, .floating-cta').addEventListener('click', () => {
+        document.getElementById('donors').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.querySelector('.reset-btn').addEventListener('click', () => {
+        state.votes = {};
+        state.boycottedBrands = [];
+        state.boycottDays = 0;
+        localStorage.clear();
+        renderDonors();
+        updateUI();
+    });
+
+    // 每日更新抵制天数
+    setInterval(() => {
+        state.boycottDays += 1;
+        localStorage.setItem('boycottDays', state.boycottDays);
+        document.getElementById('boycott-days').textContent = state.boycottDays;
+    }, 24 * 60 * 60 * 1000);
+});
