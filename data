@@ -1,1 +1,127 @@
-donors.js
+// data/donors.js
+const donors = [
+    {
+        brand: "Pan Am Systems",
+        category: "finance",
+        image: { webp: "images/pan-am-systems.webp", jpg: "images/pan-am-systems.jpg" },
+        alt: "Pan Am Systems headquarters, a major Trump donor",
+        donation: "$125M",
+        description: "In 2024, Pan Am Systems, led by billionaire Timothy Mellon, poured $125M into Trump’s campaign. Mellon’s wealth, rooted in banking, funds anti-immigrant policies and deregulation that gut environmental and labor protections.",
+        whyBoycott: "Pan Am Systems bankrolls policies that harm our planet and deepen social divides. Their lobbying fuels corporate greed, undermining clean energy and fair wages. Boycott to demand accountability!",
+        alternatives: [
+            { name: "Aspiration", url: "https://www.aspiration.com", category: "finance" },
+            { name: "DHL Green Logistics", url: "https://www.dhl.com", category: "finance" },
+        ],
+    },
+    {
+        brand: "Tesla",
+        category: "tech",
+        image: { webp: "images/tesla.webp", jpg: "images/tesla.jpg" },
+        alt: "Tesla factory, a major Trump donor",
+        donation: "$75M",
+        description: "Elon Musk’s Tesla donated $75M to Trump in 2024, despite its eco-friendly image. Musk’s push for deregulation threatens climate progress, prioritizing profits over the planet.",
+        whyBoycott: "Tesla’s hypocrisy—preaching sustainability while funding anti-climate policies—betrays its mission. Boycott Tesla to support true green innovation and stop corporate double-talk!",
+        alternatives: [
+            { name: "Rivian", url: "https://www.rivian.com", category: "tech" },
+            { name: "Lucid Motors", url: "https://www.lucidmotors.com", category: "tech" },
+        ],
+    },
+    {
+        brand: "Adelson Family",
+        category: "casino",
+        image: { webp: "images/adelson-family.webp", jpg: "images/adelson-family.jpg" },
+        alt: "Las Vegas Sands casino, owned by the Adelson family",
+        donation: "$100M",
+        description: "The Adelson family, owners of Las Vegas Sands, funneled $100M to Trump in 2024. Their wealth shapes tax breaks for the rich and anti-worker policies, exploiting employees and communities.",
+        whyBoycott: "Las Vegas Sands thrives on low wages and union-busting while bankrolling Trump’s agenda. Boycott to stand with workers and demand fair treatment!",
+        alternatives: [
+            { name: "Caesars Entertainment", url: "https://www.caesars.com", category: "casino" },
+        ],
+    },
+    {
+        brand: "Uline",
+        category: "retail",
+        image: { webp: "images/uline.webp", jpg: "images/uline.jpg" },
+        alt: "Uline warehouse, a major Trump donor",
+        donation: "$60M",
+        description: "Uline, a packaging giant, gave $60M to Trump in 2024. Its reliance on single-use plastics and anti-union stance harms the environment and workers, prioritizing profits over ethics.",
+        whyBoycott: "Uline’s plastic pollution and worker exploitation are unacceptable. Boycott to support sustainability and fair labor practices!",
+        alternatives: [
+            { name: "EcoEnclose", url: "https://www.ecoenclose.com", category: "retail" },
+        ],
+    },
+    {
+        brand: "Koch Industries",
+        category: "energy",
+        image: { webp: "images/koch-industries.webp", jpg: "images/koch-industries.jpg" },
+        alt: "Koch Industries refinery, a major Trump donor",
+        donation: "$50M",
+        description: "Koch Industries, an energy conglomerate, donated $50M to Trump in 2024. Its lobbying blocks climate action, keeping fossil fuels dominant while our planet suffers.",
+        whyBoycott: "Koch Industries sacrifices our future for oil profits. Boycott to champion renewable energy and stop their destructive influence!",
+        alternatives: [
+            { name: "NextEra Energy", url: "https://www.nexteraenergy.com", category: "energy" },
+        ],
+    },
+    {
+        brand: "Wynn Resorts",
+        category: "casino",
+        image: { webp: "images/wynn-resorts.webp", jpg: "images/wynn-resorts.jpg" },
+        alt: "Wynn Resorts casino, a major Trump donor",
+        donation: "$45M",
+        description: "Wynn Resorts, a luxury casino chain, gave $45M to Trump in 2024. Its support for elite tax cuts and history of workplace misconduct reveal a disregard for employees.",
+        whyBoycott: "Wynn Resorts puts profits over people, funding policies that widen inequality. Boycott to support fair workplaces and economic justice!",
+        alternatives: [
+            { name: "MGM Resorts", url: "https://www.mgmresorts.com", category: "casino" },
+        ],
+    },
+    {
+        brand: "Blackstone Group",
+        category: "finance",
+        image: { webp: "images/blackstone-group.webp", jpg: "images/blackstone-group.jpg" },
+        alt: "Blackstone Group office, a major Trump donor",
+        donation: "$40M",
+        description: "Blackstone Group, a private equity titan, donated $40M to Trump in 2024. Its investments in fossil fuels and predatory real estate displace communities and harm the environment.",
+        whyBoycott: "Blackstone’s greed drives gentrification and climate destruction. Boycott to protect vulnerable communities and our planet!",
+        alternatives: [
+            { name: "Vanguard", url: "https://www.vanguard.com", category: "finance" },
+        ],
+    },
+    {
+        brand: "Home Depot",
+        category: "retail",
+        image: { webp: "images/home-depot.webp", jpg: "images/home-depot.jpg" },
+        alt: "Home Depot store, a major Trump donor",
+        donation: "$35M",
+        description: "Home Depot donated $35M to Trump in 2024. Its anti-union policies and support for anti-worker legislation keep wages low and conditions poor for employees.",
+        whyBoycott: "Home Depot’s actions hurt workers and fuel inequality. Boycott to demand fair wages and worker rights!",
+        alternatives: [
+            { name: "Lowe's", url: "https://www.lowes.com", category: "retail" },
+        ],
+    },
+    {
+        brand: "Chevron",
+        category: "energy",
+        image: { webp: "images/chevron.webp", jpg: "images/chevron.jpg" },
+        alt: "Chevron oil rig, a major Trump donor",
+        donation: "$30M",
+        description: "Chevron, a fossil fuel giant, gave $30M to Trump in 2024. Its lobbying against climate regulations perpetuates pollution and environmental injustice in vulnerable communities.",
+        whyBoycott: "Chevron’s oil spills and emissions destroy our planet. Boycott to support clean energy and environmental justice!",
+        alternatives: [
+            { name: "Shell Renewables", url: "https://www.shell.com", category: "energy" },
+        ],
+    },
+    {
+        brand: "Walmart",
+        category: "retail",
+        image: { webp: "images/walmart.webp", jpg: "images/walmart.jpg" },
+        alt: "Walmart store, a major Trump donor",
+        donation: "$25M",
+        description: "The Walton family, Walmart’s owners, donated $25M to Trump in 2024. Walmart’s low wages, poor working conditions, and small-business displacement harm communities nationwide.",
+        whyBoycott: "Walmart exploits workers and destroys local economies. Boycott to support fair pay and thriving communities!",
+        alternatives: [
+            { name: "Target", url: "https://www.target.com", category: "retail" },
+        ],
+    },
+];
+
+export default donors;
