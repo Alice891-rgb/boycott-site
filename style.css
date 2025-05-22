@@ -1,11 +1,11 @@
 /* style.css */
 :root {
-    --primary-color: #2c3e50; /* Dark blue for professionalism */
-    --accent-color: #e74c3c; /* Red for urgency */
-    --text-color: #333;
-    --bg-color: #f9f9f9;
+    --primary-color: #1a2634; /* Darker blue for urgency */
+    --accent-color: #d32f2f; /* Vivid red for action */
+    --text-color: #212121;
+    --bg-color: #fafafa;
     --white: #fff;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
 }
 
@@ -38,7 +38,7 @@ body {
     background: none;
     border: none;
     color: var(--white);
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
     transition: var(--transition);
 }
@@ -56,21 +56,23 @@ body {
 #nav-menu li a {
     color: var(--white);
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
     transition: var(--transition);
 }
 
 #nav-menu li a:hover, #nav-menu li a:focus {
     background: var(--accent-color);
     border-radius: 4px;
+    transform: scale(1.05);
 }
 
 .hero {
     position: relative;
     color: var(--white);
     text-align: center;
-    padding: 4rem 2rem;
-    min-height: 60vh;
+    padding: 5rem 2rem;
+    min-height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,50 +89,60 @@ body {
 }
 
 .hero-content {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 2rem;
-    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2.5rem;
+    border-radius: 12px;
+    max-width: 800px;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
 }
 
 .cta-btn, .reset-btn, .share-btn, .close-popup, .copy-pledge {
     background: var(--accent-color);
     color: var(--white);
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 2rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1rem;
-    min-height: 44px;
-    min-width: 44px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    min-height: 48px;
+    min-width: 48px;
     transition: var(--transition);
 }
 
 .cta-btn:hover, .reset-btn:hover, .share-btn:hover, .close-popup:hover, .copy-pledge:hover,
 .cta-btn:focus, .reset-btn:focus, .share-btn:focus, .close-popup:focus, .copy-pledge:focus {
-    background: #c0392b;
-    transform: scale(1.05);
+    background: #b71c1c;
+    transform: scale(1.1);
+    box-shadow: var(--shadow);
 }
 
 .floating-cta {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 30px;
+    right: 30px;
     background: var(--accent-color);
     color: var(--white);
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.5rem;
     border-radius: 50px;
     box-shadow: var(--shadow);
     z-index: 1000;
+    font-weight: 700;
     transition: var(--transition);
 }
 
 .floating-cta:hover, .floating-cta:focus {
-    transform: scale(1.1);
+    transform: scale(1.15);
 }
 
 .popup {
@@ -140,7 +152,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
     z-index: 2000;
@@ -148,147 +160,163 @@ body {
 
 .popup-content {
     background: var(--white);
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 500px;
+    padding: 2.5rem;
+    border-radius: 12px;
+    max-width: 600px;
     text-align: center;
 }
 
+.popup-content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
 .popup-content button {
-    margin: 0.5rem;
+    margin: 0.75rem;
 }
 
 .donor-grid, .story-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    padding: 3rem;
 }
 
 .donor, .story-item {
     background: var(--white);
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: var(--shadow);
-    padding: 1.5rem;
+    padding: 2rem;
     transition: var(--transition);
 }
 
 .donor:hover, .story-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .donor img, .story-item img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
 }
 
 .donor .warning {
     background: var(--accent-color);
     color: var(--white);
-    padding: 0.5rem;
-    border-radius: 4px;
+    padding: 0.75rem;
+    border-radius: 6px;
     display: inline-block;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
 }
 
 .search-filter {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin: 2rem;
+    gap: 1.5rem;
+    margin: 3rem;
 }
 
 #searchInput {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     flex-grow: 1;
-    max-width: 300px;
+    max-width: 350px;
+    font-size: 1rem;
     transition: var(--transition);
 }
 
 #searchInput:focus {
     border-color: var(--accent-color);
     outline: none;
+    box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
 }
 
 .filter-btn {
-    background: #ecf0f1;
-    border: 1px solid #ddd;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    background: #e0e0e0;
+    border: 1px solid #ccc;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 600;
     transition: var(--transition);
 }
 
 .filter-btn.active, .filter-btn:hover, .filter-btn:focus {
     background: var(--accent-color);
     color: var(--white);
+    transform: scale(1.05);
 }
 
 .progress-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    padding: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 3rem;
 }
 
 .stat {
     background: var(--white);
-    padding: 1rem;
-    border-radius: 8px;
+    padding: 1.5rem;
+    border-radius: 12px;
     text-align: center;
     box-shadow: var(--shadow);
 }
 
 .guide-list, .volunteer-list {
-    padding: 1rem 2rem;
+    padding: 1.5rem 3rem;
 }
 
 .guide-list li, .volunteer-list li {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
 }
 
 .form-group input {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
     transition: var(--transition);
 }
 
 .form-group input:focus {
     border-color: var(--accent-color);
     outline: none;
+    box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
 }
 
 .error-message {
     color: var(--accent-color);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
 }
 
 .share-buttons {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .share-buttons a {
     color: var(--white);
     text-decoration: none;
-    padding: 0.75rem;
-    border-radius: 4px;
+    padding: 1rem;
+    border-radius: 6px;
     transition: var(--transition);
 }
 
@@ -306,7 +334,7 @@ body {
     height: 0;
     overflow: hidden;
     max-width: 100%;
-    margin: 2rem 0;
+    margin: 3rem 0;
 }
 
 .video-container iframe {
@@ -334,7 +362,7 @@ body {
         display: flex;
     }
     .hero h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     .hero-content {
         padding: 1.5rem;
@@ -342,10 +370,10 @@ body {
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
 .donor, .story-item {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.8s ease-out;
 }
