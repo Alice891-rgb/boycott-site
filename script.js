@@ -1,145 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Initialize i18next for multi-language support
-    i18next.init({
-        lng: 'en',
-        debug: true,
-        resources: {
-            en: {
-                translation: {
-                    title: "EXPOSED: Boycott Trump's Top 10 Mega Donors",
-                    nav: {
-                        about: "About",
-                        donors: "Donors",
-                        progress: "Progress",
-                        volunteer: "Volunteer"
-                    },
-                    popup: {
-                        title: "Great Job!",
-                        message: "You've voted to boycott! Share your pledge to inspire others:",
-                        share: "Share Now",
-                        close: "Close"
-                    },
-                    notifications: {
-                        title: "Recent Votes"
-                    },
-                    header: {
-                        title: "EXPOSED: Trump's Top 10 Mega Donors",
-                        subtitle: "These billionaires are funding Trump's agenda—fight back by boycotting their brands!",
-                        cta: "Join the Movement Now!"
-                    },
-                    about: {
-                        title: "Why We’re Fighting Back",
-                        content: "In 2024, billionaires and corporations poured millions into Trump’s campaign, fueling his agenda. By boycotting these mega donors, we’re hitting them where it hurts—their wallets. Together, we can make a difference!"
-                    },
-                    guide: {
-                        title: "How to Boycott Effectively",
-                        subtitle: "Follow these steps to make your boycott impactful:",
-                        step1: { title: "Research Alternatives", content: "Use our recommended alternatives for each brand to find ethical options." },
-                        step2: { title: "Spread Awareness", content: "Share your pledge on social media using #BoycottTrumpDonors to inspire others." },
-                        step3: { title: "Track Your Progress", content: "Use our progress tracker to monitor your boycott journey and celebrate milestones." },
-                        step4: { title: "Engage Locally", content: "Organize or join local events to amplify the movement—check out volunteer opportunities below." },
-                        step5: { title: "Stay Informed", content: "Read articles and success stories to understand the broader impact of boycotts." }
-                    },
-                    stats: {
-                        title: "Movement Impact",
-                        participants: "Total Participants:"
-                    },
-                    leaderboard: {
-                        title: "Top Boycotters",
-                        subtitle: "See who’s making the biggest impact!"
-                    },
-                    donors: {
-                        title: "Top 10 Mega Donors to Trump",
-                        search: "Search for a donor...",
-                        filters: { all: "All", finance: "Finance", tech: "Tech", casino: "Casino", retail: "Retail", energy: "Energy" },
-                        warning: "MEGA DONOR",
-                        panAm: "Pan Am Systems (Timothy Mellon): Donated $125M to Trump in 2024",
-                        switch: "Switch to This Alternative:",
-                        panAm: { alt: "EthicalBank" },
-                        vote: "Vote to Boycott",
-                        votes: "Votes:"
-                    },
-                    pledges: {
-                        title: "Share Your Pledge",
-                        subtitle: "Select a brand to boycott:",
-                        select: "Select a Brand",
-                        brands: { panAm: "Pan Am Systems" },
-                        default: "Select a brand to generate your pledge.",
-                        copy: "Copy Pledge",
-                        shareX: "Share on X",
-                        shareFacebook: "Share on Facebook"
-                    },
-                    footer: {
-                        text: "Join the Global Movement—Share This Page!"
-                    }
-                }
-            },
-            es: {
-                translation: {
-                    title: "EXPOSICIÓN: Boicot a los 10 principales megadonantes de Trump",
-                    nav: {
-                        about: "Acerca de",
-                        donors: "Donantes",
-                        progress: "Progreso",
-                        volunteer: "Voluntario"
-                    },
-                    popup: {
-                        title: "¡Buen trabajo!",
-                        message: "¡Has votado por el boicot! Comparte tu compromiso para inspirar a otros:",
-                        share: "Compartir ahora",
-                        close: "Cerrar"
-                    },
-                    notifications: {
-                        title: "Votos recientes"
-                    }
-                    // Additional translations...
-                }
-            },
-            zh: {
-                translation: {
-                    title: "曝光：抵制特朗普的十大巨额捐助者",
-                    nav: {
-                        about: "关于",
-                        donors: "捐助者",
-                        progress: "进展",
-                        volunteer: "志愿者"
-                    },
-                    popup: {
-                        title: "干得漂亮！",
-                        message: "你已投票抵制！分享你的承诺以激励他人：",
-                        share: "立即分享",
-                        close: "关闭"
-                    },
-                    notifications: {
-                        title: "最近的投票"
-                    }
-                    // Additional translations...
-                }
-            }
-        }
-    }, (err, t) => {
-        if (err) return console.error(err);
-        updateContent();
-    });
-
-    // Language Switcher
-    document.getElementById('languageSelect').addEventListener('change', (e) => {
-        i18next.changeLanguage(e.target.value, () => {
-            updateContent();
-        });
-    });
-
-    function updateContent() {
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            if (key.startsWith('[placeholder]')) {
-                element.placeholder = i18next.t(key.replace('[placeholder]', ''));
-            } else {
-                element.innerHTML = i18next.t(key);
-            }
-        });
-    }
-
     // GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
     gsap.utils.toArray(".donor").forEach((donor, index) => {
@@ -261,13 +120,47 @@ function addVoteNotification(user, brand) {
 
 function shareAfterVote() {
     const pledgeText = document.getElementById('pledge-text').innerText;
-    if (pledgeText !== i18next.t('pledges.default')) {
+    if (pledgeText !== "Select a brand to generate your pledge.") {
         const encodedPledge = encodeURIComponent(pledgeText);
         window.open(`https://x.com/intent/tweet?text=${encodedPledge}`, '_blank');
         addPoints("Anonymous", 10);
         awardBadge("Anonymous", "Social Advocate");
     }
     closePopup();
+}
+
+function closePopup() {
+    document.getElementById('ctaPopup').style.display = 'none';
+}
+
+function updatePledge() {
+    const select = document.getElementById("brandSelect");
+    const pledgeText = document.getElementById("pledge-text");
+    const shareX = document.getElementById("shareX");
+    const shareFacebook = document.getElementById("shareFacebook");
+
+    if (select.value) {
+        const [donorBrand, altBrand] = select.value.split("|");
+        const pledge = `I’m boycotting ${donorBrand} and switching to ${altBrand} to fight Trump’s agenda! Join me! #BoycottTrumpDonors`;
+        pledgeText.innerText = pledge;
+
+        const encodedPledge = encodeURIComponent(pledge);
+        const websiteUrl = encodeURIComponent("https://your-username.github.io/trump-donors-boycott");
+        shareX.href = `https://x.com/intent/tweet?text=${encodedPledge}`;
+        shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${websiteUrl}`;
+    } else {
+        pledgeText.innerText = "Select a brand to generate your pledge.";
+        shareX.href = "#";
+        shareFacebook.href = "#";
+    }
+}
+
+function copyPledge() {
+    const pledgeText = document.getElementById('pledge-text').innerText;
+    navigator.clipboard.writeText(pledgeText).then(() => {
+        alert("Pledge copied to clipboard!");
+        addPoints("Anonymous", 2);
+    });
 }
 
 function awardBadge(username, badgeName) {
@@ -286,4 +179,25 @@ function addPoints(username, points) {
     user.points = (user.points || 0) + points;
     if (!users.find(u => u.name === username)) users.push(user);
     localStorage.setItem('users', JSON.stringify(users));
+}
+
+function searchDonors() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const donors = document.getElementsByClassName("donor");
+    for (let donor of donors) {
+        const brand = donor.getAttribute("data-brand").toLowerCase();
+        donor.style.display = brand.includes(input) ? "block" : "none";
+    }
+}
+
+function filterAlternatives(category) {
+    const donors = document.getElementsByClassName("donor");
+    for (let donor of donors) {
+        const alternatives = donor.querySelectorAll("li");
+        let show = category === "all";
+        alternatives.forEach((alt) => {
+            if (alt.getAttribute("data-category") === category) show = true;
+        });
+        donor.style.display = show ? "block" : "none";
+    }
 }
