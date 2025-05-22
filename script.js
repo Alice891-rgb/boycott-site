@@ -6,6 +6,7 @@ const state = {
     votes: JSON.parse(localStorage.getItem('boycottVotes')) || {},
     boycottedBrands: JSON.parse(localStorage.getItem('boycottedBrands')) || [],
     boycottDays: parseInt(localStorage.getItem('boycottDays')) || 0,
+    leaderboard: JSON.parse(localStorage.getItem('leaderboard')) || [],
 };
 
 // 防抖函数
@@ -36,26 +37,38 @@ function renderDonors(filter = 'all', searchTerm = '') {
                     <source srcset="${donor.image.webp}" type="image/webp">
                     <img src="${donor.image.jpg}" alt="${donor.alt}" loading="lazy" onerror="this.src='images/fallback.jpg';">
                 </picture>
-                <span class="warning" aria-label="Mega Donor Warning">MEGA DONOR</span>
+                <span class="warning" aria-label="主要捐助者警告">主要捐助者</span>
                 <h3>${donor.brand}</h3>
                 <p>${donor.description}</p>
-                <h4>Why Boycott?</h4>
+                <h4>為什麼抵制？</h4>
                 <p>${donor.whyBoycott}</p>
-                <h4>Switch to These Alternatives:</h4>
+                <h4>改用這些替代品：</h4>
                 <ul>
                     ${donor.alternatives.map(alt => `
                         <li data-category="${alt.category}">
-                            <a href="${alt.url}" target="_blank" aria-label="Switch to ${alt.name}">${alt.name}</a>
+                            <a href="${alt.url}" target="_blank" aria-label="改用 ${alt.name}">${alt.name}</a>
                         </li>
                     `).join('')}
                 </ul>
-                <button class="boycott-btn" data-brand="${donor.brand}" aria-label="Vote to boycott ${donor.brand}">
-                    <i class="fas fa-thumbs-down"></i> Vote to Boycott
+                <button class="boycott-btn" data-brand="${donor.brand}" aria-label="投票抵制 ${donor.brand}">
+                    <i class="fas fa-thumbs-down"></i> 投票抵制
                 </button>
-                <p>Votes: <span id="vote-${donor.brand}">${state.votes[donor.brand] || 0}</span></p>
+                <p>投票數：<span id="vote-${donor.brand}">${state.votes[donor.brand] || 0}</span></p>
             `;
             donorList.appendChild(donorCard);
         });
+}
+
+// 更新排行榜
+function updateLeaderboard() {
+    const leaderboardList = document.getElementById('leaderboard-list');
+    leaderboardList.innerHTML = state.leaderboard.length
+        ? state.leaderboard
+              .sort((a, b) => b.votes - a.votes)
+              .slice(0, 5)
+              .map(user => `<p>${user.name}: ${user.votes} 票</p>`)
+              .join('')
+        : '<p>暫無排行榜數據。</p>';
 }
 
 // 更新 UI
@@ -64,11 +77,13 @@ function updateUI() {
     document.getElementById('pledgeCount').textContent = totalVotes;
     document.getElementById('brands-boycotted').textContent = state.boycottedBrands.length;
     document.getElementById('estimated-impact').textContent = `$${state.boycottedBrands.length * 100}`;
+    document.getElementById('boycott-days').textContent = state.boycottDays;
     Object.keys(state.votes).forEach(brand => {
         const voteElement = document.getElementById(`vote-${brand}`);
         if (voteElement) voteElement.textContent = state.votes[brand];
     });
     updateChart();
+    updateLeaderboard();
 }
 
 // 图表更新
@@ -80,7 +95,7 @@ function updateChart() {
         data: {
             labels: Object.keys(state.votes),
             datasets: [{
-                label: 'Boycott Votes',
+                label: '抵制投票',
                 data: Object.values(state.votes),
                 backgroundColor: '#e74c3c',
             }],
@@ -109,7 +124,7 @@ function voteForBoycott(brand) {
 // 弹出窗口
 function showPopup(brand) {
     const popup = document.getElementById('ctaPopup');
-    popup.querySelector('p').textContent = `You've voted to boycott ${brand}! Share your pledge to inspire others:`;
+    popup.querySelector('p').textContent = `你已投票抵制 ${brand}！分享你的承諾以激勵他人：`;
     popup.style.display = 'flex';
 }
 
@@ -164,6 +179,26 @@ function validateForm() {
     return isValid;
 }
 
+// 分享承诺
+function updatePledge() {
+    const select = document.getElementById('brandSelect');
+    const [brand, alternative] = select.value.split('|');
+    const pledgeText = brand
+        ? `我承諾抵制 ${brand}，並改用 ${alternative}，加入 #BoycottTrumpDonors 運動！`
+        : '選擇一個品牌以生成你的承諾。';
+    document.getElementById('pledge-text').textContent = pledgeText;
+    document.getElementById('shareX').href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText)}`;
+    document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(pledgeText)}`;
+}
+
+// 复制承诺
+function copyPledge() {
+    const pledgeText = document.getElementById('pledge-text').textContent;
+    navigator.clipboard.writeText(pledgeText).then(() => {
+        alert('承諾已複製到剪貼板！');
+    });
+}
+
 // 事件监听
 document.addEventListener('DOMContentLoaded', () => {
     renderDonors();
@@ -189,25 +224,42 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('volunteer-form').addEventListener('submit', e => {
         e.preventDefault();
         if (validateForm()) {
-            alert('Thank you for volunteering!');
+            const name = document.getElementById('volunteer-name').value;
+            state.leaderboard.push({ name, votes: state.boycottedBrands.length });
+            localStorage.setItem('leaderboard', JSON.stringify(state.leaderboard));
+            alert('感謝你的志願服務！');
             e.target.reset();
+            updateUI();
         }
     });
 
     document.querySelector('.close-popup').addEventListener('click', closePopup);
 
-    document.querySelector('.cta-btn, .floating-cta').addEventListener('click', () => {
-        document.getElementById('donors').scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('.share-btn').addEventListener('click', () => {
+        const brand = document.querySelector('.popup-content p').textContent.match(/抵制 (\w+)/)[1];
+        const pledgeText = `我承諾抵制 ${brand}，加入 #BoycottTrumpDonors 運動！`;
+        document.getElementById('shareX').href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText)}`;
+        document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(pledgeText)}`;
+    });
+
+    document.querySelectorAll('.cta-btn, .floating-cta').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.getElementById('donors').scrollIntoView({ behavior: 'smooth' });
+        });
     });
 
     document.querySelector('.reset-btn').addEventListener('click', () => {
         state.votes = {};
         state.boycottedBrands = [];
         state.boycottDays = 0;
+        state.leaderboard = [];
         localStorage.clear();
         renderDonors();
         updateUI();
     });
+
+    document.getElementById('brandSelect').addEventListener('change', updatePledge);
+    document.querySelector('.copy-pledge').addEventListener('click', copyPledge);
 
     // 每日更新抵制天数
     setInterval(() => {
