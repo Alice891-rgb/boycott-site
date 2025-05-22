@@ -1,344 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 优化的元数据 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Join the global boycott movement! Expose Trump's top 10 mega donors, switch to ethical alternatives, and fight back with your wallet!">
-    <meta name="keywords" content="boycott Trump donors, ethical alternatives, Trump funding, Elon Musk, Timothy Mellon, Miriam Adelson">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="EXPOSED: Boycott Trump's Top 10 Mega Donors">
-    <meta property="og:description" content="Join the global boycott movement! Expose Trump's top 10 donors and switch to ethical alternatives.">
-    <meta property="og:image" content="images/hero.jpg">
-    <meta property="og:url" content="https://boycottteam2025.github.io/trump-donors-boycott">
-    <meta property="og:type" content="website">
-    <title>EXPOSED: Boycott Trump's Top 10 Mega Donors</title>
+    <meta name="description" content="Join the global boycott movement against Trump's top donors. Switch to ethical alternatives and track your impact.">
+    <meta name="keywords" content="boycott, Trump donors, ethical consumerism">
+    <meta name="author" content="Boycott Team 2025">
+    <meta property="og:title" content="Boycott Trump's Mega Donors | Make Your Money Matter">
+    <meta property="og:image" content="https://yourdomain.com/images/social-share.jpg">
+    <meta property="og:url" content="https://yourdomain.com">
+    <link rel="canonical" href="https://yourdomain.com">
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="js/app.js" as="script">
+    <link rel="preload" href="fonts/ProtestRiot-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <title>Boycott Trump's Top 10 Mega Donors</title>
+    
+    <!-- 样式和图标 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="script.js" as="script">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <nav class="sticky-nav" role="navigation">
-        <div class="hamburger" aria-label="Toggle menu" tabindex="0" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+    <!-- 导航栏 -->
+    <nav class="sticky-nav">
+        <div class="container">
+            <a href="/" class="logo">#Boycott2025</a>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+            <ul id="nav-menu">
+                <li><a href="#donors">Donors</a></li>
+                <li><a href="#alternatives">Alternatives</a></li>
+                <li><a href="#tracker">Impact Tracker</a></li>
+                <li><a href="#volunteer">Volunteer</a></li>
+            </ul>
         </div>
-        <ul id="nav-menu">
-            <li><a href="#about" aria-label="Go to About section">About</a></li>
-            <li><a href="#donors" aria-label="Go to Donors section">Donors</a></li>
-            <li><a href="#progress-tracker" aria-label="Go to Progress Tracker section">Progress</a></li>
-            <li><a href="#volunteer" aria-label="Go to Volunteer section">Volunteer</a></li>
-        </ul>
     </nav>
 
-    <div id="ctaPopup" class="popup" role="dialog" aria-labelledby="popupTitle">
-        <div class="popup-content">
-            <h3 id="popupTitle">Great Job!</h3>
-            <p>You've voted to boycott! Share your pledge to inspire others:</p>
-            <button onclick="shareAfterVote()" aria-label="Share your pledge">Share Now</button>
-            <button onclick="closePopup()" aria-label="Close popup">Close</button>
-        </div>
-    </div>
-
-    <div id="voteNotifications" class="vote-notifications" aria-live="polite">
-        <h3>Recent Votes</h3>
-        <div id="notificationList"></div>
-    </div>
-
+    <!-- 英雄区域 -->
     <header class="hero">
-        <h1>EXPOSED: Trump's Top 10 Mega Donors</h1>
-        <p>These billionaires are funding Trump's agenda—fight back by boycotting their brands!</p>
-        <button onclick="document.getElementById('donors').scrollIntoView()" aria-label="Join the boycott movement">Join the Movement Now!</button>
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">Stop Funding Hate</h1>
+            <p class="animate__animated animate__fadeInUp">Boycott the corporations bankrolling Trump's agenda</p>
+            <button onclick="startBoycott()" class="cta-button">Start Boycotting</button>
+        </div>
     </header>
 
-    <section id="about">
-        <h2>Why We’re Fighting Back</h2>
-        <p>In 2024, a select group of billionaires and corporations contributed over $500 million to Donald Trump’s campaign, wielding unprecedented influence over political decisions that impact millions. These mega donors, often tied to industries like finance, tech, and energy, are using their wealth to shape policies that prioritize profit over people—policies that have led to environmental deregulation, tax cuts for the ultra-wealthy, and weakened labor protections.</p>
-        <p>By boycotting these mega donors, we’re sending a clear message: our wallets can be a powerful tool for change. Historically, consumer boycotts have driven significant corporate accountability—think of the Montgomery Bus Boycott of 1955 or the more recent #GrabYourWallet movement. In 2024 alone, targeted boycotts have already cost complicit corporations millions in lost revenue. Together, we can amplify this impact, hold these donors accountable, and push for a more ethical economy.</p>
-        <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Boycott Movement Intro" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-    </section>
+    <!-- 主要内容区 -->
+    <main>
+        <!-- 捐赠者部分 -->
+        <section id="donors" class="section">
+            <div class="container">
+                <h2>Top 10 Mega Donors</h2>
+                <div class="filter-buttons">
+                    <!-- 动态生成过滤按钮 -->
+                </div>
+                <div id="donor-grid" class="grid">
+                    <!-- 动态生成捐赠者卡片 -->
+                </div>
+            </div>
+        </section>
 
-    <section id="boycott-guide">
-        <h2>How to Boycott Effectively</h2>
-        <p>Follow these detailed steps to maximize the impact of your boycott and contribute to the movement:</p>
-        <ol class="guide-list">
-            <li>
-                <strong>Research Alternatives</strong>: Identify ethical alternatives for each brand you’re boycotting. For example, if you’re boycotting Tesla, consider brands like Rivian or Lucid Motors, which prioritize sustainability. Use tools like <a href="https://www.ethicalconsumer.org" target="_blank" aria-label="Visit Ethical Consumer for research">Ethical Consumer</a> to find companies aligned with your values.
-            </li>
-            <li>
-                <strong>Spread Awareness</strong>: Share your pledge on social media using #BoycottTrumpDonors to inspire others. Create a ripple effect by tagging friends, joining online communities, and posting about your experience. According to a 2023 study by Nielsen, 66% of consumers are more likely to change their buying habits when influenced by peers.
-            </li>
-            <li>
-                <strong>Track Your Progress</strong>: Use our progress tracker to monitor your boycott journey and celebrate milestones. Set personal goals—like reducing your spending with a specific brand by 50%—and track your impact over time. Share your achievements to motivate others!
-            </li>
-            <li>
-                <strong>Engage Locally</strong>: Organize or join local events to amplify the movement. Host a community discussion, create flyers, or partner with local businesses to promote ethical alternatives. Check out volunteer opportunities below to get involved in grassroots efforts.
-            </li>
-            <li>
-                <strong>Stay Informed</strong>: Deepen your understanding by reading articles, reports, and books on corporate influence in politics. Recommended reads include <em>Dark Money</em> by Jane Mayer and <em>The Hidden History of Big Money in Politics</em> by Thom Hartmann. Follow organizations like OpenSecrets.org for the latest data on political donations.
-            </li>
-            <li>
-                <strong>Advocate for Systemic Change</strong>: Boycotting is just the start—push for broader change by supporting legislation that limits corporate political donations. Contact your representatives, join advocacy groups like Public Citizen, and vote for candidates who prioritize campaign finance reform.
-            </li>
-        </ol>
-    </section>
+        <!-- 替代方案 -->
+        <section id="alternatives" class="section dark-bg">
+            <div class="container">
+                <h2>Ethical Alternatives</h2>
+                <div id="alt-carousel" class="carousel">
+                    <!-- 动态轮播 -->
+                </div>
+            </div>
+        </section>
 
-    <section id="stats">
-        <h2>Movement Impact</h2>
-        <p>Total Participants: <span id="pledgeCount">0</span></p>
-        <canvas id="voteChart" width="400" height="200" aria-label="Bar chart showing boycott votes per brand"></canvas>
-    </section>
+        <!-- 进度追踪 -->
+        <section id="tracker" class="section">
+            <div class="container">
+                <h2>Your Impact</h2>
+                <div class="tracker-container">
+                    <canvas id="impactChart"></canvas>
+                    <div class="tracker-stats">
+                        <div class="stat-box">
+                            <h3>Days Boycotting</h3>
+                            <span id="days-count">0</span>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Money Redirected</h3>
+                            <span id="money-count">$0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <section id="progress-tracker">
-        <h2>Track Your Boycott Progress</h2>
-        <p>Monitor your impact and set goals to amplify the movement!</p>
-        <div class="progress-stats">
-            <div class="stat">
-                <h3>Total Boycott Days</h3>
-                <p id="boycott-days">0</p>
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Movement</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Success Stories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Research</a></li>
+                        <li><a href="#">Toolkit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="stat">
-                <h3>Brands Boycotted</h3>
-                <p id="brands-boycotted">0</p>
-            </div>
-            <div class="stat">
-                <h3>Estimated Impact ($)</h3>
-                <p id="estimated-impact">$0</p>
-            </div>
-        </div>
-        <button onclick="resetProgress()" aria-label="Reset your boycott progress">Reset Progress</button>
-    </section>
-
-    <section id="leaderboard">
-        <h2>Top Boycotters</h2>
-        <p>See who’s making the biggest impact!</p>
-        <div id="leaderboard-list"></div>
-    </section>
-
-    <section id="donors">
-        <h2>Top 10 Mega Donors to Trump</h2>
-        <input type="text" id="searchInput" placeholder="Search for a donor..." onkeyup="searchDonors()" aria-label="Search for a donor">
-        <div class="filter-buttons">
-            <button onclick="filterAlternatives('all')" aria-label="Show all categories"><i class="fas fa-globe"></i> All</button>
-            <button onclick="filterAlternatives('finance')" aria-label="Show finance category"><i class="fas fa-dollar-sign"></i> Finance</button>
-            <button onclick="filterAlternatives('tech')" aria-label="Show tech category"><i class="fas fa-laptop"></i> Tech</button>
-            <button onclick="filterAlternatives('casino')" aria-label="Show casino category"><i class="fas fa-dice"></i> Casino</button>
-            <button onclick="filterAlternatives('retail')" aria-label="Show retail category"><i class="fas fa-shopping-cart"></i> Retail</button>
-            <button onclick="filterAlternatives('energy')" aria-label="Show energy category"><i class="fas fa-bolt"></i> Energy</button>
-        </div>
-        <div id="donorList">
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Pan Am Systems">
-                <div class="image-placeholder"></div>
-                <img src="images/pan-am-systems.jpg" alt="Pan Am Systems - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Pan Am Systems (Timothy Mellon)</strong>: Donated $125M to Trump in 2024. Mellon, a billionaire heir to the Mellon banking fortune, has a history of funding conservative causes, including $50M to anti-immigration groups. His company, Pan Am Systems, operates in transportation and logistics, often criticized for its environmental impact.</p>
-                <h3>Why Boycott?</h3>
-                <p>Pan Am Systems has been linked to lobbying for deregulation that harms environmental standards, contributing to increased carbon emissions in the logistics sector.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="finance"><a href="https://www.aspiration.com" target="_blank" aria-label="Switch to Aspiration">Aspiration</a> - A sustainable banking option with transparent practices.</li>
-                    <li data-category="finance"><a href="https://www.dhl.com" target="_blank" aria-label="Switch to DHL Green Logistics">DHL Green Logistics</a> - A logistics company committed to reducing carbon emissions.</li>
-                </ul>
-                <button onclick="voteForBoycott('Pan Am Systems')" aria-label="Vote to boycott Pan Am Systems"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Pan Am Systems">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Tesla">
-                <div class="image-placeholder"></div>
-                <img src="images/tesla.jpg" alt="Tesla - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Tesla (Elon Musk)</strong>: Donated $75M to Trump in 2024. Musk, CEO of Tesla and SpaceX, has publicly supported Trump’s deregulation agenda, which critics argue undermines climate initiatives despite Tesla’s "green" branding.</p>
-                <h3>Why Boycott?</h3>
-                <p>Musk’s support for deregulation has led to policies that weaken renewable energy incentives, contradicting Tesla’s mission of sustainability.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="tech"><a href="https://www.rivian.com" target="_blank" aria-label="Switch to Rivian">Rivian</a> - An electric vehicle company focused on sustainability.</li>
-                    <li data-category="tech"><a href="https://www.lucidmotors.com" target="_blank" aria-label="Switch to Lucid Motors">Lucid Motors</a> - Luxury EVs with a strong environmental ethos.</li>
-                </ul>
-                <button onclick="voteForBoycott('Tesla')" aria-label="Vote to boycott Tesla"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Tesla">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Adelson Family">
-                <div class="image-placeholder"></div>
-                <img src="images/adelson-family.jpg" alt="Adelson Family - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Adelson Family (Miriam Adelson)</strong>: Donated $100M to Trump in 2024. The Adelsons own Las Vegas Sands, a major casino operator, and have a long history of funding Republican campaigns to influence tax and gambling regulations.</p>
-                <h3>Why Boycott?</h3>
-                <p>Las Vegas Sands has been criticized for poor labor practices, including low wages and opposition to unionization in the casino industry.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="casino"><a href="https://www.caesars.com" target="_blank" aria-label="Switch to Caesars Entertainment">Caesars Entertainment</a> - A gaming company with better labor practices.</li>
-                </ul>
-                <button onclick="voteForBoycott('Adelson Family')" aria-label="Vote to boycott Adelson Family"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Adelson Family">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Uline">
-                <div class="image-placeholder"></div>
-                <img src="images/uline.jpg" alt="Uline - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Uline (Richard and Elizabeth Uihlein)</strong>: Donated $60M to Trump in 2024. Uline, a major packaging supplier, has been criticized for its anti-union policies and environmental impact due to excessive plastic usage.</p>
-                <h3>Why Boycott?</h3>
-                <p>Uline’s reliance on single-use plastics contributes to environmental pollution, and its anti-union stance has led to poor working conditions for employees.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="retail"><a href="https://www.ecoenclose.com" target="_blank" aria-label="Switch to EcoEnclose">EcoEnclose</a> - Sustainable packaging with biodegradable materials.</li>
-                </ul>
-                <button onclick="voteForBoycott('Uline')" aria-label="Vote to boycott Uline"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Uline">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Koch Industries">
-                <div class="image-placeholder"></div>
-                <img src="images/koch-industries.jpg" alt="Koch Industries - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Koch Industries (Charles Koch)</strong>: Donated $50M to Trump in 2024. Koch Industries, a conglomerate in energy and chemicals, has a long history of funding conservative policies that oppose climate regulations.</p>
-                <h3>Why Boycott?</h3>
-                <p>Koch Industries has been linked to lobbying efforts that delay renewable energy adoption, prioritizing fossil fuel profits over environmental sustainability.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="energy"><a href="https://www.nexteraenergy.com" target="_blank" aria-label="Switch to NextEra Energy">NextEra Energy</a> - A leader in renewable energy production.</li>
-                </ul>
-                <button onclick="voteForBoycott('Koch Industries')" aria-label="Vote to boycott Koch Industries"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Koch Industries">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Wynn Resorts">
-                <div class="image-placeholder"></div>
-                <img src="images/wynn-resorts.jpg" alt="Wynn Resorts - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Wynn Resorts (Steve Wynn)</strong>: Donated $45M to Trump in 2024. Wynn Resorts, a luxury casino and resort chain, has supported policies that favor tax breaks for the ultra-wealthy.</p>
-                <h3>Why Boycott?</h3>
-                <p>Wynn Resorts has faced allegations of workplace misconduct and prioritizes profit over employee well-being.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="casino"><a href="https://www.mgmresorts.com" target="_blank" aria-label="Switch to MGM Resorts">MGM Resorts</a> - A casino operator with a focus on employee welfare.</li>
-                </ul>
-                <button onclick="voteForBoycott('Wynn Resorts')" aria-label="Vote to boycott Wynn Resorts"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Wynn Resorts">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Blackstone Group">
-                <div class="image-placeholder"></div>
-                <img src="images/blackstone-group.jpg" alt="Blackstone Group - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Blackstone Group (Stephen Schwarzman)</strong>: Donated $40M to Trump in 2024. Blackstone, a private equity firm, has invested heavily in fossil fuels and real estate projects that displace low-income communities.</p>
-                <h3>Why Boycott?</h3>
-                <p>Blackstone’s investments contribute to gentrification and environmental degradation, often at the expense of marginalized groups.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="finance"><a href="https://www.vanguard.com" target="_blank" aria-label="Switch to Vanguard">Vanguard</a> - An investment firm with more ethical practices.</li>
-                </ul>
-                <button onclick="voteForBoycott('Blackstone Group')" aria-label="Vote to boycott Blackstone Group"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Blackstone Group">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Home Depot">
-                <div class="image-placeholder"></div>
-                <img src="images/home-depot.jpg" alt="Home Depot - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Home Depot (Bernie Marcus)</strong>: Donated $35M to Trump in 2024. Home Depot, a major home improvement retailer, has been criticized for its labor practices and support for anti-worker policies.</p>
-                <h3>Why Boycott?</h3>
-                <p>Home Depot’s opposition to unionization and its political contributions undermine workers’ rights and fair wages.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="retail"><a href="https://www.lowes.com" target="_blank" aria-label="Switch to Lowe's">Lowe's</a> - A home improvement retailer with better labor policies.</li>
-                </ul>
-                <button onclick="voteForBoycott('Home Depot')" aria-label="Vote to boycott Home Depot"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Home Depot">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Chevron">
-                <div class="image-placeholder"></div>
-                <img src="images/chevron.jpg" alt="Chevron - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Chevron (Mike Wirth)</strong>: Donated $30M to Trump in 2024. Chevron, a major oil and gas company, has lobbied against climate regulations to protect its fossil fuel interests.</p>
-                <h3>Why Boycott?</h3>
-                <p>Chevron’s actions contribute to climate change and environmental destruction, including oil spills and pollution in vulnerable communities.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="energy"><a href="https://www.shell.com" target="_blank" aria-label="Switch to Shell Renewables">Shell Renewables</a> - An energy company investing in renewable energy.</li>
-                </ul>
-                <button onclick="voteForBoycott('Chevron')" aria-label="Vote to boycott Chevron"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Chevron">0</span></p>
-            </div>
-            <div class="donor animate__animated animate__fadeInUp" data-brand="Walmart">
-                <div class="image-placeholder"></div>
-                <img src="images/walmart.jpg" alt="Walmart - a mega donor to Trump" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <span class="warning">MEGA DONOR</span>
-                <p><strong>Walmart (Walton Family)</strong>: Donated $25M to Trump in 2024. The Walton family, owners of Walmart, have supported policies that favor corporate tax cuts over workers’ rights.</p>
-                <h3>Why Boycott?</h3>
-                <p>Walmart has been criticized for low wages, poor working conditions, and its role in driving small businesses out of communities.</p>
-                <h3>Switch to These Alternatives:</h3>
-                <ul>
-                    <li data-category="retail"><a href="https://www.target.com" target="_blank" aria-label="Switch to Target">Target</a> - A retailer with better labor practices and community support.</li>
-                </ul>
-                <button onclick="voteForBoycott('Walmart')" aria-label="Vote to boycott Walmart"><i class="fas fa-thumbs-down"></i> Vote to Boycott</button>
-                <p>Votes: <span id="vote-Walmart">0</span></p>
+            <div class="copyright">
+                <p>© 2025 Boycott Team. All data sourced from OpenSecrets.org</p>
             </div>
         </div>
-    </section>
+    </footer>
 
-    <section id="success-stories">
-        <h2>Success Stories: Our Impact</h2>
-        <div class="story-list">
-            <div class="story-item animate__animated animate__fadeIn">
-                <div class="image-placeholder"></div>
-                <img src="images/tesla-boycott.jpg" alt="Community Protest" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <h3>Community Power: Tesla Boycott</h3>
-                <p>Over 10,000 users pledged to boycott Tesla, leading to a 5% drop in regional sales in Q1 2025. This boycott, sparked by Elon Musk’s $75M donation to Trump, gained traction on social media with #BoycottTesla trending for weeks. "Switching to Rivian was the best decision I’ve made," says Sarah T., a former Tesla owner. "I feel like I’m voting with my dollars for a better future."</p>
-                <p><strong>Broader Impact</strong>: The boycott also pressured Tesla to issue a public statement on sustainability, though critics argue it’s more PR than substance. This shows the power of collective action in holding corporations accountable.</p>
-            </div>
-            <div class="story-item animate__animated animate__fadeIn">
-                <div class="image-placeholder"></div>
-                <img src="images/ecopack-adoption.jpg" alt="EcoPack Adoption" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <h3>Switching to EcoPack Solutions</h3>
-                <p>After boycotting Uline, 8,000 users switched to EcoPack Solutions, boosting sustainable packaging by 15%. Uline’s $60M donation to Trump prompted this shift, with users citing environmental concerns. "I didn’t realize how much plastic Uline products used until I researched alternatives," says Mark L., a small business owner.</p>
-                <p><strong>Broader Impact</strong>: This shift has encouraged other packaging companies to adopt eco-friendly practices, with EcoPack reporting a 20% increase in B2B partnerships in 2025.</p>
-            </div>
-            <div class="story-item animate__animated animate__fadeIn">
-                <div class="image-placeholder"></div>
-                <img src="images/las-vegas-sands-boycott.jpg" alt="Local Advocacy" loading="lazy" onerror="this.onerror=null; this.src='images/fallback.jpg';">
-                <h3>Local Advocacy: Las Vegas Sands Boycott</h3>
-                <p>In Las Vegas, 5,000 residents boycotted Las Vegas Sands properties after the Adelson Family’s $100M donation to Trump. This led to a 3% dip in Sands’ quarterly revenue. Local groups organized protests and promoted ethical gaming alternatives, amplifying the movement.</p>
-                <p><strong>Broader Impact</strong>: The boycott sparked discussions about the role of casino money in politics, with some local lawmakers now advocating for stricter campaign finance laws.</p>
-            </div>
-        </div>
-    </section>
+    <!-- 脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/app.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+        if('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+</body>
+</html>
+/* 基础样式 */
+:root {
+    --primary: #e63946;
+    --secondary: #457b9d;
+    --dark: #1d3557;
+    --light: #f1faee;
+}
 
-    <section id="pledges">
-        <h2>Share Your Pledge</h2>
-        <p>Select a brand to boycott:</p>
-        <select id="brandSelect" onchange="updatePledge()" aria-label="Select a brand to boycott">
-            <option value="">Select a Brand</option>
-            <option value="Pan Am Systems|Aspiration">Pan Am Systems</option>
-            <option value="Tesla|Rivian">Tesla</option>
-            <option value="Adelson Family|Caesars Entertainment">Adelson Family</option>
-            <option value="Uline|EcoEnclose">Uline</option>
-            <option value="Koch Industries|NextEra Energy">Koch Industries</option>
-            <option value="Wynn Resorts|MGM Resorts">Wynn Resorts</option>
-            <option value="Blackstone Group|Vanguard">Blackstone Group</option>
-            <option value="Home Depot|Lowe's">Home Depot</option>
-            <option value="Chevron|Shell Renewables">Chevron</option>
-            <option value="Walmart|Target">Walmart</option>
-        </select>
-        <div class="pledge">
-            <p id="pledge-text">Select a brand to generate your pledge.</p>
-            <div class="share-buttons">
-                <button onclick="copyPledge()" aria-label="Copy your pledge"><i class="fas fa-copy"></i> Copy Pledge</button>
-                <a id="shareX" href="#" target="_blank" aria-label="Share on X"><i class="fab fa-x-twitter"></i> Share on X</a>
-                <a id="shareFacebook" href="#" target="_blank" aria-label="Share on Facebook"><i class="fab fa-facebook"></i> Share on Facebook</a>
-            </div>
-        </div>
-    </section>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
 
-    <section id="volunteer">
-        <h2>Get Involved: Volunteer with Us</h2>
-        <p>Join our grassroots efforts to amplify the boycott movement! Here’s how you can help:</p>
-        <ul class="volunteer-list">
-            <li><strong>Organize Local Events</strong>: Host a community meetup to discuss the boycott and promote ethical alternatives. Download our <a href="#" aria-label="Download event toolkit">Event Toolkit</a>.</li>
-            <li><strong>Spread the Word</strong>: Share flyers, posters, and social media graphics to raise awareness. Access our <a href="#" aria-label="Download media kit">Media Kit</a>.</li>
-            <li><strong>Join Our Team</strong>: Become a volunteer coordinator in your area. Sign up below to get started!</li>
-        </ul>
-        <form id="volunteer-form" onsubmit="submitVolunteerForm(event)">
-            <label for="volunteer-name">Name:</label>
-            <input type="text" id="volunteer-name" placeholder="Your Name" required>
-            <label for="volunteer-email">Email:</label>
-            <input type="email" id="volunteer-email" placeholder="Your Email" required>
-            <label for="volunteer-location">Location:</label>
-            <input type="text" id="volunteer-location
+/* 响应式布局 */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* 导航栏样式 */
+.sticky-nav {
+    position: sticky;
+    top: 0;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+/* 英雄区域 */
+.hero {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('../images/hero-bg.jpg') center/cover;
+    color: white;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+/* 捐赠者卡片 */
+.donor-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.donor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+    
+    #nav-menu {
+        display: none;
+        flex-direction: column;
+    }
+}
+// 数据层
+const donors = [
+    {
+        id: 1,
+        name: "Tesla",
+        amount: "$75M",
+        why: "Funds climate denial policies",
+        alternatives: ["Rivian", "Lucid Motors"],
+        category: "tech"
+    },
+    // 其他捐赠者数据...
+];
+
+// 初始化图表
+function initChart() {
+    const ctx = document.getElementById('impactChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: donors.map(d => d.name),
+            datasets: [{
+                label: 'Boycott Impact',
+                data: [12000, 8000, 9500, 7500, 6000],
+                backgroundColor: '#e63946'
+            }]
+        }
+    });
+}
+
+// 渲染捐赠者网格
+function renderDonorGrid(filter = 'all') {
+    const grid = document.getElementById('donor-grid');
+    grid.innerHTML = '';
+    
+    const filtered = filter === 'all' 
+        ? donors 
+        : donors.filter(d => d.category === filter);
+    
+    filtered.forEach(donor => {
+        const card = document.createElement('div');
+        card.className = 'donor-card';
+        card.innerHTML = `
+            <img src="images/${donor.name.toLowerCase()}.jpg" alt="${donor.name} headquarters">
+            <div class="card-content">
+                <h3>${donor.name}</h3>
+                <p><strong>Donated:</strong> ${donor.amount}</p>
+                <p>${donor.why}</p>
+                <button onclick="boycott('${donor.name}')">Boycott</button>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+// PWA功能
+function registerSW() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js');
+        });
+    }
+}
+
+// 初始化
+document.addEventListener('DOMContentLoaded', () => {
+    renderDonorGrid();
+    initChart();
+    registerSW();
+});
+const CACHE_NAME = 'boycott-v1';
+const ASSETS = [
+    '/',
+    '/index.html',
+    '/css/style.css',
+    '/js/app.js',
+    '/images/hero-bg.jpg'
+];
+
+self.addEventListener('install', (e) => {
+    e.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(ASSETS))
+    );
+});
+
+self.addEventListener('fetch', (e) => {
+    e.respondWith(
+        caches.match(e.request)
+            .then(response => response || fetch(e.request))
+    );
+});
+/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── app.js
+│   └── sw.js
+├── images/
+│   ├── hero-bg.jpg
+│   ├── tesla.jpg
+│   └── ...
+├── manifest.json
+└── favicon.ico
