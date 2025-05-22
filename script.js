@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // GSAP Animations
     gsap.registerPlugin(ScrollTrigger);
-    gsap.utils.toArray(".donor").forEach((donor, index) => {
-        gsap.from(donor, {
-            scrollTrigger: { trigger: donor, start: "top 80%" },
+    gsap.utils.toArray(".donor, .story-item").forEach((item, index) => {
+        gsap.from(item, {
+            scrollTrigger: { trigger: item, start: "top 80%" },
             opacity: 0,
             y: 50,
             duration: 0.8,
