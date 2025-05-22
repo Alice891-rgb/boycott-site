@@ -267,3 +267,40 @@ h2 {
 .share-buttons {
     display: flex;
     justify-content: center
+    .sticky-nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+.sticky-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sticky-nav li {
+    margin: 0 20px;
+}
+
+.sticky-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.sticky-nav a:hover,
+.sticky-nav a:focus {
+    color: #d32f2f;
+    outline: none;
+}
+
+.sticky-nav a:focus {
+    border-bottom: 2px solid #d32f2f;
+}
