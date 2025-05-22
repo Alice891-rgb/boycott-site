@@ -138,7 +138,7 @@ section {
     padding: 50px 20px;
 }
 
-#about, #boycott-guide, #stats, #leaderboard, #donors, #pledges {
+#about, #boycott-guide, #stats, #leaderboard, #donors, #pledges, #success-stories {
     max-width: 800px;
     margin: 0 auto;
     background: var(--card-bg);
@@ -212,6 +212,57 @@ h2 {
     outline: none;
 }
 
+/* Success Stories Section */
+#success-stories {
+    background: var(--bg-light);
+}
+
+.story-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.story-item {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.story-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.story-item img.loaded {
+    display: block;
+}
+
+.story-item h3 {
+    color: var(--primary);
+    margin: 10px 0;
+    font-size: 1.3em;
+}
+
+.story-item p {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
 /* Share Buttons */
 .share-buttons {
     display: flex;
@@ -283,5 +334,9 @@ h2 {
     .share-buttons {
         flex-direction: column;
         gap: 10px;
+    }
+
+    .story-item {
+        width: 100%;
     }
 }
