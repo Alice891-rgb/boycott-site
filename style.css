@@ -27,7 +27,7 @@ body {
     box-shadow: var(--shadow);
     z-index: 1000;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -54,20 +54,6 @@ body {
 .sticky-nav ul li a:focus {
     color: #f0f0f0;
     outline: none;
-}
-
-.language-switcher select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #fff;
-    background: transparent;
-    color: #fff;
-    font-size: 1em;
-}
-
-.language-switcher select option {
-    background: #333;
-    color: #fff;
 }
 
 /* Hero Section */
