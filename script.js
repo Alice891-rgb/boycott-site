@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     try {
         console.log('Script loaded successfully');
@@ -8,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 category: "energy",
                 brands: ["Georgia-Pacific", "Molex"],
                 donation: "$5M+",
-                warning: "Funds anti-climate lobbying",
                 alternatives: ["NextEra Energy"],
                 image: "images/koch.webp"
             },
@@ -17,43 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 category: "finance",
                 brands: ["Hilton Hotels"],
                 donation: "$3M+",
-                warning: "Backs tax cuts",
                 alternatives: ["Marriott"],
                 image: "images/blackstone.webp"
-            },
-            {
-                name: "Wynn Resorts",
-                category: "casino",
-                brands: ["Wynn Las Vegas"],
-                donation: "$2M+",
-                warning: "Supports gambling deregulation",
-                alternatives: ["MGM Resorts"],
-                image: "images/wynn.webp"
             },
             {
                 name: "Chevron",
                 category: "energy",
                 brands: ["Texaco"],
                 donation: "$1.5M+",
-                warning: "Pushes fossil fuel expansion",
                 alternatives: ["Shell Renewables"],
                 image: "images/chevron.webp"
-            },
-            {
-                name: "Walmart",
-                category: "retail",
-                brands: ["Sam’s Club"],
-                donation: "$1M+",
-                warning: "Funds anti-labor policies",
-                alternatives: ["Target"],
-                image: "images/walmart.webp"
             },
             {
                 name: "Continental Resources",
                 category: "energy",
                 brands: ["Continental Oil"],
                 donation: "$1M+",
-                warning: "Backs fracking expansion",
                 alternatives: ["Ørsted"],
                 image: "images/continental.webp"
             }
@@ -72,10 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const pledgeText = document.getElementById('pledge-text');
         const shareX = document.getElementById('shareX');
         const shareFacebook = document.getElementById('shareFacebook');
-        const shareWhatsApp = document.getElementById('shareWhatsApp');
-        const shareEmail = document.getElementById('shareEmail');
         const copyPledge = document.querySelector('.copy-pledge');
         const volunteerForm = document.getElementById('volunteer-form');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
         let voteData = JSON.parse(localStorage.getItem('voteData')) || {};
 
         // Force content visibility
@@ -108,6 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
             popup.setAttribute('hidden', '');
         });
 
+        // Progress Bar
+        let totalImpact = Object.values(voteData).reduce((sum, val) => sum + val, 0) * 1000000;
+        const goal = 1000000000;
+        const progressPercent = Math.min((totalImpact / goal) * 100, 100);
+        progressFill.style.width = `${progressPercent}%`;
+        progressText.textContent = `$${totalImpact.toLocaleString()} of $1B Goal`;
+
         // Render Donors
         function renderDonors(filter = 'all', search = '') {
             donorList.innerHTML = '';
@@ -128,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 donorCard.innerHTML = `
                     <picture>
                         <source srcset="${donor.image}" type="image/webp">
-                        <img src="${donor.image.replace('.webp', '.jpg')}" alt="${donor.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760';">
+                        <img src="${donor.image.replace('.webp', '.jpg')}" alt="${donor.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
                     </picture>
                     <h3>${donor.name}</h3>
                     <p><strong>Category:</strong> ${donor.category.charAt(0).toUpperCase() + donor.category.slice(1)}</p>
@@ -162,19 +146,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 pledgeText.textContent = `I pledge to boycott ${brand} and support ${alternative}! #BoycottTrumpDonors`;
                 shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText.textContent)}`;
                 shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
-                shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(pledgeText.textContent + ' ' + window.location.href)}`;
-                shareEmail.href = `mailto:?subject=My Pledge&body=${encodeURIComponent(pledgeText.textContent)}`;
 
                 if (typeof confetti === 'function') {
                     confetti({
                         particleCount: 100,
                         spread: 70,
-                        colors: ['#d4a017', '#bdc3c7', '#2c3e50']
+                        colors: ['#d32f2f', '#ffffff', '#212121']
                     });
                 }
 
                 voteData[brand] = (voteData[brand] || 0) + 1;
                 localStorage.setItem('voteData', JSON.stringify(voteData));
+
+                totalImpact = Object.values(voteData).reduce((sum, val) => sum + val, 0) * 1000000;
+                const progressPercent = Math.min((totalImpact / goal) * 100, 100);
+                progressFill.style.width = `${progressPercent}%`;
+                progressText.textContent = `$${totalImpact.toLocaleString()} of $1B Goal`;
             }
         });
 
