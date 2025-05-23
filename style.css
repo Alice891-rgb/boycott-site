@@ -1,10 +1,10 @@
 /* style.css */
 :root {
-    --primary-color: #1a2634; /* Darker blue for urgency */
-    --accent-color: #d32f2f; /* Vivid red for action */
-    --text-color: #212121;
-    --bg-color: #fafafa;
-    --white: #fff;
+    --primary-color: #1b263b; /* Deep navy for authority */
+    --accent-color: #d90429; /* Vibrant red for urgency */
+    --text-color: #212529; /* Near-black for readability */
+    --bg-color: #f8f9fa; /* Light gray for clean look */
+    --white: #ffffff;
     --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
 }
@@ -19,7 +19,7 @@ body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
     color: var(--text-color);
     background: var(--bg-color);
-    line-height: 1.6;
+    line-height: 1.7;
     font-size: 16px;
 }
 
@@ -90,19 +90,20 @@ body {
 
 .hero-content {
     background: rgba(0, 0, 0, 0.7);
-    padding: 2.5rem;
+    padding: 3rem;
     border-radius: 12px;
-    max-width: 800px;
+    max-width: 900px;
 }
 
 .hero h1 {
-    font-size: 3rem;
+    font-size: 3.5rem;
+    font-weight: 900;
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 2rem;
 }
 
@@ -122,7 +123,7 @@ body {
 
 .cta-btn:hover, .reset-btn:hover, .share-btn:hover, .close-popup:hover, .copy-pledge:hover,
 .cta-btn:focus, .reset-btn:focus, .share-btn:focus, .close-popup:focus, .copy-pledge:focus {
-    background: #b71c1c;
+    background: #b0031f;
     transform: scale(1.1);
     box-shadow: var(--shadow);
 }
@@ -233,7 +234,7 @@ body {
 #searchInput:focus {
     border-color: var(--accent-color);
     outline: none;
-    box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 0 5px rgba(217, 4, 41, 0.3);
 }
 
 .filter-btn {
@@ -298,7 +299,7 @@ body {
 .form-group input:focus {
     border-color: var(--accent-color);
     outline: none;
-    box-shadow: 0 0 5px rgba(211, 47, 47, 0.3);
+    box-shadow: 0 0 5px rgba(217, 4, 41, 0.3);
 }
 
 .error-message {
@@ -362,10 +363,10 @@ body {
         display: flex;
     }
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     .hero-content {
-        padding: 1.5rem;
+        padding: 2rem;
     }
 }
 
