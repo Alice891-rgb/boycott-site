@@ -1,4 +1,4 @@
-// script.js (unchanged, included for completeness)
+// script.js
 import { donors } from './data/donors.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -20,11 +20,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyPledge = document.querySelector('.copy-pledge');
     const volunteerForm = document.getElementById('volunteer-form');
     const resetBtn = document.querySelector('.reset-btn');
+    const boycottCount = document.getElementById('boycottCount');
     const pledgeCount = document.getElementById('pledgeCount');
     const globalImpact = document.getElementById('globalImpact');
     const boycottDays = document.getElementById('boycott-days');
     const brandsBoycotted = document.getElementById('brands-boycotted');
     const estimatedImpact = document.getElementById('estimated-impact');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
     let voteData = JSON.parse(localStorage.getItem('voteData')) || {};
 
     // Navigation Toggle
@@ -78,6 +81,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p><strong>Donation:</strong> ${donor.donation}</p>
                 <span class="warning">${donor.warning}</span>
                 <p><strong>Alternatives:</strong> ${donor.alternatives.join(', ')}</p>
+                <div class="donor-overlay" aria-hidden="true">
+                    <p>Boycott ${donor.brands[0]} to disrupt their influence!</p>
+                </div>
             `;
             donorList.appendChild(donorCard);
         });
@@ -98,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Pledge Generator
+    // Pledge Generator with Confetti
     brandSelect.addEventListener('change', () => {
         const [brand, alternative] = brandSelect.value.split('|');
         if (brand && alternative) {
@@ -108,11 +114,21 @@ document.addEventListener('DOMContentLoaded', () => {
             shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(pledgeText.textContent + ' ' + window.location.href)}`;
             shareEmail.href = `mailto:?subject=My Boycott Pledge&body=${encodeURIComponent(pledgeText.textContent + '\nJoin me: ' + window.location.href)}`;
 
+            // Confetti Animation
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#e74c3c', '#e67e22', '#ffffff']
+            });
+
             voteData[brand] = (voteData[brand] || 0) + 1;
             localStorage.setItem('voteData', JSON.stringify(voteData));
             updateChart();
             updatePledgeCount();
+            updateBoycottCount();
             updateGlobalImpact();
+            updateProgressBar();
         } else {
             pledgeText.textContent = 'Select a brand to generate your pledge.';
         }
@@ -124,15 +140,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Volunteer Form
+    // Volunteer Form with Animation
     volunteerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const name = document.getElementById('volunteer-name').value;
         const email = document.getElementById('volunteer-email').value;
         const location = document.getElementById('volunteer-location').value;
         if (name && email && location) {
-            alert(`Thank you, ${name}! We'll contact you at ${email} for volunteer opportunities in ${location}.`);
-            volunteerForm.reset();
+            volunteerForm.classList.add('submitted');
+            setTimeout(() => {
+                alert(`Thank you, ${name}! We'll contact you at ${email} for opportunities in ${location}.`);
+                volunteerForm.reset();
+                volunteerForm.classList.remove('submitted');
+            }, 500);
         } else {
             document.querySelectorAll('.form-group input').forEach(input => {
                 if (!input.value) {
@@ -173,8 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'Boycott Votes',
                 data: Object.values(voteData),
-                backgroundColor: 'rgba(217, 4, 41, 0.7)',
-                borderColor: 'rgba(217, 4, 41, 1)',
+                backgroundColor: 'rgba(231, 76, 60, 0.7)',
+                borderColor: 'rgba(231, 76, 60, 1)',
                 borderWidth: 1
             }]
         },
@@ -196,6 +216,12 @@ document.addEventListener('DOMContentLoaded', () => {
         voteChart.update();
     }
 
+    // Boycott Count
+    function updateBoycottCount() {
+        const totalBoycotts = Object.values(voteData).reduce((sum, val) => sum + val, 0);
+        boycottCount.textContent = totalBoycotts.toLocaleString();
+    }
+
     // Pledge Count
     function updatePledgeCount() {
         const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
@@ -208,8 +234,32 @@ document.addEventListener('DOMContentLoaded', () => {
         globalImpact.textContent = `$${totalPledges * 1000}`;
     }
 
+    // Progress Bar
+    function updateProgressBar() {
+        const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
+        const goal = 1000000000; // $1B
+        const impact = totalPledges * 1000;
+        const percentage = Math.min((impact / goal) * 100, 100);
+        progressFill.style.width = `${percentage}%`;
+        progressText.textContent = `$${impact.toLocaleString()} of $1B Goal`;
+    }
+
+    // Section Scroll Animations
+    const sections = document.querySelectorAll('.section-animate');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+
     updateProgress();
     updatePledgeCount();
+    updateBoycottCount();
     updateGlobalImpact();
+    updateProgressBar();
     setInterval(updateProgress, 24 * 60 * 60 * 1000); // Update daily
 });
