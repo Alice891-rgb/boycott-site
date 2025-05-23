@@ -1,11 +1,8 @@
-/* style.css */
 :root {
-    --primary-color: #2c3e50; /* Steel blue */
-    --accent-color: #d4a017; /* Deep gold */
-    --secondary-accent: #bdc3c7; /* Silver */
-    --text-color: #1a1a1a; /* Charcoal */
-    --bg-color: #f8fafc; /* Pearl gray */
-    --white: #ffffff;
+    --primary-color: #d32f2f; /* Red */
+    --accent-color: #ffffff; /* White */
+    --secondary-accent: #f5f5f5; /* Light gray */
+    --text-color: #212121; /* Dark gray */
     --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     --transition: all 0.4s ease;
 }
@@ -21,9 +18,9 @@ html {
 }
 
 body {
-    font-family: 'Lora', serif;
+    font-family: 'Roboto', sans-serif;
     color: var(--text-color);
-    background: var(--white);
+    background: var(--accent-color);
     line-height: 1.9;
     font-size: 1.1rem;
     display: block !important;
@@ -36,7 +33,7 @@ body {
     top: 0;
     width: 100%;
     height: 10px;
-    background: #e6ecef;
+    background: var(--secondary-accent);
     z-index: 2000;
 }
 
@@ -51,8 +48,9 @@ body {
     position: absolute;
     top: 15px;
     right: 20px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.95rem;
+    color: var(--text-color);
 }
 
 .sticky-nav {
@@ -69,7 +67,7 @@ body {
 .hamburger {
     background: none;
     border: none;
-    color: var(--white);
+    color: var(--accent-color);
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -80,20 +78,20 @@ body {
 }
 
 #nav-menu li a {
-    color: var(--white);
+    color: var(--accent-color);
     text-decoration: none;
     padding: 1rem;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
 }
 
 #nav-menu li a:hover {
-    color: var(--accent-color);
+    color: var(--secondary-accent);
 }
 
 .hero {
     position: relative;
-    color: var(--white);
+    color: var(--accent-color);
     text-align: center;
     padding: 6rem 2rem;
     min-height: 80vh;
@@ -122,7 +120,7 @@ body {
 }
 
 .hero-content {
-    background: rgba(44, 62, 80, 0.85);
+    background: rgba(211, 47, 47, 0.85); /* Red overlay */
     padding: 3rem;
     border-radius: 10px;
     max-width: 1000px;
@@ -130,7 +128,7 @@ body {
 }
 
 .hero h1 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     font-weight: 900;
     margin-bottom: 1.5rem;
@@ -142,31 +140,31 @@ body {
 }
 
 .cta-btn, .share-btn, .close-popup, .copy-pledge {
-    background: var(--accent-color);
-    color: var(--white);
+    background: var(--primary-color);
+    color: var(--accent-color);
     padding: 1rem 2rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.1rem;
 }
 
 .cta-btn:hover, .share-btn:hover, .close-popup:hover, .copy-pledge:hover {
-    background: var(--secondary-accent);
-    color: var(--primary-color);
+    background: var(--text-color);
+    color: var(--accent-color);
 }
 
 .floating-cta {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: var(--accent-color);
-    color: var(--white);
+    background: var(--primary-color);
+    color: var(--accent-color);
     padding: 1rem 2rem;
     border-radius: 30px;
     z-index: 1000;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .popup {
@@ -183,7 +181,7 @@ body {
 }
 
 .popup-content {
-    background: var(--white);
+    background: var(--accent-color);
     padding: 2rem;
     border-radius: 10px;
     max-width: 500px;
@@ -200,18 +198,26 @@ body {
 }
 
 .donor, .story-item {
-    background: var(--white);
+    background: var(--accent-color);
     border-radius: 10px;
     padding: 1.5rem;
     border: 1px solid var(--secondary-accent);
 }
 
-.donor img, .story-item img {
+.donor picture, .story-item picture {
+    display: block;
     width: 100%;
     height: 200px;
-    object-fit: cover;
+    overflow: hidden;
     border-radius: 8px;
     margin-bottom: 1rem;
+}
+
+.donor img, .story-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .search-filter {
@@ -232,16 +238,16 @@ body {
 }
 
 .filter-btn {
-    background: var(--bg-color);
-    border: 1px solid var(--secondary-accent);
+    background: var(--secondary-accent);
+    border: 1px solid var(--text-color);
     padding: 0.8rem 1.5rem;
     border-radius: 8px;
     cursor: pointer;
 }
 
 .filter-btn.active, .filter-btn:hover {
-    background: var(--accent-color);
-    color: var(--white);
+    background: var(--primary-color);
+    color: var(--accent-color);
 }
 
 .guide-list, .volunteer-list {
@@ -270,7 +276,7 @@ body {
 
 .impact-ticker {
     background: var(--primary-color);
-    color: var(--white);
+    color: var(--accent-color);
     padding: 1rem;
     overflow: hidden;
 }
@@ -282,12 +288,7 @@ body {
 
 .ticker-content span {
     margin-right: 2rem;
-    font-family: 'Playfair Display', serif;
-}
-
-.section-animate {
-    opacity: 1;
-    transform: translateY(0);
+    font-family: 'Montserrat', sans-serif;
 }
 
 @media (max-width: 768px) {
@@ -311,4 +312,7 @@ body {
     }
 }
 
-@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
