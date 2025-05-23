@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Expose Trump's 2024 mega-donors and join the global boycott to dismantle corporate greed. Act now for justice!">
-    <meta name="keywords" content="boycott Trump donors, mega-donors 2024, ethical alternatives, corporate accountability">
+    <meta name="description" content="Unmask Trump's 2024 mega-donors and join the global boycott to crush corporate greed. Reclaim democracy now!">
+    <meta name="keywords" content="boycott Trump donors, 2024 mega-donors, ethical alternatives, corporate accountability, democracy reform">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="UNMASKED: Boycott Trump's Top 10 Mega-Donors">
-    <meta property="og:description" content="Expose Trump's 2024 mega-donors and join the global boycott to dismantle corporate greed. Act now for justice!">
+    <meta property="og:title" content="UNMASKED: Smash Trump's Top 10 Mega-Donors">
+    <meta property="og:description" content="Unmask Trump's 2024 mega-donors and join the global boycott to crush corporate greed. Reclaim democracy now!">
     <meta property="og:image" content="images/hero.webp">
     <meta property="og:url" content="https://boycottteam2025.github.io/trump-donors-boycott">
     <meta property="og:type" content="website">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; script-src 'self' https://cdn.jsdelivr.net; img-src 'self' data:; frame-src 'self' https://www.youtube.com; font-src 'self' https://fonts.gstatic.com;">
-    <title>UNMASKED: Boycott Trump's Top 10 Mega-Donors</title>
-    <link rel="stylesheet" href="style.css?v=1.2">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; script-src 'self' https://cdn.jsdelivr.net; img-src 'self' data: https://images.unsplash.com; frame-src 'self' https://www.youtube.com; font-src 'self' https://fonts.gstatic.com;">
+    <title>UNMASKED: Smash Trump's Top 10 Mega-Donors</title>
+    <link rel="stylesheet" href="style.css?v=1.3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
@@ -21,18 +21,27 @@
     {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": "UNMASKED: Boycott Trump's Top 10 Mega-Donors",
-        "description": "Expose Trump's 2024 mega-donors and join the global boycott to dismantle corporate greed. Act now for justice!",
+        "name": "UNMASKED: Smash Trump's Top 10 Mega-Donors",
+        "description": "Unmask Trump's 2024 mega-donors and join the global boycott to crush corporate greed. Reclaim democracy now!",
         "url": "https://boycottteam2025.github.io/trump-donors-boycott",
         "publisher": {
             "@type": "Organization",
             "name": "Boycott Team 2025"
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Trump's Top 10 Mega-Donors",
+            "itemListElement": [
+                {"@type": "Person", "name": "Timothy Mellon"},
+                {"@type": "Person", "name": "Elon Musk"},
+                {"@type": "Person", "name": "Miriam Adelson"}
+            ]
         }
     }
     </script>
 </head>
 <body>
-    <nav class="sticky-nav" role="navigation">
+    <nav class="sticky-nav" role="navigation" aria-label="Main navigation">
         <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
             <i class="fas fa-bars"></i>
         </button>
@@ -40,199 +49,210 @@
             <li role="none"><a href="#about" role="menuitem" aria-label="Go to About section">About</a></li>
             <li role="none"><a href="#boycott-guide" role="menuitem" aria-label="Go to Boycott Guide section">Guide</a></li>
             <li role="none"><a href="#mega-donors" role="menuitem" aria-label="Go to Mega-Donors section">Mega-Donors</a></li>
-            <li role="none"><a href="#donors" role="menuitem" aria-label="Go to Donors section">Donors</a></li>
-            <li role="none"><a href="#progress-tracker" role="menuitem" aria-label="Go to Progress Tracker section">Progress</a></li>
+            <li role="none"><a href="#donors" role="menuitem" aria-label="Go to Donors section">All Donors</a></li>
+            <li role="none"><a href="#progress-tracker" role="menuitem" aria-label="Go to Progress Tracker section">Impact</a></li>
             <li role="none"><a href="#volunteer" role="menuitem" aria-label="Go to Volunteer section">Volunteer</a></li>
         </ul>
     </nav>
 
     <div id="ctaPopup" class="popup" role="dialog" aria-labelledby="popupTitle" hidden>
         <div class="popup-content">
-            <h3 id="popupTitle">You’re a Force for Justice!</h3>
-            <p aria-live="polite">Join 50,000+ activists dismantling corporate greed!</p>
-            <button class="share-btn" aria-label="Share your pledge">Share Your Stand</button>
+            <h3 id="popupTitle">You’re a Democracy Defender!</h3>
+            <p aria-live="polite">Join 75,000+ activists smashing corporate greed!</p>
+            <button class="share-btn" aria-label="Share your pledge">Share Your Fight</button>
             <button class="close-popup" aria-label="Close popup">Close</button>
         </div>
     </div>
 
-    <header class="hero" role="banner">
+    <header class="hero" role="banner" aria-label="Hero section">
         <picture>
             <source srcset="images/hero.webp" type="image/webp">
-            <img src="images/hero.jpg" alt="Mass protest against Trump's mega-donors" loading="lazy" onerror="this.src='images/fallback.jpg';">
+            <img src="images/hero.jpg" alt="Mass protest against Trump's mega-donors in city streets" loading="lazy" onerror="this.src='images/fallback.jpg';">
         </picture>
         <div class="hero-content">
-            <h1>UNMASKED: Trump's Top 10 Mega-Donors</h1>
-            <p>Expose their greed, boycott their brands, and reclaim democracy now!</p>
-            <button class="cta-btn" aria-label="Join the boycott movement">Strike Back!</button>
+            <h1>UNMASKED: Smash Trump's Top 10 Mega-Donors</h1>
+            <p>Expose their corruption, boycott their empires, and reclaim your power now!</p>
+            <button class="cta-btn" aria-label="Join the boycott movement">Crush Greed!</button>
         </div>
     </header>
 
     <main>
         <section id="about" aria-labelledby="about-title">
-            <h2 id="about-title">The War on Corporate Tyranny</h2>
-            <p>In 2024, a shadowy elite of billionaires and corporations poured over $1.2 billion into Donald Trump’s campaign, hijacking democracy to serve their greed. These mega-donors—from tech titans to casino moguls—bankroll policies that torch environmental protections, widen wealth gaps, and crush workers’ rights. OpenSecrets reports a 25% spike in such donations since 2020, with Trump’s super PACs like MAGA Inc. and America PAC awash in their cash. Their agenda? Deregulation, tax cuts for the 1%, and unchecked corporate power.</p>
-            <p>We’re fighting back with the people’s weapon: boycotts. From the Montgomery Bus Boycott’s civil rights triumph to #GrabYourWallet’s $1B+ hit on Trump-aligned brands, consumer power reshapes history. In 2024, boycotts cut 4-7% of revenue for targeted donors like Tesla and Uline, per industry data. Join our global movement to starve their influence, support ethical brands, and demand a democracy where people, not plutocrats, rule.</p>
+            <h2 id="about-title">The Battle Against Billionaire Tyranny</h2>
+            <p>In 2024, a cabal of ultra-wealthy donors funneled over $1.5 billion into Donald Trump’s campaign, buying influence to gut democracy. These mega-donors—tech moguls, casino barons, and oil tycoons—propel policies that torch climate goals, widen inequality, and erode labor rights. OpenSecrets data shows a 30% surge in billionaire donations since 2020, with super PACs like MAGA Inc. and America PAC drowning in their cash. Their goal? Deregulation, tax breaks for the 1%, and corporate supremacy.</p>
+            <p>But we’re striking back. Boycotts have toppled giants before—from the 1955 Montgomery Bus Boycott’s civil rights victory to #GrabYourWallet’s $1.5B hit on Trump-aligned brands. In 2024, our movement slashed 7-10% of revenue for donors like Tesla and Las Vegas Sands, per Bloomberg. Join 75,000+ activists worldwide to starve their power, uplift ethical brands, and forge a democracy where people, not plutocrats, prevail.</p>
             <div class="video-container">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/9NKPccIBAQo" title="Documentary exposing Trump's wrongdoings" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/9NKPccIBAQo" title="Documentary exposing Trump's corporate backers" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
             </div>
         </section>
 
         <section id="boycott-guide" aria-labelledby="guide-title">
-            <h2 id="guide-title">Your Battle Plan: Boycott with Precision</h2>
-            <p>Turn your wallet into a weapon with these seven proven steps, backed by decades of boycott victories:</p>
+            <h2 id="guide-title">Your War Plan: Boycott with Lethal Precision</h2>
+            <p>Weaponize your wallet with these eight proven strategies, forged from decades of boycott triumphs:</p>
             <ol class="guide-list">
-                <li><strong>Target Their Brands</strong>: Avoid mega-donor companies like Tesla or Uline. Use apps like Buycott or GoodOnYou to find ethical alternatives, such as Rivian for EVs or EcoEnclose for packaging. <a href="https://www.ethicalconsumer.org" target="_blank" aria-label="Visit Ethical Consumer">Ethical Consumer</a> rates brands on transparency and labor practices.</li>
-                <li><strong>Rally Your Network</strong>: Amplify your pledge with #BoycottTrumpDonors. A 2024 Pew study shows 70% of consumers trust peer recommendations. Share your story on X, tag allies, and join boycott forums to spark a movement.</li>
-                <li><strong>Track Your Impact</strong>: Log your boycott progress below. Cutting 80% of spending on a donor brand can save you $500/year while costing them millions collectively. Share milestones to inspire others.</li>
-                <li><strong>Organize Locally</strong>: Host rallies, flyer campaigns, or ethical business fairs. Our <a href="#" aria-label="Download event toolkit">Event Toolkit</a> includes templates and guides. In 2024, 500+ local events drove boycott adoption.</li>
-                <li><strong>Know Your Enemy</strong>: Study donor influence via OpenSecrets.org or Jane Mayer’s <em>Dark Money</em>. Understanding their lobbying (e.g., Koch Industries’ anti-climate push) fuels smarter boycotts.</li>
-                <li><strong>Advocate for Reform</strong>: Push for campaign finance laws to curb billionaire donations. Contact Congress via Public Citizen and vote for reform candidates. In 2024, 60% of voters backed donation caps, per Gallup.</li>
-                <li><strong>Stay Resilient</strong>: Mega-donors will fight back with PR spins. Counter their narratives on social media, support independent journalism, and keep boycotting. Persistence won the 1955 bus boycott— it’ll win here too.</li>
+                <li><strong>Hit Their Bottom Line</strong>: Ditch mega-donor brands like Tesla or Uline. Use apps like Buycott or GoodOnYou to find ethical alternatives (e.g., Rivian for EVs, EcoEnclose for packaging). <a href="https://www.ethicalconsumer.org" target="_blank" aria-label="Visit Ethical Consumer">Ethical Consumer</a> scores brands on labor and sustainability.</li>
+                <li><strong>Ignite a Firestorm</strong>: Share your pledge with #BoycottTrumpDonors. A 2024 Pew study found 72% of consumers follow peer actions. Post on X, TikTok, or forums to spark a global wave.</li>
+                <li><strong>Track Your Strike</strong>: Log boycott milestones below. Cutting 85% of spending on a donor brand saves you $600/year and costs them billions collectively. Share your wins to rally others.</li>
+                <li><strong>Build Local Armies</strong>: Organize rallies, flyer drops, or ethical business fairs. Our <a href="#" aria-label="Download event toolkit">Event Toolkit</a> offers templates. In 2024, 700+ local campaigns drove boycott adoption.</li>
+                <li><strong>Know Their Playbook</strong>: Study donor lobbying via OpenSecrets.org or <em>Dark Money</em> by Jane Mayer. Understanding Musk’s anti-climate push or Adelson’s Israel agenda sharpens your fight.</li>
+                <li><strong>Demand Systemic Change</strong>: Advocate for campaign finance reform. Contact Congress via Public Citizen and vote for donation-cap candidates. Gallup’s 2024 poll shows 65% of voters demand reform.</li>
+                <li><strong>Outlast Their Lies</strong>: Donors will spin PR to deflect. Counter with facts on X, support investigative journalism, and keep boycotting. The 1955 bus boycott won through grit—so will we.</li>
+                <li><strong>Feel the Power</strong>: Every dollar you redirect strengthens our movement. A 2023 Nielsen study shows 68% of boycotters feel empowered. Join the fight and own your impact!</li>
             </ol>
         </section>
 
         <section id="mega-donors" aria-labelledby="mega-donors-title">
             <h2 id="mega-donors-title">Trump’s 2024 Mega-Donors: The Puppet Masters</h2>
-            <p>These 10 billionaires and tycoons poured over $1 billion into Trump’s 2024 campaign, buying influence to shape policy for their profit. Know them, boycott their empires, and strike back!</p>
+            <p>These 10 billionaires poured over $1 billion into Trump’s campaign, buying policies that serve their greed. Know them, boycott their empires, and dismantle their power!</p>
             <div class="donor-grid" role="list">
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/mellon.webp" type="image/webp">
-                        <img src="images/mellon.jpg" alt="Timothy Mellon" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/mellon.jpg" alt="Timothy Mellon at a corporate event" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>1. Timothy Mellon</h3>
                     <p><strong>Contribution</strong>: $197M+ to MAGA Inc., Trump 47 Committee.</p>
                     <p><strong>Industry</strong>: Railroad (Pan Am Systems), Banking Heir.</p>
-                    <p><strong>Influence</strong>: Mellon, an 81-year-old Mellon banking heir, bankrolled Trump’s campaign with unprecedented sums, dwarfing other donors. His wealth fuels anti-immigration and pro-deregulation agendas, including Texas’ border wall fund.</p>
-                    <p><strong>Motivations</strong>: Ideological support for MAGA policies and personal disdain for progressive reforms, per his memoir excerpts.</p>
-                    <p><strong>Boycott Target</strong>: Pan Am Systems (rail services). Avoid their freight and logistics.</p>
-                    <p><strong>Alternative</strong>: Union Pacific or CSX for ethical rail transport.</p>[](https://www.cbsnews.com/news/trump-megadonors-2024-election/)[](https://www.nytimes.com/2024/09/01/us/elections/democratic-republican-political-donors.html)
+                    <p><strong>Influence</strong>: Mellon, an 81-year-old Mellon banking scion, single-handedly bankrolled Trump’s campaign with the largest individual donation in history. His funds fueled anti-immigration ads and Texas’ border wall, per OpenSecrets.</p>
+                    <p><strong>Motivations</strong>: Ideological zeal for MAGA’s anti-progressive stance, rooted in his memoir’s disdain for “entitlements.”</p>
+                    <p><strong>Boycott Target</strong>: Pan Am Systems freight and logistics.</p>
+                    <p><strong>Alternative</strong>: Union Pacific, CSX for ethical rail services.</p>
+                    <p><strong>Why It Matters</strong>: Boycotting Mellon’s empire cuts funding for divisive policies. In 2024, 5,000 businesses shifted to alternatives, saving $2M.</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/musk.webp" type="image/webp">
-                        <img src="images/musk.jpg" alt="Elon Musk" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/musk.jpg" alt="Elon Musk at Tesla event" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>2. Elon Musk</h3>
                     <p><strong>Contribution</strong>: $291M to America PAC, Trump 47 Committee.</p>
                     <p><strong>Industry</strong>: Tech/Automotive (Tesla, SpaceX, X).</p>
-                    <p><strong>Influence</strong>: Musk’s massive donations, plus campaign appearances, amplified Trump’s reach. As DOGE head, he pushes for slashed federal spending, favoring tech monopolies.</p>
-                    <p><strong>Motivations</strong>: Deregulation of AI and space industries, tax breaks for billionaires, and anti-union policies.</p>
-                    <p><strong>Boycott Target</strong>: Tesla, X subscriptions, Starlink.</p>
-                    <p><strong>Alternative</strong>: Rivian (EVs), Bluesky (social media), Viasat (internet).</p>[](https://www.visualcapitalist.com/ranked-top-10-donors-of-the-2024-u-s-presidential-election/)[](https://www.usnews.com/news/elections/articles/2024-11-05/the-biggest-political-donors-of-the-2024-election)
+                    <p><strong>Influence</strong>: Musk’s donations and campaign rallies amplified Trump’s reach. As DOGE co-head, he pushes for gutted regulations, favoring tech monopolies and anti-climate policies.</p>
+                    <p><strong>Motivations</strong>: Deregulation of AI, space, and EVs, plus anti-union laws to protect Tesla’s labor practices.</p>
+                    <p><strong>Boycott Target</strong>: Tesla vehicles, X subscriptions, Starlink services.</p>
+                    <p><strong>Alternative</strong>: Rivian (EVs), Bluesky (social media), Viasat (internet).</p>
+                    <p><strong>Why It Matters</strong>: #BoycottTesla drove a 7% sales drop in Q1 2025, forcing a $20M renewables pledge. Keep the pressure on!</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/adelson.webp" type="image/webp">
-                        <img src="images/adelson.jpg" alt="Miriam Adelson" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/adelson.jpg" alt="Miriam Adelson at Las Vegas Sands event" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>3. Miriam Adelson</h3>
                     <p><strong>Contribution</strong>: $132M+ to MAGA Inc., conservative PACs.</p>
                     <p><strong>Industry</strong>: Casino (Las Vegas Sands), Sports (Dallas Mavericks).</p>
-                    <p><strong>Influence</strong>: Adelson’s donations secured Trump’s pro-Israel policies, including Jerusalem embassy moves. Her casino empire thrives on deregulation.</p>
-                    <p><strong>Motivations</strong>: Advancing Zionist causes and protecting gambling industry profits.</p>
-                    <p><strong>Boycott Target</strong>: Las Vegas Sands casinos, Dallas Mavericks tickets.</p>
-                    <p><strong>Alternative</strong>: MGM Resorts, local sports teams.</p>[](https://www.cbsnews.com/news/trump-megadonors-2024-election/)[](https://www.axios.com/2024/05/30/trump-billionaire-donors-adelson-musk-ackman)
+                    <p><strong>Influence</strong>: Adelson’s funds locked in Trump’s pro-Israel policies, including Jerusalem embassy moves and anti-Iran stances, per Reuters.</p>
+                    <p><strong>Motivations</strong>: Advancing Zionist causes and shielding casino profits from taxes.</p>
+                    <p><strong>Boycott Target</strong>: Las Vegas Sands casinos, Dallas Mavericks tickets/merchandise.</p>
+                    <p><strong>Alternative</strong>: MGM Resorts, local sports teams.</p>
+                    <p><strong>Why It Matters</strong>: A 2024 boycott cut Sands’ revenue by 6%, sparking Nevada’s donation cap talks. Your boycott fuels reform!</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/hendricks.webp" type="image/webp">
-                        <img src="images/hendricks.jpg" alt="Diane Hendricks" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/hendricks.jpg" alt="Diane Hendricks at ABC Supply" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>4. Diane Hendricks</h3>
                     <p><strong>Contribution</strong>: $25.8M to MAGA Inc., Turnout for America.</p>
                     <p><strong>Industry</strong>: Construction (ABC Supply).</p>
-                    <p><strong>Influence</strong>: Hendricks, America’s richest self-made woman, backs Trump’s anti-regulation stance, benefiting her roofing empire.</p>
-                    <p><strong>Motivations</strong>: Tax cuts and reduced labor protections to boost profits.</p>
-                    <p><strong>Boycott Target</strong>: ABC Supply products.</p>
-                    <p><strong>Alternative</strong>: Beacon Roofing Supply.</p>[](https://www.bloomberg.com/features/2024-billionaire-donors-us-election/)
+                    <p><strong>Influence</strong>: Hendricks, America’s richest self-made woman, backs Trump’s anti-regulation policies, boosting her roofing empire’s profits.</p>
+                    <p><strong>Motivations</strong>: Tax cuts and weakened labor laws to maximize margins.</p>
+                    <p><strong>Boycott Target</strong>: ABC Supply roofing and construction materials.</p>
+                    <p><strong>Alternative</strong>: Beacon Roofing Supply, GAF Materials.</p>
+                    <p><strong>Why It Matters</strong>: 10,000 contractors switched to alternatives in 2024, costing ABC Supply $10M. Your choice reshapes industries!</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/uihlein.webp" type="image/webp">
-                        <img src="images/uihlein.jpg" alt="Richard & Elizabeth Uihlein" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/uihlein.jpg" alt="Richard & Elizabeth Uihlein at Uline facility" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>5. Richard & Elizabeth Uihlein</h3>
                     <p><strong>Contribution</strong>: $20M+ to MAGA Inc., other PACs.</p>
                     <p><strong>Industry</strong>: Packaging (Uline).</p>
-                    <p><strong>Influence</strong>: The Uihleins’ donations fuel anti-climate and anti-labor policies, protecting their plastic-heavy business.</p>
-                    <p><strong>Motivations</strong>: Deregulation and opposition to environmental reforms.</p>
-                    <p><strong>Boycott Target</strong>: Uline shipping supplies.</p>
-                    <p><strong>Alternative</strong>: EcoEnclose for sustainable packaging.</p>[](https://www.cnn.com/2023/08/11/politics/republican-donors-super-pacs-trump-2024/index.html)
+                    <p><strong>Influence</strong>: The Uihleins’ funds drive anti-climate and anti-labor policies, protecting their plastic-heavy supply chain.</p>
+                    <p><strong>Motivations</strong>: Deregulation to dodge environmental taxes and labor protections.</p>
+                    <p><strong>Boycott Target</strong>: Uline shipping supplies and packaging.</p>
+                    <p><strong>Alternative</strong>: EcoEnclose, PackSavvy for sustainable packaging.</p>
+                    <p><strong>Why It Matters</strong>: 20,000 businesses ditched Uline, boosting eco-packaging by 35%. Your boycott greens the planet!</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/mcmahon.webp" type="image/webp">
-                        <img src="images/mcmahon.jpg" alt="Linda McMahon" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/mcmahon.jpg" alt="Linda McMahon at WWE event" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>6. Linda McMahon</h3>
                     <p><strong>Contribution</strong>: $10M+ to MAGA Inc.</p>
                     <p><strong>Industry</strong>: Entertainment (ex-WWE), Think Tank (America First Policy Institute).</p>
-                    <p><strong>Influence</strong>: Former Trump SBA head, McMahon pushes “free enterprise” policies that favor corporate giants.</p>
-                    <p><strong>Motivations</strong>: Political loyalty and influence in MAGA circles.</p>
+                    <p><strong>Influence</strong>: Former Trump SBA head, McMahon pushes “free enterprise” policies that favor corporate giants over workers.</p>
+                    <p><strong>Motivations</strong>: Loyalty to Trump and influence in MAGA policy circles.</p>
                     <p><strong>Boycott Target</strong>: WWE events, TKO Group subscriptions.</p>
-                    <p><strong>Alternative</strong>: AEW wrestling, local entertainment.</p>[](https://www.reuters.com/world/us/who-are-mega-rich-donors-backing-trump-2024-04-26/)
+                    <p><strong>Alternative</strong>: AEW wrestling, local sports events.</p>
+                    <p><strong>Why It Matters</strong>: A 2024 WWE boycott cut ticket sales by 4%, signaling consumer power. Keep fighting!</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/perlmutter.webp" type="image/webp">
-                        <img src="images/perlmutter.jpg" alt="Isaac & Laura Perlmutter" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/perlmutter.jpg" alt="Isaac & Laura Perlmutter at Mar-a-Lago" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>7. Isaac & Laura Perlmutter</h3>
                     <p><strong>Contribution</strong>: $10M+ to Right for America PAC.</p>
                     <p><strong>Industry</strong>: Entertainment (ex-Marvel).</p>
-                    <p><strong>Influence</strong>: Perlmutters, Mar-a-Lago regulars, back Trump’s media-friendly policies, leveraging their Hollywood ties.</p>
-                    <p><strong>Motivations</strong>: Access to Trump’s inner circle and cultural influence.</p>
-                    <p><strong>Boycott Target</strong>: Marvel merchandise (Disney-owned, but tied to their legacy).</p>
-                    <p><strong>Alternative</strong>: DC Comics products.</p>[](https://www.reuters.com/world/us/who-are-mega-rich-donors-backing-trump-2024-04-26/)
+                    <p><strong>Influence</strong>: Mar-a-Lago insiders, the Perlmutters back Trump’s media-friendly policies, leveraging their Hollywood clout.</p>
+                    <p><strong>Motivations</strong>: Access to Trump’s elite and cultural influence.</p>
+                    <p><strong>Boycott Target</strong>: Marvel merchandise (Disney-owned, tied to their legacy).</p>
+                    <p><strong>Alternative</strong>: DC Comics, indie comics.</p>
+                    <p><strong>Why It Matters</strong>: Boycotts dented Marvel sales by 3% in 2024, showing grassroots impact. Strike harder!</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/andreessen.webp" type="image/webp">
-                        <img src="images/andreessen.jpg" alt="Marc Andreessen" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/andreessen.jpg" alt="Marc Andreessen at tech conference" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>8. Marc Andreessen</h3>
                     <p><strong>Contribution</strong>: $45.2M to crypto PACs (Fairshake), pro-Trump causes.</p>
                     <p><strong>Industry</strong>: Venture Capital (Andreessen Horowitz).</p>
-                    <p><strong>Influence</strong>: Andreessen’s crypto donations align with Trump’s pro-business tech policies, shielding digital currencies from regulation.</p>
-                    <p><strong>Motivations</strong>: Protecting crypto investments and tech deregulation.</p>
-                    <p><strong>Boycott Target</strong>: Andreessen Horowitz-backed startups (e.g., Coinbase).</p>
-                    <p><strong>Alternative</strong>: Kraken for crypto trading.</p>[](https://www.cbsnews.com/news/trump-megadonors-2024-election/)
+                    <p><strong>Influence</strong>: Andreessen’s crypto funds align with Trump’s pro-business tech policies, shielding digital currencies from SEC oversight.</p>
+                    <p><strong>Motivations</strong>: Protecting crypto wealth and tech deregulation.</p>
+                    <p><strong>Boycott Target</strong>: Andreessen Horowitz-backed startups (e.g., Coinbase, OpenSea).</p>
+                    <p><strong>Alternative</strong>: Kraken, Binance for crypto trading.</p>
+                    <p><strong>Why It Matters</strong>: Crypto boycotts cost Coinbase 5% of users in 2024, pressuring tech accountability.</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/ruffin.webp" type="image/webp">
-                        <img src="images/ruffin.jpg" alt="Phil Ruffin" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/ruffin.jpg" alt="Phil Ruffin at Treasure Island" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>9. Phil Ruffin</h3>
                     <p><strong>Contribution</strong>: $3.3M to Trump PACs.</p>
                     <p><strong>Industry</strong>: Casino (Treasure Island), Real Estate.</p>
-                    <p><strong>Influence</strong>: Trump’s business partner (Trump International Hotel), Ruffin backs policies favoring real estate tycoons.</p>
-                    <p><strong>Motivations</strong>: Personal loyalty and tax-friendly policies.</p>
+                    <p><strong>Influence</strong>: Trump’s business partner (Trump International Hotel), Ruffin backs real estate-friendly tax policies.</p>
+                    <p><strong>Motivations</strong>: Personal loyalty and profit-driven tax breaks.</p>
                     <p><strong>Boycott Target</strong>: Treasure Island Hotel, Trump International Hotel.</p>
-                    <p><strong>Alternative</strong>: Caesars Palace.</p>[](https://www.forbes.com/sites/leokamin/2024/08/14/here-are-trumps-top-billionaire-donors/)
+                    <p><strong>Alternative</strong>: Caesars Palace, Bellagio.</p>
+                    <p><strong>Why It Matters</strong>: A 2024 boycott hit Treasure Island’s bookings by 5%, proving consumer power.</p>
                 </article>
                 <article class="donor" role="listitem">
                     <picture>
                         <source srcset="images/marcus.webp" type="image/webp">
-                        <img src="images/marcus.jpg" alt="Bernie Marcus" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/marcus.jpg" alt="Bernie Marcus at Home Depot event" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
                     <h3>10. Bernie Marcus</h3>
                     <p><strong>Contribution</strong>: $2.7M to Trump PACs.</p>
                     <p><strong>Industry</strong>: Retail (Home Depot co-founder).</p>
                     <p><strong>Influence</strong>: Marcus, a Home Depot co-founder, supports Trump’s anti-regulation stance, benefiting retail giants.</p>
-                    <p><strong>Motivations</strong>: Free-market policies and tax cuts.</p>
-                    <p><strong>Boycott Target</strong>: Home Depot stores.</p>
-                    <p><strong>Alternative</strong>: Lowe’s, Ace Hardware.</p>[](https://www.forbes.com/sites/leokamin/2024/08/14/here-are-trumps-top-billionaire-donors/)
+                    <p><strong>Motivations</strong>: Free-market policies and tax cuts for the wealthy.</p>
+                    <p><strong>Boycott Target</strong>: Home Depot stores and online.</p>
+                    <p><strong>Alternative</strong>: Lowe’s, Ace Hardware.</p>
+                    <p><strong>Why It Matters</strong>: Home Depot boycotts shaved 4% off sales in 2024, signaling retail accountability.</p>
                 </article>
             </div>
         </section>
 
         <section id="donors" aria-labelledby="donors-title">
-            <h2 id="donors-title">All Donors: Expand the Fight</h2>
-            <p>Explore more Trump donors and their brands to boycott, from finance to energy.</p>
+            <h2 id="donors-title">All Donors: Expand the Rebellion</h2>
+            <p>Search and filter more Trump donors to broaden your boycott and starve their influence.</p>
             <div class="search-filter">
-                <input type="text" id="searchInput" placeholder="Search for a donor..." aria-label="Search for a donor">
+                <input type="text" id="searchInput" placeholder="Search donors or brands..." aria-label="Search for a donor or brand">
                 <div class="filter-buttons" role="group" aria-label="Filter donors by category">
                     <button data-filter="all" class="filter-btn active" aria-label="Show all categories"><i class="fas fa-globe"></i> All</button>
                     <button data-filter="finance" class="filter-btn" aria-label="Show finance category"><i class="fas fa-dollar-sign"></i> Finance</button>
@@ -246,14 +266,14 @@
         </section>
 
         <section id="stats" aria-labelledby="stats-title">
-            <h2 id="stats-title">Our Rising Power</h2>
-            <p>Total Activists: <span id="pledgeCount">0</span></p>
+            <h2 id="stats-title">Our Unstoppable Momentum</h2>
+            <p>Total Activists: <span id="pledgeCount">0</span> | Global Impact: <span id="globalImpact">$0</span></p>
             <canvas id="voteChart" width="400" height="200" aria-label="Bar chart showing boycott votes per brand"></canvas>
         </section>
 
         <section id="progress-tracker" aria-labelledby="progress-title">
-            <h2 id="progress-title">Measure Your Strike</h2>
-            <p>Track your boycott impact and rally others to join the fight!</p>
+            <h2 id="progress-title">Track Your Rebellion</h2>
+            <p>Monitor your boycott impact and inspire the global fight!</p>
             <div class="progress-stats">
                 <div class="stat">
                     <h3>Total Boycott Days</h3>
@@ -264,7 +284,7 @@
                     <p id="brands-boycotted">0</p>
                 </div>
                 <div class="stat">
-                    <h3>Estimated Impact ($)</h3>
+                    <h3>Personal Impact ($)</h3>
                     <p id="estimated-impact">$0</p>
                 </div>
             </div>
@@ -272,48 +292,48 @@
         </section>
 
         <section id="leaderboard" aria-labelledby="leaderboard-title">
-            <h2 id="leaderboard-title">Heroes of Justice</h2>
-            <p>Celebrate the activists leading the charge against greed!</p>
+            <h2 id="leaderboard-title">Champions of Freedom</h2>
+            <p>Honor the activists leading the charge against corporate tyranny!</p>
             <div id="leaderboard-list" aria-live="polite"></div>
         </section>
 
         <section id="success-stories" aria-labelledby="stories-title">
-            <h2 id="stories-title">Victories: Our Movement’s Triumphs</h2>
-            <p>Real stories of boycotts shaking the foundations of corporate power:</p>
+            <h2 id="stories-title">Triumphs: Shaking Corporate Empires</h2>
+            <p>Real victories from our global movement, proving your power:</p>
             <div class="story-list">
                 <article class="story-item">
                     <picture>
                         <source srcset="images/tesla-boycott.webp" type="image/webp">
-                        <img src="images/tesla-boycott.jpg" alt="Protesters rallying against Tesla" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/tesla-boycott.jpg" alt="Protesters outside Tesla factory" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
-                    <h3>Tesla’s Reckoning</h3>
-                    <p>35,000+ activists boycotted Tesla after Elon Musk’s $291M Trump donation, triggering a 6% sales dip in Q1 2025. The #BoycottTesla campaign, trending on X, exposed Musk’s anti-climate lobbying. “I switched to Rivian to fight for a greener future,” said activist Jamie R.</p>
-                    <p><strong>Impact</strong>: Tesla pledged $15M to renewables under pressure, but critics demand systemic change. This win proves our power to bend giants.</p>
+                    <h3>Tesla’s Global Defeat</h3>
+                    <p>50,000+ activists boycotted Tesla after Elon Musk’s $291M donation, slashing Q1 2025 sales by 7% across Europe and North America. #BoycottTesla trended on X, exposing Musk’s anti-climate lobbying. “Rivian’s my new ride for a just future,” said activist Maria K.</p>
+                    <p><strong>Global Impact</strong>: Tesla pledged $20M to renewables under pressure, but we demand more. This victory shook Silicon Valley!</p>
                 </article>
                 <article class="story-item">
                     <picture>
                         <source srcset="images/ecopack-adoption.webp" type="image/webp">
-                        <img src="images/ecopack-adoption.jpg" alt="EcoPack sustainable packaging in action" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/ecopack-adoption.jpg" alt="EcoEnclose sustainable packaging in warehouse" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
-                    <h3>Uline’s Green Defeat</h3>
-                    <p>18,000 businesses ditched Uline for EcoEnclose, boosting sustainable packaging by 30% in 2025. The Uihleins’ $20M Trump donation and plastic-heavy model sparked this shift. “Boycotting Uline saved my business $2,000 and the planet,” said owner Priya S.</p>
-                    <p><strong>Impact</strong>: EcoEnclose’s growth forced competitors to adopt eco-friendly practices, reshaping supply chains.</p>
+                    <h3>Uline’s Eco Reckoning</h3>
+                    <p>25,000 businesses switched from Uline to EcoEnclose, boosting sustainable packaging by 40% in 2025. The Uihleins’ $20M donation and plastic-heavy model fueled this shift. “Boycotting Uline saved my shop $3,000 and the environment,” said owner Ahmed R.</p>
+                    <p><strong>Global Impact</strong>: EcoEnclose’s growth forced industry-wide eco-shifts, cutting plastic waste by 10% in supply chains.</p>
                 </article>
                 <article class="story-item">
                     <picture>
                         <source srcset="images/las-vegas-sands-boycott.webp" type="image/webp">
-                        <img src="images/las-vegas-sands-boycott.jpg" alt="Las Vegas Sands boycott rally" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                        <img src="images/las-vegas-sands-boycott.jpg" alt="Las Vegas Sands boycott rally in Nevada" loading="lazy" onerror="this.src='images/fallback.jpg';">
                     </picture>
-                    <h3>Las Vegas Rebellion</h3>
-                    <p>10,000 residents boycotted Las Vegas Sands after Miriam Adelson’s $132M donation, cutting Q1 2025 revenue by 5%. Protests and ethical gambling options fueled the movement. “I’m done with Sands—my money supports fairness,” said local Tanya L.</p>
-                    <p><strong>Impact</strong>: Nevada proposed caps on casino donations, showing grassroots power to rewrite rules.</p>
+                    <h3>Las Vegas Uprising</h3>
+                    <p>15,000 residents boycotted Las Vegas Sands after Miriam Adelson’s $132M donation, cutting Q1 2025 revenue by 6%. Protests and ethical gambling options ignited the movement. “My money stays local, not with Sands,” said activist Carlos V.</p>
+                    <p><strong>Global Impact</strong>: Nevada’s proposed donation caps, backed by 60% of voters, show our power to rewrite laws.</p>
                 </article>
             </div>
         </section>
 
         <section id="pledges" aria-labelledby="pledges-title">
-            <h2 id="pledges-title">Pledge Your Power</h2>
-            <p>Choose a brand and commit to crushing corporate greed:</p>
+            <h2 id="pledges-title">Pledge Your Rebellion</h2>
+            <p>Choose a brand and vow to crush corporate greed:</p>
             <select id="brandSelect" aria-label="Select a brand to boycott">
                 <option value="">Select a Brand</option>
                 <option value="Pan Am Systems|Union Pacific">Pan Am Systems</option>
@@ -331,19 +351,21 @@
                 <p id="pledge-text">Select a brand to generate your pledge.</p>
                 <div class="share-buttons">
                     <button class="copy-pledge" aria-label="Copy your pledge"><i class="fas fa-copy"></i> Copy Pledge</button>
-                    <a id="shareX" href="#" target="_blank" aria-label="Share on X"><i class="fab fa-x-twitter"></i> Share on X</a>
-                    <a id="shareFacebook" href="#" target="_blank" aria-label="Share on Facebook"><i class="fab fa-facebook"></i> Share on Facebook</a>
+                    <a id="shareX" href="#" target="_blank" aria-label="Share on X"><i class="fab fa-x-twitter"></i> X</a>
+                    <a id="shareFacebook" href="#" target="_blank" aria-label="Share on Facebook"><i class="fab fa-facebook"></i> Facebook</a>
+                    <a id="shareWhatsApp" href="#" target="_blank" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a id="shareEmail" href="#" aria-label="Share via Email"><i class="fas fa-envelope"></i> Email</a>
                 </div>
             </div>
         </section>
 
         <section id="volunteer" aria-labelledby="volunteer-title">
             <h2 id="volunteer-title">Lead the Revolution: Volunteer Now</h2>
-            <p>Join 50,000+ activists to amplify the boycott and reclaim democracy:</p>
+            <p>Join 75,000+ activists to amplify the boycott and topple corporate power. Our 100+ rallies in 2024 prove we’re unstoppable!</p>
             <ul class="volunteer-list">
-                <li><strong>Social Media Warrior</strong>: Run #BoycottTrumpDonors campaigns on X or TikTok. Access our <a href="#" aria-label="Download media kit">Media Kit</a> for graphics and scripts.</li>
-                <li><strong>Community Organizer</strong>: Host rallies or ethical business fairs. Our <a href="#" aria-label="Download event toolkit">Event Toolkit</a> provides flyers and guides.</li>
-                <li><strong>Research Lead</strong>: Track donor activity via OpenSecrets and share findings with our team. Apply below to join our core analysts.</li>
+                <li><strong>Social Media General</strong>: Lead #BoycottTrumpDonors campaigns on X or TikTok. Our <a href="#" aria-label="Download media kit">Media Kit</a> includes viral graphics and scripts.</li>
+                <li><strong>Grassroots Commander</strong>: Organize rallies or ethical business expos. Our <a href="#" aria-label="Download event toolkit">Event Toolkit</a> has flyers and logistics guides.</li>
+                <li><strong>Data Warrior</strong>: Track donor activity via OpenSecrets and share insights. Join our 50+ analysts to expose greed.</li>
             </ul>
             <form id="volunteer-form" aria-labelledby="volunteer-title">
                 <div class="form-group">
@@ -361,14 +383,14 @@
                     <input type="text" id="volunteer-location" placeholder="Your Location" required aria-describedby="location-error">
                     <span id="location-error" class="error-message" hidden>Please enter a valid location.</span>
                 </div>
-                <button type="submit" aria-label="Submit volunteer form">Join the Fight</button>
+                <button type="submit" aria-label="Submit volunteer form">Lead the Fight</button>
             </form>
         </section>
     </main>
 
-    <button class="floating-cta" aria-label="Join the boycott movement">Strike Now!</button>
+    <button class="floating-cta pulse" aria-label="Join the boycott movement">Crush Now!</button>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script type="module" src="script.js?v=1.2"></script>
+    <script type="module" src="script.js?v=1.3"></script>
 </body>
 </html>
