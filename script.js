@@ -68,7 +68,7 @@ function updateLeaderboard() {
               .slice(0, 5)
               .map(user => `<p>${user.name}: ${user.votes} votes</p>`)
               .join('')
-        : '<p>No leaderboard data yet. Be the first to lead!</p>';
+        : '<p>No leaderboard data yet. Lead the charge!</p>';
 }
 
 // Update UI
@@ -97,7 +97,7 @@ function updateChart() {
             datasets: [{
                 label: 'Boycott Votes',
                 data: Object.values(state.votes),
-                backgroundColor: '#d32f2f',
+                backgroundColor: '#d90429',
             }],
         },
         options: {
@@ -124,7 +124,7 @@ function voteForBoycott(brand) {
 // Show popup
 function showPopup(brand) {
     const popup = document.getElementById('ctaPopup');
-    popup.querySelector('p').textContent = `You’ve taken a stand against ${brand}! Share your pledge to rally others:`;
+    popup.querySelector('p').textContent = `You’ve struck a blow against ${brand}! Share your pledge to rally others:`;
     popup.style.display = 'flex';
 }
 
@@ -184,7 +184,7 @@ function updatePledge() {
     const select = document.getElementById('brandSelect');
     const [brand, alternative] = select.value.split('|');
     const pledgeText = brand
-        ? `I’m boycotting ${brand} and switching to ${alternative} to fight corporate greed! Join me with #BoycottTrumpDonors!`
+        ? `I’m boycotting ${brand} and choosing ${alternative} to fight Trump’s donors! Join me at #BoycottTrumpDonors!`
         : 'Select a brand to generate your pledge.';
     document.getElementById('pledge-text').textContent = pledgeText;
     document.getElementById('shareX').href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText)}`;
@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const name = document.getElementById('volunteer-name').value;
             state.leaderboard.push({ name, votes: state.boycottedBrands.length });
             localStorage.setItem('leaderboard', JSON.stringify(state.leaderboard));
-            alert('You’re in! Let’s fight together!');
+            alert('You’re in! Let’s reshape the future together!');
             e.target.reset();
             updateUI();
         }
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.share-btn').addEventListener('click', () => {
         const brand = document.querySelector('.popup-content p').textContent.match(/against (\w+)/)[1];
-        const pledgeText = `I’m boycotting ${brand} to fight corporate greed! Join me with #BoycottTrumpDonors!`;
+        const pledgeText = `I’m boycotting ${brand} to fight Trump’s donors! Join me at #BoycottTrumpDonors!`;
         document.getElementById('shareX').href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText)}`;
         document.getElementById('shareFacebook').href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(pledgeText)}`;
     });
