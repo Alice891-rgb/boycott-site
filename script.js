@@ -1,9 +1,64 @@
 // script.js
-import { donors } from './data/donors.js';
-
 document.addEventListener('DOMContentLoaded', () => {
     try {
-        console.log('Script loaded successfully'); // Debug log
+        console.log('Script loaded successfully');
+        const donors = [
+            {
+                name: "Koch Industries",
+                category: "energy",
+                brands: ["Georgia-Pacific", "Molex"],
+                donation: "$5M+",
+                warning: "Funds anti-climate lobbying",
+                alternatives: ["NextEra Energy"],
+                image: "images/koch.webp"
+            },
+            {
+                name: "Blackstone Group",
+                category: "finance",
+                brands: ["Hilton Hotels"],
+                donation: "$3M+",
+                warning: "Backs tax cuts",
+                alternatives: ["Marriott"],
+                image: "images/blackstone.webp"
+            },
+            {
+                name: "Wynn Resorts",
+                category: "casino",
+                brands: ["Wynn Las Vegas"],
+                donation: "$2M+",
+                warning: "Supports gambling deregulation",
+                alternatives: ["MGM Resorts"],
+                image: "images/wynn.webp"
+            },
+            {
+                name: "Chevron",
+                category: "energy",
+                brands: ["Texaco"],
+                donation: "$1.5M+",
+                warning: "Pushes fossil fuel expansion",
+                alternatives: ["Shell Renewables"],
+                image: "images/chevron.webp"
+            },
+            {
+                name: "Walmart",
+                category: "retail",
+                brands: ["Sam’s Club"],
+                donation: "$1M+",
+                warning: "Funds anti-labor policies",
+                alternatives: ["Target"],
+                image: "images/walmart.webp"
+            },
+            {
+                name: "Continental Resources",
+                category: "energy",
+                brands: ["Continental Oil"],
+                donation: "$1M+",
+                warning: "Backs fracking expansion",
+                alternatives: ["Ørsted"],
+                image: "images/continental.webp"
+            }
+        ];
+
         const navMenu = document.getElementById('nav-menu');
         const hamburger = document.querySelector('.hamburger');
         const ctaButtons = document.querySelectorAll('.cta-btn, .floating-cta');
@@ -21,32 +76,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const shareEmail = document.getElementById('shareEmail');
         const copyPledge = document.querySelector('.copy-pledge');
         const volunteerForm = document.getElementById('volunteer-form');
-        const resetBtn = document.querySelector('.reset-btn');
-        const boycottCount = document.getElementById('boycottCount');
-        const pledgeCount = document.getElementById('pledgeCount');
-        const globalImpact = document.getElementById('globalImpact');
-        const boycottDays = document.getElementById('boycott-days');
-        const brandsBoycotted = document.getElementById('brands-boycotted');
-        const estimatedImpact = document.getElementById('estimated-impact');
-        const progressFill = document.getElementById('progressFill');
-        const progressText = document.getElementById('progressText');
         let voteData = JSON.parse(localStorage.getItem('voteData')) || {};
 
-        // Navigation Toggle
+        // Force content visibility
+        document.querySelectorAll('.section-animate').forEach(section => {
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        });
+
+        // Navigation
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('show');
             hamburger.setAttribute('aria-expanded', navMenu.classList.contains('show'));
-        });
-
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
         });
 
         // CTA Popup
@@ -65,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         shareBtn.addEventListener('click', () => {
             popup.style.display = 'none';
             popup.setAttribute('hidden', '');
-            brandSelect.focus();
         });
 
         // Render Donors
@@ -78,24 +118,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 return matchesFilter && matchesSearch;
             });
 
+            if (filteredDonors.length === 0) {
+                donorList.innerHTML = '<p>No donors found.</p>';
+            }
+
             filteredDonors.forEach(donor => {
                 const donorCard = document.createElement('article');
                 donorCard.classList.add('donor');
-                donorCard.setAttribute('role', 'listitem');
                 donorCard.innerHTML = `
                     <picture>
                         <source srcset="${donor.image}" type="image/webp">
-                        <img src="${donor.image.replace('.webp', '.jpg')}" alt="${donor.name} related image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760';">
+                        <img src="${donor.image.replace('.webp', '.jpg')}" alt="${donor.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760';">
                     </picture>
                     <h3>${donor.name}</h3>
                     <p><strong>Category:</strong> ${donor.category.charAt(0).toUpperCase() + donor.category.slice(1)}</p>
                     <p><strong>Brands:</strong> ${donor.brands.join(', ')}</p>
                     <p><strong>Donation:</strong> ${donor.donation}</p>
-                    <span class="warning">${donor.warning}</span>
                     <p><strong>Alternatives:</strong> ${donor.alternatives.join(', ')}</p>
-                    <div class="donor-overlay" aria-hidden="true">
-                        <p>Boycott ${donor.brands[0]} to disrupt their influence!</p>
-                    </div>
                 `;
                 donorList.appendChild(donorCard);
             });
@@ -116,31 +155,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Pledge Generator
+        // Pledge
         brandSelect.addEventListener('change', () => {
             const [brand, alternative] = brandSelect.value.split('|');
             if (brand && alternative) {
-                pledgeText.textContent = `I pledge to boycott ${brand} and support ${alternative} to challenge corporate influence! #BoycottTrumpDonors`;
+                pledgeText.textContent = `I pledge to boycott ${brand} and support ${alternative}! #BoycottTrumpDonors`;
                 shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText.textContent)}`;
                 shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
                 shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(pledgeText.textContent + ' ' + window.location.href)}`;
-                shareEmail.href = `mailto:?subject=My Boycott Pledge&body=${encodeURIComponent(pledgeText.textContent + '\nJoin me: ' + window.location.href)}`;
+                shareEmail.href = `mailto:?subject=My Pledge&body=${encodeURIComponent(pledgeText.textContent)}`;
 
-                confetti({
-                    particleCount: 50,
-                    spread: 50,
-                    origin: { y: 0.6 },
-                    colors: ['#d4a017', '#bdc3c7', '#ffffff'],
-                    scalar: 0.8
-                });
+                if (typeof confetti === 'function') {
+                    confetti({
+                        particleCount: 100,
+                        spread: 70,
+                        colors: ['#d4a017', '#bdc3c7', '#2c3e50']
+                    });
+                }
 
                 voteData[brand] = (voteData[brand] || 0) + 1;
                 localStorage.setItem('voteData', JSON.stringify(voteData));
-                updateChart();
-                updatePledgeCount();
-                updateBoycottCount();
-                updateGlobalImpact();
-                updateProgressBar();
             }
         });
 
@@ -155,112 +189,17 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const name = document.getElementById('volunteer-name').value;
             const email = document.getElementById('volunteer-email').value;
-            const location = document.getElementById('volunteer-location').value;
-            if (name && email && location) {
-                alert(`Thank you, ${name}! We'll contact you at ${email}.`);
+            if (name && email) {
+                alert(`Thank you, ${name}!`);
                 volunteerForm.reset();
             }
         });
 
-        // Progress Tracker
-        function updateProgress() {
-            const startDate = localStorage.getItem('boycottStartDate');
-            const boycottedBrands = JSON.parse(localStorage.getItem('boycottedBrands')) || [];
-            if (startDate) {
-                const days = Math.floor((new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24));
-                boycottDays.textContent = days;
-                brandsBoycotted.textContent = boycottedBrands.length;
-                estimatedImpact.textContent = `$${boycottedBrands.length * days * 10}`;
-            }
-        }
-
-        resetBtn.addEventListener('click', () => {
-            localStorage.removeItem('boycottStartDate');
-            localStorage.removeItem('boycottedBrands');
-            boycottDays.textContent = '0';
-            brandsBoycotted.textContent = '0';
-            estimatedImpact.textContent = '$0';
-        });
-
-        // Chart
-        const ctx = document.getElementById('voteChart').getContext('2d');
-        const voteChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: Object.keys(voteData),
-                datasets: [{
-                    label: 'Boycott Votes',
-                    data: Object.values(voteData),
-                    backgroundColor: 'rgba(44, 62, 80, 0.7)',
-                    borderColor: 'rgba(44, 62, 80, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: { y: { beginAtZero: true } },
-                responsive: true
-            }
-        });
-
-        function updateChart() {
-            voteChart.data.labels = Object.keys(voteData);
-            voteChart.data.datasets[0].data = Object.values(voteData);
-            voteChart.update();
-        }
-
-        function updateBoycottCount() {
-            const totalBoycotts = Object.values(voteData).reduce((sum, val) => sum + val, 0);
-            boycottCount.textContent = totalBoycotts.toLocaleString();
-        }
-
-        function updatePledgeCount() {
-            const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
-            pledgeCount.textContent = totalPledges.toLocaleString();
-        }
-
-        function updateGlobalImpact() {
-            const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
-            globalImpact.textContent = `$${totalPledges * 1000}`;
-        }
-
-        function updateProgressBar() {
-            const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
-            const goal = 1000000000;
-            const impact = totalPledges * 1000;
-            const percentage = Math.min((impact / goal) * 100, 100);
-            progressFill.style.width = `${percentage}%`;
-            progressText.textContent = `$${impact.toLocaleString()} of $1B Goal`;
-        }
-
-        // Scroll Animations
-        const sections = document.querySelectorAll('.section-animate');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        sections.forEach(section => observer.observe(section));
-
-        // Parallax
-        window.addEventListener('scroll', () => {
-            const heroImg = document.querySelector('.hero picture img');
-            const scrollPosition = window.scrollY;
-            heroImg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
-        });
-
-        updateProgress();
-        updatePledgeCount();
-        updateBoycottCount();
-        updateGlobalImpact();
-        updateProgressBar();
     } catch (e) {
-        console.error('Initialization error:', e);
-        // Fallback: Show static content
+        console.error('Script error:', e);
         document.querySelectorAll('.section-animate').forEach(section => {
-            section.classList.add('visible');
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
         });
     }
 });
