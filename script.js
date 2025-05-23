@@ -25,49 +25,50 @@ document.addEventListener('DOMContentLoaded', () => {
       progressText: document.getElementById('progressText'),
     };
 
-    // Data
-    const GOAL = 1_000_000_000;
+    // Static Fallback Data
+    const fallbackDonors = [
+      {
+        name: 'Koch Industries',
+        category: 'energy',
+        brands: ['Georgia-Pacific', 'Molex'],
+        donation: '$5M+',
+        alternatives: ['NextEra Energy'],
+        image: 'images/koch.webp',
+        imageFallback: 'images/koch.jpg',
+      },
+      {
+        name: 'Blackstone Group',
+        category: 'finance',
+        brands: ['Hilton Hotels'],
+        donation: '$3M+',
+        alternatives: ['Marriott'],
+        image: 'images/blackstone.webp',
+        imageFallback: 'images/blackstone.jpg',
+      },
+    ];
+
     let pledgeCounts = JSON.parse(localStorage.getItem('pledgeCounts')) || {};
+    const GOAL = 1_000_000_000;
 
     // Initialize
-    fetch('data/donors.json')
-      .then((res) => res.json())
-      .then((data) => {
-        window.megaDonors = data.megaDonors;
-        window.donors = data.donors;
-        init();
-      })
-      .catch((e) => {
-        console.error('Failed to load donor data:', e);
-        init(); // Proceed with fallback content
-      });
+    init();
 
     function init() {
       animateSections();
       setupNavigation();
       setupCtaPopup();
       updateProgress();
-      renderMegaDonors();
-      renderDonors();
+      renderDonors(fallbackDonors); // Use fallback data
       setupSearchAndFilter();
       setupPledge();
       setupForms();
-      populateBrandSelect();
+      loadDynamicData();
     }
 
     function animateSections() {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-      document.querySelectorAll('.section-animate').forEach((section) => observer.observe(section));
+      document.querySelectorAll('.section-animate').forEach((section) => {
+        section.classList.add('visible');
+      });
     }
 
     function setupNavigation() {
@@ -82,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
           elements.popup.style.display = 'flex';
           elements.popup.removeAttribute('hidden');
-          elements.popup.focus();
         });
       });
       elements.closePopup.addEventListener('click', () => {
@@ -92,46 +92,19 @@ document.addEventListener('DOMContentLoaded', () => {
       elements.shareBtn.addEventListener('click', () => {
         elements.popup.style.display = 'none';
         elements.popup.setAttribute('hidden', '');
-        if (typeof confetti === 'function') {
-          confetti({ particleCount: 100, spread: 70, colors: ['#d32f2f', '#ffffff', '#212121'] });
-        }
       });
     }
 
     function updateProgress() {
       const totalImpact = Object.values(pledgeCounts).reduce((sum, val) => sum + val, 0) * 1_000_000;
       const progressPercent = Math.min((totalImpact / GOAL) * 100, 100);
-      elements.progressFill.style.setProperty('--progress-width', `${progressPercent}%`);
+      elements.progressFill.style.width = `${progressPercent}%`;
       elements.progressText.textContent = `$${totalImpact.toLocaleString()} of $${GOAL.toLocaleString()} Goal`;
     }
 
-    function renderMegaDonors() {
-      if (!window.megaDonors) return; // Use fallback HTML if data fails
-      elements.megaDonorGrid.innerHTML = window.megaDonors
-        .map(
-          (donor) => `
-        <article class="donor">
-          <picture class="donor-picture">
-            <source srcset="${donor.image}" type="image/webp">
-            <img src="${donor.imageFallback}" alt="${donor.name}" loading="lazy" width="300" height="200">
-          </picture>
-          <h3>${donor.id}. ${donor.name}</h3>
-          <p><strong>Contribution:</strong> ${donor.contribution}</p>
-          <p><strong>Boycott:</strong> ${donor.boycott}</p>
-          <p><strong>Alternative:</strong> <a href="${donor.alternativeUrl}" target="_blank">${donor.alternative}</a></p>
-        </article>
-      `
-        )
-        .join('');
-    }
-
-    function renderDonors(filter = 'all', search = '') {
+    function renderDonors(donors, filter = 'all', search = '') {
       elements.donorList.innerHTML = '';
-      if (!window.donors) {
-        elements.donorList.innerHTML = '<p>Donor data unavailable. Please try again later.</p>';
-        return;
-      }
-      const filteredDonors = window.donors.filter((donor) => {
+      const filteredDonors = donors.filter((donor) => {
         const matchesFilter = filter === 'all' || donor.category === filter;
         const matchesSearch =
           donor.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -150,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         donorCard.innerHTML = `
           <picture class="donor-picture">
             <source srcset="${donor.image}" type="image/webp">
-            <img src="${donor.imageFallback}" alt="${donor.name}" loading="lazy" width="300" height="200">
+            <img src="${donor.imageFallback}" alt="${donor.name}" loading="lazy" width="280" height="180">
           </picture>
           <h3>${donor.name}</h3>
           <p><strong>Category:</strong> ${donor.category.charAt(0).toUpperCase() + donor.category.slice(1)}</p>
@@ -163,36 +136,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setupSearchAndFilter() {
-      let debounceTimeout;
       elements.searchInput.addEventListener('input', () => {
-        clearTimeout(debounceTimeout);
-        debounceTimeout = setTimeout(() => {
-          const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-          renderDonors(activeFilter, elements.searchInput.value);
-        }, 300);
+        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+        renderDonors(fallbackDonors, activeFilter, elements.searchInput.value);
       });
 
       elements.filterButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
           elements.filterButtons.forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
-          renderDonors(btn.dataset.filter, elements.searchInput.value);
+          renderDonors(fallbackDonors, btn.dataset.filter, elements.searchInput.value);
         });
       });
-    }
-
-    function populateBrandSelect() {
-      if (!window.megaDonors || !window.donors) return;
-      const allDonors = [...window.megaDonors, ...window.donors];
-      elements.brandSelect.innerHTML =
-        '<option value="">Select a Brand</option>' +
-        allDonors
-          .map((donor) => {
-            const boycott = donor.boycott || donor.brands[0];
-            const alternative = donor.alternative || donor.alternatives[0];
-            return `<option value="${boycott}|${alternative}">${boycott}</option>`;
-          })
-          .join('');
     }
 
     function setupPledge() {
@@ -206,18 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
           pledgeCounts[brand] = (pledgeCounts[brand] || 0) + 1;
           localStorage.setItem('pledgeCounts', JSON.stringify(pledgeCounts));
           updateProgress();
-
-          if (typeof confetti === 'function') {
-            confetti({ particleCount: 100, spread: 70, colors: ['#d32f2f', '#ffffff', '#212121'] });
-          }
-        } else {
-          elements.pledgeText.textContent = 'Select a brand to ignite your pledge.';
         }
       });
 
       elements.copyPledge.addEventListener('click', () => {
         navigator.clipboard.writeText(elements.pledgeText.textContent).then(() => {
-          alert('Pledge copied to clipboard!');
+          alert('Pledge copied!');
         });
       });
     }
@@ -241,6 +190,20 @@ document.addEventListener('DOMContentLoaded', () => {
           elements.newsletterForm.reset();
         }
       });
+    }
+
+    function loadDynamicData() {
+      fetch('data/donors.json')
+        .then((res) => {
+          if (!res.ok) throw new Error('Failed to load donors.json');
+          return res.json();
+        })
+        .then((data) => {
+          renderDonors(data.donors);
+        })
+        .catch((e) => {
+          console.error('Error loading donor data:', e);
+        });
     }
   } catch (e) {
     console.error('Script error:', e);
