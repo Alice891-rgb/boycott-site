@@ -11,8 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       closePopup: document.querySelector('.close-popup'),
       shareBtn: document.querySelector('.share-btn'),
       donorList: document.getElementById('donorList'),
-      searchInput: document.getElementById('searchInput'),
-      filterButtons: document.querySelectorAll('.filter-btn'),
       brandSelect: document.getElementById('brandSelect'),
       pledgeText: document.getElementById('pledge-text'),
       shareX: document.getElementById('shareX'),
@@ -38,6 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
         donation: '$3M+',
         alternatives: ['Marriott'],
       },
+      {
+        name: 'Chevron',
+        category: 'energy',
+        brands: ['Texaco'],
+        donation: '$1.5M+',
+        alternatives: ['Shell Renewables'],
+      },
     ];
 
     let pledgeCounts = JSON.parse(localStorage.getItem('pledgeCounts')) || {};
@@ -51,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setupCtaPopup();
       updateProgress();
       renderDonors();
-      setupSearchAndFilter();
       setupPledge();
       setupForms();
     }
@@ -89,22 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
       elements.progressFill.style.width = `${progressPercent}%`;
     }
 
-    function renderDonors(filter = 'all', search = '') {
+    function renderDonors() {
       elements.donorList.innerHTML = '';
-      const filteredDonors = donors.filter((donor) => {
-        const matchesFilter = filter === 'all' || donor.category === filter;
-        const matchesSearch =
-          donor.name.toLowerCase().includes(search.toLowerCase()) ||
-          donor.brands.some((brand) => brand.toLowerCase().includes(search.toLowerCase()));
-        return matchesFilter && matchesSearch;
-      });
-
-      if (filteredDonors.length === 0) {
-        elements.donorList.innerHTML = '<p>No donors found.</p>';
-        return;
-      }
-
-      filteredDonors.forEach((donor) => {
+      donors.forEach((donor) => {
         const donorCard = document.createElement('article');
         donorCard.classList.add('donor');
         donorCard.innerHTML = `
@@ -115,21 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <p><strong>Alternatives:</strong> ${donor.alternatives.join(', ')}</p>
         `;
         elements.donorList.appendChild(donorCard);
-      });
-    }
-
-    function setupSearchAndFilter() {
-      elements.searchInput.addEventListener('input', () => {
-        const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-        renderDonors(activeFilter, elements.searchInput.value);
-      });
-
-      elements.filterButtons.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          elements.filterButtons.forEach((b) => b.classList.remove('active'));
-          btn.classList.add('active');
-          renderDonors(btn.dataset.filter, elements.searchInput.value);
-        });
       });
     }
 
