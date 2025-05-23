@@ -1,265 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Unmask Trump's 2024 mega-donors and join the boycott to disrupt corporate influence.">
-    <meta name="keywords" content="boycott Trump donors, 2024 mega-donors, ethical alternatives">
-    <meta property="og:title" content="UNMASKED: Stop Trump's Billionaires">
-    <meta property="og:description" content="Join 75,000+ activists to disrupt corporate control!">
-    <meta property="og:image" content="images/hero.webp">
-    <meta property="og:url" content="https://boycottteam2025.github.io/trump-donors-boycott">
-    <title>UNMASKED: Stop Trump's Billionaires</title>
-    <link rel="stylesheet" href="style.css?v=2.4">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@700;900">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Unmask Trump's 2024 mega-donors and join the boycott to disrupt corporate influence.">
+  <meta name="keywords" content="boycott Trump donors, 2024 mega-donors, ethical alternatives, democracy">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="UNMASKED: Stop Trump's Billionaires">
+  <meta name="twitter:description" content="Join 75,000+ activists to disrupt corporate control!">
+  <meta name="twitter:image" content="https://boycottteam2025.github.io/trump-donors-boycott/images/hero.webp">
+  <meta property="og:title" content="UNMASKED: Stop Trump's Billionaires">
+  <meta property="og:description" content="Join 75,000+ activists to disrupt corporate control and reclaim democracy!">
+  <meta property="og:image" content="https://boycottteam2025.github.io/trump-donors-boycott/images/hero.webp">
+  <meta property="og:url" content="https://boycottteam2025.github.io/trump-donors-boycott">
+  <title>UNMASKED: Stop Trump's Billionaires</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@700;900&display=swap">
+  <link rel="stylesheet" href="style.min.css?v=2.5">
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div class="progress-bar" aria-label="Boycott progress">
-        <div class="progress-fill" id="progressFill"></div>
-        <span id="progressText">$0 of $1B Goal</span>
+  <!-- Progress Bar -->
+  <div class="progress-bar" aria-label="Boycott progress">
+    <div class="progress-fill" id="progressFill"></div>
+    <span id="progressText">$0 of $1B Goal</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sticky-nav" role="navigation">
+    <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#boycott-guide">Guide</a></li>
+      <li><a href="#mega-donors">Mega-Donors</a></li>
+      <li><a href="#donors">All Donors</a></li>
+      <li><a href="#success-stories">Success Stories</a></li>
+      <li><a href="#pledges">Pledge</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#volunteer">Volunteer</a></li>
+    </ul>
+  </nav>
+
+  <!-- CTA Popup -->
+  <div id="ctaPopup" class="popup" role="dialog" aria-labelledby="popup-title" hidden>
+    <div class="popup-content">
+      <h3 id="popup-title">You’re Leading Change!</h3>
+      <p>Join 75,000+ activists disrupting corporate influence!</p>
+      <button class="btn share-btn">Share Your Pledge</button>
+      <button class="btn close-popup" aria-label="Close popup">Close</button>
     </div>
+  </div>
 
-    <nav class="sticky-nav" role="navigation">
-        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
-        <ul id="nav-menu">
-            <li><a href="#about">About</a></li>
-            <li><a href="#boycott-guide">Guide</a></li>
-            <li><a href="#mega-donors">Mega-Donors</a></li>
-            <li><a href="#donors">All Donors</a></li>
-            <li><a href="#success-stories">Success Stories</a></li>
-            <li><a href="#pledges">Pledge</a></li>
-            <li><a href="#volunteer">Volunteer</a></li>
-        </ul>
-    </nav>
-
-    <div id="ctaPopup" class="popup" role="dialog" hidden>
-        <div class="popup-content">
-            <h3>You’re Leading Change!</h3>
-            <p>Join 75,000+ activists disrupting corporate influence!</p>
-            <button class="share-btn">Share Your Pledge</button>
-            <button class="close-popup">Close</button>
-        </div>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <picture>
+      <source srcset="images/hero.webp" type="image/webp">
+      <img src="images/hero.jpg" alt="Mass protest against corporate influence" loading="eager" width="1200" height="600">
+    </picture>
+    <div class="hero-content">
+      <h1>UNMASKED: Stop Trump's Billionaires</h1>
+      <p>Join 75,000+ activists to disrupt corporate control and reclaim democracy!</p>
+      <button class="btn cta-btn" role="button">Lead the Change</button>
     </div>
+  </header>
 
-    <header class="hero">
-        <div class="hero-overlay"></div>
-        <picture>
-            <source srcset="images/hero.webp" type="image/webp">
-            <img src="images/hero.jpg" alt="Mass protest against corporate influence" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1200'; this.onerror='this.src=\"https://via.placeholder.com/1200x600\";'">
-        </picture>
-        <div class="hero-content">
-            <h1>UNMASKED: Stop Trump's Billionaires</h1>
-            <p>Join 75,000+ activists to disrupt corporate control and reclaim democracy!</p>
-            <button class="cta-btn">Lead the Change</button>
+  <main>
+    <!-- About Section -->
+    <section id="about" class="section-animate">
+      <h2>Confronting Billionaire Power</h2>
+      <p>Trump’s 2024 campaign, fueled by $1.5B from billionaires like Elon Musk and Harold Hamm, threatens democracy, climate progress, and equality. Your boycott has already cut revenue for brands like Tesla by 7% (Bloomberg, 2025). Join us to amplify this impact and hold corporations accountable.</p>
+    </section>
+
+    <!-- Boycott Guide -->
+    <section id="boycott-guide" class="section-animate">
+      <h2>Boycott with Precision</h2>
+      <ol class="guide-list">
+        <li><i class="fas fa-bullseye"></i> Target brands like Tesla and Uline. Switch to ethical alternatives like Rivian or EcoEnclose.</li>
+        <li><i class="fas fa-bullhorn"></i> Amplify your voice by sharing #BoycottTrumpDonors on X and other platforms.</li>
+        <li><i class="fas fa-users"></i> Organize or attend rallies using our <a href="https://example.com/toolkit">Event Toolkit</a>.</li>
+        <li><i class="fas fa-chart-line"></i> Track your impact: Boycotting donor brands saves an average of $600/year per person.</li>
+      </ol>
+    </section>
+
+    <!-- Impact Statistics -->
+    <section id="impact-stats" class="section-animate">
+      <h2>Our Collective Impact</h2>
+      <div class="stats-grid">
+        <div class="stat-item">
+          <i class="fas fa-users"></i>
+          <h3>75,000+</h3>
+          <p>Activists Joined</p>
         </div>
-    </header>
-
-    <main>
-        <section id="about" class="section-animate">
-            <h2>Confronting Billionaire Power</h2>
-            <p>Trump’s 2024 campaign, fueled by $1.5B from billionaires like Elon Musk and Harold Hamm, threatens democracy, climate progress, and equality. Your boycott cuts revenue for brands like Tesla by 7% (Bloomberg, 2025). Join the fight!</p>
-        </section>
-
-        <section id="boycott-guide" class="section-animate">
-            <h2>Boycott with Precision</h2>
-            <ol class="guide-list">
-                <li><i class="fas fa-bullseye"></i> Target brands like Tesla, Uline. Use Rivian, EcoEnclose.</li>
-                <li><i class="fas fa-bullhorn"></i> Share #BoycottTrumpDonors on X.</li>
-                <li><i class="fas fa-users"></i> Host rallies with our <a href="https://example.com/toolkit">Event Toolkit</a>.</li>
-                <li><i class="fas fa-chart-line"></i> Track impact: Cutting donor spending saves $600/year.</li>
-            </ol>
-        </section>
-
-        <section id="mega-donors" class="section-animate">
-            <h2>Trump’s 2024 Mega-Donors</h2>
-            <div class="donor-grid">
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/mellon.webp" type="image/webp">
-                        <img src="images/mellon.jpg" alt="Timothy Mellon" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>1. Timothy Mellon</h3>
-                    <p><strong>Contribution</strong>: $197M+ to MAGA Inc.</p>
-                    <p><strong>Boycott</strong>: Pan Am Systems</p>
-                    <p><strong>Alternative</strong>: <a href="https://www.up.com" target="_blank">Union Pacific</a></p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/musk.webp" type="image/webp">
-                        <img src="images/musk.jpg" alt="Elon Musk" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>2. Elon Musk</h3>
-                    <p><strong>Contribution</strong>: $291M to America PAC</p>
-                    <p><strong>Boycott</strong>: Tesla, X</p>
-                    <p><strong>Alternative</strong>: Rivian, Bluesky</p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/adelson.webp" type="image/webp">
-                        <img src="images/adelson.jpg" alt="Miriam Adelson" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>3. Miriam Adelson</h3>
-                    <p><strong>Contribution</strong>: $132M+ to MAGA Inc.</p>
-                    <p><strong>Boycott</strong>: Las Vegas Sands</p>
-                    <p><strong>Alternative</strong>: MGM Resorts</p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/hendricks.webp" type="image/webp">
-                        <img src="images/hendricks.jpg" alt="Diane Hendricks" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>4. Diane Hendricks</h3>
-                    <p><strong>Contribution</strong>: $25.8M to MAGA Inc.</p>
-                    <p><strong>Boycott</strong>: ABC Supply</p>
-                    <p><strong>Alternative</strong>: Beacon Roofing</p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/uihlein.webp" type="image/webp">
-                        <img src="images/uihlein.jpg" alt="Richard & Elizabeth Uihlein" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>5. Richard & Elizabeth Uihlein</h3>
-                    <p><strong>Contribution</strong>: $20M+ to MAGA Inc.</p>
-                    <p><strong>Boycott</strong>: Uline</p>
-                    <p><strong>Alternative</strong>: EcoEnclose</p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/mcmahon.webp" type="image/webp">
-                        <img src="images/mcmahon.jpg" alt="Linda McMahon" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>6. Linda McMahon</h3>
-                    <p><strong>Contribution</strong>: $10M+ to MAGA Inc.</p>
-                    <p><strong>Boycott</strong>: WWE</p>
-                    <p><strong>Alternative</strong>: AEW</p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/perlmutter.webp" type="image/webp">
-                        <img src="images/perlmutter.jpg" alt="Isaac & Laura Perlmutter" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>7. Isaac & Laura Perlmutter</h3>
-                    <p><strong>Contribution</strong>: $10M+ to Right for America</p>
-                    <p><strong>Boycott</strong>: Marvel merchandise</p>
-                    <p><strong>Alternative</strong>: DC Comics</p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/hamm.webp" type="image/webp">
-                        <img src="images/hamm.jpg" alt="Harold Hamm at oil field" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1544377193-33dcf4d68fb5?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>8. Harold Hamm</h3>
-                    <p><strong>Contribution</strong>: $10M+ to Trump 47 Committee</p>
-                    <p><strong>Boycott</strong>: Continental Resources</p>
-                    <p><strong>Alternative</strong>: <a href="https://www.orsted.com" target="_blank">Ørsted</a></p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/ruffin.webp" type="image/webp">
-                        <img src="images/ruffin.jpg" alt="Phil Ruffin" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>9. Phil Ruffin</h3>
-                    <p><strong>Contribution</strong>: $3.3M to Trump PACs</p>
-                    <p><strong>Boycott</strong>: Treasure Island</p>
-                    <p><strong>Alternative</strong>: Caesars Palace</p>
-                </article>
-                <article class="donor">
-                    <picture>
-                        <source srcset="images/marcus.webp" type="image/webp">
-                        <img src="images/marcus.jpg" alt="Bernie Marcus" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>10. Bernie Marcus</h3>
-                    <p><strong>Contribution</strong>: $2.7M to Trump PACs</p>
-                    <p><strong>Boycott</strong>: Home Depot</p>
-                    <p><strong>Alternative</strong>: Lowe’s</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="donors" class="section-animate">
-            <h2>All Donors: Broaden Your Impact</h2>
-            <div class="search-filter">
-                <input type="text" id="searchInput" placeholder="Search donors or brands...">
-                <div class="filter-buttons">
-                    <button data-filter="all" class="filter-btn active"><i class="fas fa-globe"></i> All</button>
-                    <button data-filter="finance" class="filter-btn"><i class="fas fa-dollar-sign"></i> Finance</button>
-                    <button data-filter="tech" class="filter-btn"><i class="fas fa-laptop"></i> Tech</button>
-                    <button data-filter="energy" class="filter-btn"><i class="fas fa-bolt"></i> Energy</button>
-                </div>
-            </div>
-            <div id="donorList" class="donor-grid"></div>
-        </section>
-
-        <section id="success-stories" class="section-animate">
-            <h2>Your Victories: Power in Action</h2>
-            <div class="story-list">
-                <article class="story-item">
-                    <picture>
-                        <source srcset="images/tesla-boycott.webp" type="image/webp">
-                        <img src="images/tesla-boycott.jpg" alt="Protesters outside Tesla factory" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>Tesla’s Defeat: You Made It Happen</h3>
-                    <p>50,000+ activists boycotted Tesla, crashing Q1 2025 sales by 7%.</p>
-                    <a href="#pledges" class="cta-btn">Amplify This Win</a>
-                </article>
-                <article class="story-item">
-                    <picture>
-                        <source srcset="images/nordstrom-boycott.webp" type="image/webp">
-                        <img src="images/nordstrom-boycott.jpg" alt="Nordstrom store protest" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=300'; this.onerror='this.src=\"https://via.placeholder.com/300x200\";'">
-                    </picture>
-                    <h3>Nordstrom’s Stand</h3>
-                    <p>#GrabYourWallet forced Nordstrom to drop Ivanka Trump’s brand in 2017.</p>
-                    <a href="#pledges" class="cta-btn">Amplify This Win</a>
-                </article>
-            </div>
-        </section>
-
-        <section id="pledges" class="section-animate">
-            <h2>Pledge Your Power</h2>
-            <select id="brandSelect">
-                <option value="">Select a Brand</option>
-                <option value="Pan Am Systems|Union Pacific">Pan Am Systems</option>
-                <option value="Tesla|Rivian">Tesla</option>
-                <option value="Continental Resources|Ørsted">Continental Resources</option>
-            </select>
-            <div class="pledge">
-                <p id="pledge-text">Select a brand to ignite your pledge.</p>
-                <div class="share-buttons">
-                    <button class="copy-pledge"><i class="fas fa-copy"></i> Copy Pledge</button>
-                    <a id="shareX" href="#" target="_blank" class="share-btn"><i class="fab fa-x-twitter"></i> X</a>
-                    <a id="shareFacebook" href="#" target="_blank" class="share-btn"><i class="fab fa-facebook"></i> Facebook</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="volunteer" class="section-animate">
-            <h2>Join the Movement: Volunteer</h2>
-            <form id="volunteer-form">
-                <div class="form-group">
-                    <label for="volunteer-name">Name:</label>
-                    <input type="text" id="volunteer-name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="volunteer-email">Email:</label>
-                    <input type="email" id="volunteer-email" placeholder="Your Email" required>
-                </div>
-                <button type="submit">Join Now</button>
-            </form>
-        </section>
-    </main>
-
-    <footer class="impact-ticker">
-        <div class="ticker-content" id="tickerContent">
-            <span>7% Tesla sales drop in Q1 2025</span>
-            <span>10% Goya sales drop in 2020</span>
+        <div class="stat-item">
+          <i class="fas fa-dollar-sign"></i>
+          <h3>$1.5B</h3>
+          <p>Targeted Donations</p>
         </div>
-    </footer>
+        <div class="stat-item">
+          <i class="fas fa-chart-line"></i>
+          <h3>7%</h3>
+          <p>Tesla Sales Drop</p>
+        </div>
+      </div>
+    </section>
 
-    <button class="floating-cta">Lead the Change</button>
+    <!-- Mega-Donors -->
+    <section id="mega-donors" class="section-animate">
+      <h2>Trump’s 2024 Mega-Donors</h2>
+      <div class="grid-container donor-grid" id="megaDonorGrid"></div>
+    </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
-    <script src="script.js?v=2.4"></script>
+    <!-- All Donors -->
+    <section id="donors" class="section-animate">
+      <h2>All Donors: Broaden Your Impact</h2>
+      <div class="search-filter">
+        <input type="text" id="searchInput" placeholder="Search donors or brands..." aria-label="Search boycott list">
+        <div class="filter-buttons">
+          <button data-filter="all" class="btn filter-btn active"><i class="fas fa-globe"></i> All</button>
+          <button data-filter="finance" class="btn filter-btn"><i class="fas fa-dollar-sign"></i> Finance</button>
+          <button data-filter="tech" class="btn filter-btn"><i class="fas fa-laptop"></i> Tech</button>
+          <button data-filter="energy" class="btn filter-btn"><i class="fas fa-bolt"></i> Energy</button>
+        </div>
+      </div>
+      <div class="grid-container donor-grid" id="donorList"></div>
+    </section>
+
+    <!-- Success Stories -->
+    <section id="success-stories" class="section-animate">
+      <h2>Your Victories: Power in Action</h2>
+      <div class="grid-container story-list">
+        <article class="story-item">
+          <picture class="story-picture">
+            <source srcset="images/tesla-boycott.webp" type="image/webp">
+            <img src="images/tesla-boycott.jpg" alt="Protesters outside Tesla factory" loading="lazy" width="300" height="200">
+          </picture>
+          <h3>Tesla’s Defeat: You Made It Happen</h3>
+          <p>50,000+ activists boycotted Tesla, crashing Q1 2025 sales by 7% (Bloomberg, 2025).</p>
+          <button class="btn cta-btn" role="button">Amplify This Win</button>
+        </article>
+        <article class="story-item">
+          <picture class="story-picture">
+            <source srcset="images/nordstrom-boycott.webp" type="image/webp">
+            <img src="images/nordstrom-boycott.jpg" alt="Nordstrom store protest" loading="lazy" width="300" height="200">
+          </picture>
+          <h3>Nordstrom’s Stand</h3>
+          <p>#GrabYourWallet forced Nordstrom to drop Ivanka Trump’s brand in 2017.</p>
+          <button class="btn cta-btn" role="button">Amplify This Win</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="section-animate">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Why boycott these companies?</summary>
+          <p>These companies are linked to donors who funded Trump’s 2024 campaign, contributing to policies that threaten democracy, climate progress, and equality. Boycotting reduces their revenue and influence.</p>
+        </details>
+        <details>
+          <summary>How can I contribute?</summary>
+          <p>You can boycott listed brands, share your pledge on social media, volunteer for events, or submit new boycott targets via our <a href="#volunteer">volunteer form</a>.</p>
+        </details>
+        <details>
+          <summary>Are alternatives ethical?</summary>
+          <p>We recommend alternatives based on their lack of ties to Trump’s campaign and their commitment to sustainability or social responsibility. Always research to align with your values.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Pledge Section -->
+    <section id="pledges" class="section-animate">
+      <h2>Pledge Your Power</h2>
+      <select id="brandSelect" aria-label="Select a brand to boycott">
+        <option value="">Select a Brand</option>
+        <!-- Populated dynamically -->
+      </select>
+      <div class="pledge">
+        <p id="pledge-text">Select a brand to ignite your pledge.</p>
+        <div class="share-buttons">
+          <button class="btn copy-pledge"><i class="fas fa-copy"></i> Copy Pledge</button>
+          <a id="shareX" href="#" target="_blank" class="btn share-btn"><i class="fab fa-x-twitter"></i> X</a>
+          <a id="shareFacebook" href="#" target="_blank" class="btn share-btn"><i class="fab fa-facebook"></i> Facebook</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Volunteer Section -->
+    <section id="volunteer" class="section-animate">
+      <h2>Join the Movement: Volunteer</h2>
+      <form id="volunteer-form">
+        <div class="form-group">
+          <label for="volunteer-name">Name:</label>
+          <input type="text" id="volunteer-name" placeholder="Your Name" required aria-required="true">
+        </div>
+        <div class="form-group">
+          <label for="volunteer-email">Email:</label>
+          <input type="email" id="volunteer-email" placeholder="Your Email" required aria-required="true">
+        </div>
+        <button type="submit" class="btn">Join Now</button>
+      </form>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section id="newsletter" class="section-animate">
+      <h2>Stay Informed</h2>
+      <p>Subscribe to our newsletter for updates on boycott campaigns and activist events.</p>
+      <form id="newsletter-form">
+        <div class="form-group">
+          <label for="newsletter-email">Email:</label>
+          <input type="email" id="newsletter-email" placeholder="Your Email" required aria-required="true">
+        </div>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="impact-ticker">
+    <div class="ticker-content" id="tickerContent">
+      <span>7% Tesla sales drop in Q1 2025</span>
+      <span>10% Goya sales drop in 2020</span>
+      <span>Join 75,000+ activists today!</span>
+    </div>
+  </footer>
+
+  <button class="btn floating-cta" role="button">Lead the Change</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" defer></script>
+  <script src="script.min.js?v=2.5" defer></script>
 </body>
 </html>
