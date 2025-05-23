@@ -89,7 +89,7 @@ body {
 }
 
 .hero-content {
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(27, 38, 59, 0.8); /* Deep navy, semi-transparent, thematic */
     padding: 3rem;
     border-radius: 12px;
     max-width: 900px;
