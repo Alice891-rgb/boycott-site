@@ -7,7 +7,7 @@
   --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   --transition: all 0.3s ease;
   --border-radius: 8px;
-  --padding: 2rem; /* Increased for better spacing */
+  --padding: 2rem;
   --max-width: 800px;
 }
 
@@ -28,6 +28,7 @@ body {
   line-height: 1.6;
   font-size: clamp(1rem, 2.5vw, 1.1rem);
   min-height: 100vh;
+  position: relative;
 }
 
 .container {
@@ -44,7 +45,7 @@ body {
   width: 100%;
   height: 0.5rem;
   background: var(--secondary-accent);
-  z-index: 2000;
+  z-index: 1000;
 }
 
 .progress-fill {
@@ -54,48 +55,104 @@ body {
   transition: width 0.6s ease;
 }
 
-/* Navigation */
-.sticky-nav {
-  position: sticky;
-  top: 0;
-  background: var(--text-color); /* Changed to dark gray */
-  z-index: 1000;
-  box-shadow: var(--shadow); /* Added shadow for separation */
+/* Sidebar Navigation */
+.nav-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: var(--text-color);
+  color: var(--accent-color);
+  border: none;
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  z-index: 2000;
+  font-size: 1.5rem;
+  transition: var(--transition);
 }
 
-.sticky-nav .container {
+.nav-toggle:hover,
+.nav-toggle:focus {
+  background: var(--primary-color);
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: 100%;
+  background: var(--text-color);
+  z-index: 1500;
+  transition: left 0.3s ease;
+  overflow-y: auto;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--secondary-accent);
 }
 
-.hamburger {
+.sidebar-header h2 {
+  font-size: 1.2rem;
+  color: var(--accent-color);
+  margin: 0;
+}
+
+.nav-close {
   background: none;
   border: none;
   color: var(--accent-color);
   font-size: 1.5rem;
   cursor: pointer;
-  padding: var(--padding);
+  transition: var(--transition);
 }
 
-#nav-menu {
-  display: flex;
+.nav-close:hover,
+.nav-close:focus {
+  color: var(--primary-color);
+}
+
+.nav-menu {
   list-style: none;
+  padding: 0;
 }
 
-#nav-menu li a {
+.nav-menu li a {
+  display: block;
   color: var(--accent-color);
   text-decoration: none;
-  padding: var(--padding);
+  padding: 1rem;
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.9rem, 2vw, 1rem);
   transition: var(--transition);
 }
 
-#nav-menu li a:hover,
-#nav-menu li a:focus {
-  background: var(--primary-color); /* Red on hover for contrast */
+.nav-menu li a:hover,
+.nav-menu li a:focus {
+  background: var(--primary-color);
   color: var(--accent-color);
+}
+
+/* Overlay for Sidebar (when open) */
+body.sidebar-open::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1400;
 }
 
 /* Hero Section */
@@ -130,7 +187,7 @@ h2, h3 {
   font-weight: 900;
   text-transform: uppercase;
   margin-bottom: 1rem;
-  color: var(--primary-color); /* Changed to red for prominence */
+  color: var(--primary-color);
 }
 
 h2 {
@@ -202,7 +259,7 @@ h3 {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem; /* Increased for better spacing */
+  gap: 1.5rem;
   padding: var(--padding);
 }
 
@@ -254,7 +311,7 @@ h3 {
 
 /* Footer Ticker */
 .impact-ticker {
-  background: var(--text-color); /* Changed to dark gray for consistency */
+  background: var(--text-color);
   color: var(--accent-color);
   padding: var(--padding);
   overflow: hidden;
@@ -273,27 +330,13 @@ h3 {
 
 /* Sections */
 section {
-  margin-bottom: 2rem; /* Added spacing between sections */
+  margin-bottom: 2rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .grid-container {
     grid-template-columns: 1fr;
-  }
-
-  #nav-menu {
-    display: none;
-    flex-direction: column;
-    background: var(--text-color);
-    position: absolute;
-    top: 3rem;
-    left: 0;
-    width: 100%;
-  }
-
-  #nav-menu.show {
-    display: flex;
   }
 
   .hero h1 {
