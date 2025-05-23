@@ -88,4 +88,179 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="${donor.image.replace('.webp', '.jpg')}" alt="${donor.name} related image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760';">
                     </picture>
                     <h3>${donor.name}</h3>
-                    <p><strong>Category:</strong> ${donor.category.charAt(0).to
+                    <p><strong>Category:</strong> ${donor.category.charAt(0).toUpperCase() + donor.category.slice(1)}</p>
+                    <p><strong>Brands:</strong> ${donor.brands.join(', ')}</p>
+                    <p><strong>Donation:</strong> ${donor.donation}</p>
+                    <span class="warning">${donor.warning}</span>
+                    <p><strong>Alternatives:</strong> ${donor.alternatives.join(', ')}</p>
+                    <div class="donor-overlay" aria-hidden="true">
+                        <p>Boycott ${donor.brands[0]} to disrupt their influence!</p>
+                    </div>
+                `;
+                donorList.appendChild(donorCard);
+            });
+        }
+
+        renderDonors();
+
+        // Search and Filter
+        searchInput.addEventListener('input', () => {
+            renderDonors(document.querySelector('.filter-btn.active').dataset.filter, searchInput.value);
+        });
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderDonors(btn.dataset.filter, searchInput.value);
+            });
+        });
+
+        // Pledge Generator
+        brandSelect.addEventListener('change', () => {
+            const [brand, alternative] = brandSelect.value.split('|');
+            if (brand && alternative) {
+                pledgeText.textContent = `I pledge to boycott ${brand} and support ${alternative} to challenge corporate influence! #BoycottTrumpDonors`;
+                shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText.textContent)}`;
+                shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`;
+                shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(pledgeText.textContent + ' ' + window.location.href)}`;
+                shareEmail.href = `mailto:?subject=My Boycott Pledge&body=${encodeURIComponent(pledgeText.textContent + '\nJoin me: ' + window.location.href)}`;
+
+                confetti({
+                    particleCount: 50,
+                    spread: 50,
+                    origin: { y: 0.6 },
+                    colors: ['#d4a017', '#bdc3c7', '#ffffff'],
+                    scalar: 0.8
+                });
+
+                voteData[brand] = (voteData[brand] || 0) + 1;
+                localStorage.setItem('voteData', JSON.stringify(voteData));
+                updateChart();
+                updatePledgeCount();
+                updateBoycottCount();
+                updateGlobalImpact();
+                updateProgressBar();
+            }
+        });
+
+        copyPledge.addEventListener('click', () => {
+            navigator.clipboard.writeText(pledgeText.textContent).then(() => {
+                alert('Pledge copied!');
+            });
+        });
+
+        // Volunteer Form
+        volunteerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('volunteer-name').value;
+            const email = document.getElementById('volunteer-email').value;
+            const location = document.getElementById('volunteer-location').value;
+            if (name && email && location) {
+                alert(`Thank you, ${name}! We'll contact you at ${email}.`);
+                volunteerForm.reset();
+            }
+        });
+
+        // Progress Tracker
+        function updateProgress() {
+            const startDate = localStorage.getItem('boycottStartDate');
+            const boycottedBrands = JSON.parse(localStorage.getItem('boycottedBrands')) || [];
+            if (startDate) {
+                const days = Math.floor((new Date() - new Date(startDate)) / (1000 * 60 * 60 * 24));
+                boycottDays.textContent = days;
+                brandsBoycotted.textContent = boycottedBrands.length;
+                estimatedImpact.textContent = `$${boycottedBrands.length * days * 10}`;
+            }
+        }
+
+        resetBtn.addEventListener('click', () => {
+            localStorage.removeItem('boycottStartDate');
+            localStorage.removeItem('boycottedBrands');
+            boycottDays.textContent = '0';
+            brandsBoycotted.textContent = '0';
+            estimatedImpact.textContent = '$0';
+        });
+
+        // Chart
+        const ctx = document.getElementById('voteChart').getContext('2d');
+        const voteChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: Object.keys(voteData),
+                datasets: [{
+                    label: 'Boycott Votes',
+                    data: Object.values(voteData),
+                    backgroundColor: 'rgba(44, 62, 80, 0.7)',
+                    borderColor: 'rgba(44, 62, 80, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: { y: { beginAtZero: true } },
+                responsive: true
+            }
+        });
+
+        function updateChart() {
+            voteChart.data.labels = Object.keys(voteData);
+            voteChart.data.datasets[0].data = Object.values(voteData);
+            voteChart.update();
+        }
+
+        function updateBoycottCount() {
+            const totalBoycotts = Object.values(voteData).reduce((sum, val) => sum + val, 0);
+            boycottCount.textContent = totalBoycotts.toLocaleString();
+        }
+
+        function updatePledgeCount() {
+            const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
+            pledgeCount.textContent = totalPledges.toLocaleString();
+        }
+
+        function updateGlobalImpact() {
+            const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
+            globalImpact.textContent = `$${totalPledges * 1000}`;
+        }
+
+        function updateProgressBar() {
+            const totalPledges = Object.values(voteData).reduce((sum, val) => sum + val, 0);
+            const goal = 1000000000;
+            const impact = totalPledges * 1000;
+            const percentage = Math.min((impact / goal) * 100, 100);
+            progressFill.style.width = `${percentage}%`;
+            progressText.textContent = `$${impact.toLocaleString()} of $1B Goal`;
+        }
+
+        // Scroll Animations
+        const sections = document.querySelectorAll('.section-animate');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Parallax
+        window.addEventListener('scroll', () => {
+            const heroImg = document.querySelector('.hero picture img');
+            const scrollPosition = window.scrollY;
+            heroImg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+        });
+
+        updateProgress();
+        updatePledgeCount();
+        updateBoycottCount();
+        updateGlobalImpact();
+        updateProgressBar();
+    } catch (e) {
+        console.error('Initialization error:', e);
+        // Fallback: Show static content
+        document.querySelectorAll('.section-animate').forEach(section => {
+            section.classList.add('visible');
+        });
+    }
+});
