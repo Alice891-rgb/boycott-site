@@ -6,7 +6,7 @@ export const donors = [
         brands: ["Georgia-Pacific", "Molex", "Flint Hills Resources"],
         donation: "$5M+",
         warning: "Funds anti-climate lobbying",
-        alternatives: ["NextEra Energy", "Eco-friendly brands"],
+        alternatives: ["NextEra Energy", "Vestas Wind"],
         image: "images/koch.webp"
     },
     {
@@ -23,7 +23,7 @@ export const donors = [
         category: "casino",
         brands: ["Wynn Las Vegas", "Encore"],
         donation: "$2M+",
-        warning: "Supports deregulation of gambling",
+        warning: "Supports gambling deregulation",
         alternatives: ["MGM Resorts", "Caesars Entertainment"],
         image: "images/wynn.webp"
     },
@@ -44,5 +44,14 @@ export const donors = [
         warning: "Funds anti-labor policies",
         alternatives: ["Target", "Costco"],
         image: "images/walmart.webp"
+    },
+    {
+        name: "Continental Resources",
+        category: "energy",
+        brands: ["Continental Oil"],
+        donation: "$1M+",
+        warning: "Backs fracking expansion",
+        alternatives: ["Orsted", "Siemens Gamesa"],
+        image: "images/continental.webp"
     }
 ];
