@@ -89,32 +89,33 @@ body {
 }
 
 .hero-content {
-    background: rgba(27, 38, 59, 0.8); /* Deep navy, semi-transparent, thematic */
+    background: rgba(27, 38, 59, 0.8); /* Deep navy, thematic */
     padding: 3rem;
     border-radius: 12px;
     max-width: 900px;
+    border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle border */
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     font-weight: 900;
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 2rem;
 }
 
 .cta-btn, .reset-btn, .share-btn, .close-popup, .copy-pledge {
     background: var(--accent-color);
     color: var(--white);
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.5rem;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     min-height: 48px;
     min-width: 48px;
@@ -140,6 +141,10 @@ body {
     z-index: 1000;
     font-weight: 700;
     transition: var(--transition);
+}
+
+.floating-cta.pulse {
+    animation: pulse 2s infinite;
 }
 
 .floating-cta:hover, .floating-cta:focus {
@@ -168,7 +173,7 @@ body {
 }
 
 .popup-content h3 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 1rem;
 }
 
@@ -311,14 +316,18 @@ body {
     display: flex;
     gap: 1.5rem;
     margin-top: 1.5rem;
+    flex-wrap: wrap;
 }
 
-.share-buttons a {
+.share-buttons a, .share-buttons button {
     color: var(--white);
     text-decoration: none;
     padding: 1rem;
     border-radius: 6px;
     transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 #shareX {
@@ -327,6 +336,14 @@ body {
 
 #shareFacebook {
     background: #3b5998;
+}
+
+#shareWhatsApp {
+    background: #25D366;
+}
+
+#shareEmail {
+    background: #666;
 }
 
 .video-container {
@@ -363,7 +380,7 @@ body {
         display: flex;
     }
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
     .hero-content {
         padding: 2rem;
@@ -373,6 +390,12 @@ body {
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 .donor, .story-item {
