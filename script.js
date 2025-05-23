@@ -36,12 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.setAttribute('aria-expanded', navMenu.classList.contains('show'));
     });
 
+    // Smooth Scroll for Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector(anchor.getAttribute('href'));
+            target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
     // CTA Popup
     ctaButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             popup.style.display = 'flex';
             popup.removeAttribute('hidden');
-            popup.querySelector('p').textContent = `You’ve joined ${parseInt(pledgeCount.textContent).toLocaleString()} activists! Share your pledge!`;
+            popup.querySelector('p').textContent = `You’ve joined ${parseInt(pledgeCount.textContent).toLocaleString()} visionaries! Share your pledge!`;
         });
     });
 
@@ -104,22 +113,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Pledge Generator with Confetti
+    // Pledge Generator with Elegant Confetti
     brandSelect.addEventListener('change', () => {
         const [brand, alternative] = brandSelect.value.split('|');
         if (brand && alternative) {
-            pledgeText.textContent = `I pledge to boycott ${brand} and support ${alternative} to fight corporate greed! #BoycottTrumpDonors`;
+            pledgeText.textContent = `I pledge to boycott ${brand} and support ${alternative} to challenge corporate influence! #BoycottTrumpDonors`;
             shareX.href = `https://x.com/intent/tweet?text=${encodeURIComponent(pledgeText.textContent)}`;
-            shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(pledgeText.textContent)}`;
+            shareFacebook.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}"e=${encodeURIComponent(pledgeText.textContent)}`;
             shareWhatsApp.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(pledgeText.textContent + ' ' + window.location.href)}`;
             shareEmail.href = `mailto:?subject=My Boycott Pledge&body=${encodeURIComponent(pledgeText.textContent + '\nJoin me: ' + window.location.href)}`;
 
-            // Confetti Animation
+            // Elegant Confetti
             confetti({
-                particleCount: 100,
-                spread: 70,
+                particleCount: 50,
+                spread: 50,
                 origin: { y: 0.6 },
-                colors: ['#e74c3c', '#e67e22', '#ffffff']
+                colors: ['#d4a017', '#bdc3c7', '#ffffff'],
+                scalar: 0.8
             });
 
             voteData[brand] = (voteData[brand] || 0) + 1;
@@ -152,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(`Thank you, ${name}! We'll contact you at ${email} for opportunities in ${location}.`);
                 volunteerForm.reset();
                 volunteerForm.classList.remove('submitted');
-            }, 500);
+            }, 600);
         } else {
             document.querySelectorAll('.form-group input').forEach(input => {
                 if (!input.value) {
@@ -193,8 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'Boycott Votes',
                 data: Object.values(voteData),
-                backgroundColor: 'rgba(231, 76, 60, 0.7)',
-                borderColor: 'rgba(231, 76, 60, 1)',
+                backgroundColor: 'rgba(44, 62, 80, 0.7)',
+                borderColor: 'rgba(44, 62, 80, 1)',
                 borderWidth: 1
             }]
         },
@@ -255,6 +265,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.2 });
 
     sections.forEach(section => observer.observe(section));
+
+    // Parallax Hero Image
+    window.addEventListener('scroll', () => {
+        const heroImg = document.querySelector('.hero picture img');
+        const scrollPosition = window.scrollY;
+        heroImg.style.transform = `translateY(${scrollPosition * 0.3}px)`;
+    });
 
     updateProgress();
     updatePledgeCount();
