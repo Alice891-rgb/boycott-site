@@ -26,6 +26,7 @@ body {
     background: var(--white);
     line-height: 1.9;
     font-size: 1.1rem;
+    display: block; /* Ensure body is visible */
 }
 
 .progress-bar {
