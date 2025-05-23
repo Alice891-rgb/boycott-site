@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // DOM Elements
     const elements = {
-      navMenu: document.getElementById('nav-menu'),
-      hamburger: document.querySelector('.hamburger'),
+      navToggle: document.querySelector('.nav-toggle'),
+      navClose: document.querySelector('.nav-close'),
+      sidebar: document.getElementById('sidebar'),
       ctaButtons: document.querySelectorAll('.cta-btn, .floating-cta'),
       popup: document.getElementById('ctaPopup'),
       closePopup: document.querySelector('.close-popup'),
@@ -61,9 +62,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setupNavigation() {
-      elements.hamburger.addEventListener('click', () => {
-        elements.navMenu.classList.toggle('show');
-        elements.hamburger.setAttribute('aria-expanded', elements.navMenu.classList.contains('show'));
+      elements.navToggle.addEventListener('click', () => {
+        elements.sidebar.classList.toggle('open');
+        elements.navToggle.setAttribute('aria-expanded', elements.sidebar.classList.contains('open'));
+        elements.sidebar.setAttribute('aria-hidden', !elements.sidebar.classList.contains('open'));
+        document.body.classList.toggle('sidebar-open');
+      });
+
+      elements.navClose.addEventListener('click', () => {
+        elements.sidebar.classList.remove('open');
+        elements.navToggle.setAttribute('aria-expanded', 'false');
+        elements.sidebar.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('sidebar-open');
+      });
+
+      // Close sidebar when clicking a link
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          elements.sidebar.classList.remove('open');
+          elements.navToggle.setAttribute('aria-expanded', 'false');
+          elements.sidebar.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('sidebar-open');
+        });
+      });
+
+      // Close sidebar when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!elements.sidebar.contains(e.target) && !elements.navToggle.contains(e.target) && elements.sidebar.classList.contains('open')) {
+          elements.sidebar.classList.remove('open');
+          elements.navToggle.setAttribute('aria-expanded', 'false');
+          elements.sidebar.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('sidebar-open');
+        }
       });
     }
 
