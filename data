@@ -51,7 +51,7 @@ export const donors = [
         brands: ["Continental Oil"],
         donation: "$1M+",
         warning: "Backs fracking expansion",
-        alternatives: ["Orsted", "Siemens Gamesa"],
+        alternatives: ["Ørsted", "Siemens Gamesa"],
         image: "images/continental.webp"
     }
 ];
