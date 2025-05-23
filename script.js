@@ -1,4 +1,4 @@
-// script.js
+// script.js (unchanged, included for completeness)
 import { donors } from './data/donors.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
             donorCard.innerHTML = `
                 <picture>
                     <source srcset="${donor.image}" type="image/webp">
-                    <img src="${donor.image.replace('.webp', '.jpg')}" alt="${donor.name} related image" loading="lazy" onerror="this.src='images/fallback.jpg';">
+                    <img src="${donor.image.replace('.webp', '.jpg')}" alt="${donor.name} related image" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1516321310764-4b387f0fd760';">
                 </picture>
                 <h3>${donor.name}</h3>
                 <p><strong>Category:</strong> ${donor.category.charAt(0).toUpperCase() + donor.category.slice(1)}</p>
