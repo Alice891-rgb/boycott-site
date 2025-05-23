@@ -1,12 +1,12 @@
 /* style.css */
 :root {
-    --primary-color: #2c3e50; /* Muted steel blue for professionalism */
-    --accent-color: #d90429; /* Red for urgency */
-    --secondary-accent: #f1c40f; /* Gold for prestige */
-    --text-color: #333333; /* Charcoal for readability */
-    --bg-color: #f5f7fa; /* Light gray for clean sections */
+    --primary-color: #c0392b; /* Vibrant red for urgency */
+    --accent-color: #e74c3c; /* Crimson for CTAs */
+    --secondary-accent: #e67e22; /* Orange for highlights */
+    --text-color: #2d2d2d; /* Charcoal for readability */
+    --bg-color: #fff1f0; /* Red-tinted gray for sections */
     --white: #ffffff;
-    --shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
 }
 
@@ -22,6 +22,32 @@ body {
     background: var(--white);
     line-height: 1.8;
     font-size: 16px;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: #f0f0f0;
+    z-index: 2000;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent-color);
+    width: 0;
+    transition: width 0.5s ease;
+}
+
+#progressText {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text-color);
 }
 
 .sticky-nav {
@@ -79,6 +105,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: zoomIn 1.5s ease-out;
 }
 
 .hero-overlay {
@@ -87,7 +114,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+    background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.6));
     z-index: -1;
 }
 
@@ -102,12 +129,13 @@ body {
 }
 
 .hero-content {
-    background: rgba(44, 62, 80, 0.85); /* Professional steel blue */
+    background: rgba(192, 57, 43, 0.85); /* Vibrant red frame */
     padding: 3.5rem;
     border-radius: 16px;
     max-width: 1000px;
     box-shadow: var(--shadow);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 1s ease-out;
 }
 
 .hero h1 {
@@ -115,7 +143,7 @@ body {
     font-size: 4rem;
     font-weight: 900;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .hero p {
@@ -140,9 +168,8 @@ body {
 .cta-btn:hover, .reset-btn:hover, .share-btn:hover, .close-popup:hover, .copy-pledge:hover,
 .cta-btn:focus, .reset-btn:focus, .share-btn:focus, .close-popup:focus, .copy-pledge:focus {
     background: var(--secondary-accent);
-    color: var(--primary-color);
     transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
+    box-shadow: 0 0 12px rgba(230, 126, 34, 0.6);
 }
 
 .floating-cta {
@@ -164,9 +191,8 @@ body {
     animation: pulse 2s infinite;
 }
 
-.floating-cta:hover, Floating-cta:focus {
+.floating-cta:hover, .floating-cta:focus {
     background: var(--secondary-accent);
-    color: var(--primary-color);
     transform: scale(1.1);
 }
 
@@ -190,6 +216,7 @@ body {
     max-width: 600px;
     text-align: center;
     box-shadow: var(--shadow);
+    animation: fadeIn 0.5s ease-out;
 }
 
 .popup-content h3 {
@@ -211,19 +238,22 @@ body {
 }
 
 .donor, .story-item {
+    position: relative;
     background: var(--white);
     border-radius: 16px;
     box-shadow: var(--shadow);
     padding: 2rem;
-    border: 1px solid #e0e0e0;
-    transition: var(--transition);
+    border: 1px solid #f0f0f0;
     opacity: 0;
-    animation: fadeInUp 0.6s ease-out forwards;
+    transition: var(--transition);
 }
 
-.donor:hover, .story-item:hover {
-    transform: scale(1.03);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+.donor:nth-child(odd) {
+    animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.donor:nth-child(even) {
+    animation: slideInRight 0.8s ease-out forwards;
 }
 
 .donor img, .story-item img {
@@ -232,6 +262,28 @@ body {
     object-fit: cover;
     border-radius: 12px;
     margin-bottom: 1.5rem;
+}
+
+.donor-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(192, 57, 43, 0.9);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+    border-radius: 16px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.donor:hover .donor-overlay {
+    opacity: 1;
 }
 
 .donor .warning {
@@ -256,7 +308,7 @@ body {
 
 #searchInput {
     padding: 1.2rem;
-    border: 1px solid #d0d0d0;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     flex-grow: 1;
     max-width: 400px;
@@ -267,12 +319,12 @@ body {
 #searchInput:focus {
     border-color: var(--secondary-accent);
     outline: none;
-    box-shadow: 0 0 6px rgba(241, 196, 15, 0.3);
+    box-shadow: 0 0 6px rgba(230, 126, 34, 0.3);
 }
 
 .filter-btn {
-    background: #e5e7eb;
-    border: 1px solid #d0d0d0;
+    background: #f0f0f0;
+    border: 1px solid #e0e0e0;
     padding: 0.8rem 1.6rem;
     border-radius: 8px;
     cursor: pointer;
@@ -283,8 +335,7 @@ body {
 
 .filter-btn.active, .filter-btn:hover, .filter-btn:focus {
     background: var(--secondary-accent);
-    color: var(--primary-color);
-    transform: scale(1.05);
+    color: var(--white);
 }
 
 .progress-stats {
@@ -301,7 +352,7 @@ body {
     border-radius: 16px;
     text-align: center;
     box-shadow: var(--shadow);
-    border: 1px solid #e0e0e0;
+    border: 1px solid #f0f0f0;
 }
 
 .guide-list, .volunteer-list {
@@ -315,6 +366,19 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
+    position: relative;
+}
+
+.guide-list li::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--secondary-accent);
+    font-size: 1.3rem;
+    margin-top: 0.2rem;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: 0.2s;
 }
 
 .guide-list i, .volunteer-list i {
@@ -337,7 +401,7 @@ body {
 .form-group input {
     width: 100%;
     padding: 1.2rem;
-    border: 1px solid #d0d0d0;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     font-size: 1rem;
     transition: var(--transition);
@@ -346,7 +410,7 @@ body {
 .form-group input:focus {
     border-color: var(--secondary-accent);
     outline: none;
-    box-shadow: 0 0 6px rgba(241, 196, 15, 0.3);
+    box-shadow: 0 0 6px rgba(230, 126, 34, 0.3);
 }
 
 .error-message {
@@ -371,6 +435,21 @@ body {
     align-items: center;
     gap: 0.5rem;
     font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+.share-buttons a:hover::after, .share-buttons button:hover::after {
+    content: attr(data-preview);
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 #shareX {
@@ -408,6 +487,17 @@ body {
     height: 100%;
 }
 
+.section-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.section-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 @media (max-width: 768px) {
     .donor-grid, .story-list {
         grid-template-columns: 1fr;
@@ -437,9 +527,31 @@ body {
     }
 }
 
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+    .donor, .story-item, .section-animate, .floating-cta, .hero, .hero-content {
+        animation: none;
+        transition: none;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(1.05); }
+    to { transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes pulse {
