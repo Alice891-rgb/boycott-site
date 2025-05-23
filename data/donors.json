@@ -16,10 +16,90 @@
       "contribution": "$291M to America PAC",
       "boycott": "Tesla, X",
       "alternative": "Rivian, Bluesky",
+      "alternativeUrl": "https://www.rivian.com",
       "image": "images/musk.webp",
       "imageFallback": "images/musk.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Miriam Adelson",
+      "contribution": "$132M+ to MAGA Inc.",
+      "boycott": "Las Vegas Sands",
+      "alternative": "MGM Resorts",
+      "alternativeUrl": "https://www.mgmresorts.com",
+      "image": "images/adelson.webp",
+      "imageFallback": "images/adelson.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Diane Hendricks",
+      "contribution": "$25.8M to MAGA Inc.",
+      "boycott": "ABC Supply",
+      "alternative": "Beacon Roofing",
+      "alternativeUrl": "https://www.becn.com",
+      "image": "images/hendricks.webp",
+      "imageFallback": "images/hendricks.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Richard & Elizabeth Uihlein",
+      "contribution": "$20M+ to MAGA Inc.",
+      "boycott": "Uline",
+      "alternative": "EcoEnclose",
+      "alternativeUrl": "https://www.ecoenclose.com",
+      "image": "images/uihlein.webp",
+      "imageFallback": "images/uihlein.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Linda McMahon",
+      "contribution": "$10M+ to MAGA Inc.",
+      "boycott": "WWE",
+      "alternative": "AEW",
+      "alternativeUrl": "https://www.allelitewrestling.com",
+      "image": "images/mcmahon.webp",
+      "imageFallback": "images/mcmahon.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Isaac & Laura Perlmutter",
+      "contribution": "$10M+ to Right for America",
+      "boycott": "Marvel merchandise",
+      "alternative": "DC Comics",
+      "alternativeUrl": "https://www.dccomics.com",
+      "image": "images/perlmutter.webp",
+      "imageFallback": "images/perlmutter.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Harold Hamm",
+      "contribution": "$10M+ to Trump 47 Committee",
+      "boycott": "Continental Resources",
+      "alternative": "Ørsted",
+      "alternativeUrl": "https://www.orsted.com",
+      "image": "images/hamm.webp",
+      "imageFallback": "images/hamm.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Phil Ruffin",
+      "contribution": "$3.3M to Trump PACs",
+      "boycott": "Treasure Island",
+      "alternative": "Caesars Palace",
+      "alternativeUrl": "https://www.caesars.com",
+      "image": "images/ruffin.webp",
+      "imageFallback": "images/ruffin.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Bernie Marcus",
+      "contribution": "$2.7M to Trump PACs",
+      "boycott": "Home Depot",
+      "alternative": "Lowe’s",
+      "alternativeUrl": "https://www.lowes.com",
+      "image": "images/marcus.webp",
+      "imageFallback": "images/marcus.jpg"
     }
-    // ... add other mega-donors
   ],
   "donors": [
     {
@@ -28,9 +108,39 @@
       "brands": ["Georgia-Pacific", "Molex"],
       "donation": "$5M+",
       "alternatives": ["NextEra Energy"],
+      "alternativeUrls": ["https://www.nexteraenergy.com"],
       "image": "images/koch.webp",
       "imageFallback": "images/koch.jpg"
+    },
+    {
+      "name": "Blackstone Group",
+      "category": "finance",
+      "brands": ["Hilton Hotels"],
+      "donation": "$3M+",
+      "alternatives": ["Marriott"],
+      "alternativeUrls": ["https://www.marriott.com"],
+      "image": "images/blackstone.webp",
+      "imageFallback": "images/blackstone.jpg"
+    },
+    {
+      "name": "Chevron",
+      "category": "energy",
+      "brands": ["Texaco"],
+      "donation": "$1.5M+",
+      "alternatives": ["Shell Renewables"],
+      "alternativeUrls": ["https://www.shell.com"],
+      "image": "images/chevron.webp",
+      "imageFallback": "images/chevron.jpg"
+    },
+    {
+      "name": "Continental Resources",
+      "category": "energy",
+      "brands": ["Continental Oil"],
+      "donation": "$1M+",
+      "alternatives": ["Ørsted"],
+      "alternativeUrls": ["https://www.orsted.com"],
+      "image": "images/continental.webp",
+      "imageFallback": "images/continental.jpg"
     }
-    // ... add other donors
   ]
 }
