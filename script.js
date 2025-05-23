@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
         brands: ['Georgia-Pacific', 'Molex'],
         donation: '$5M+',
         alternatives: ['NextEra Energy'],
-        image: 'images/koch.jpg',
       },
       {
         name: 'Blackstone Group',
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         brands: ['Hilton Hotels'],
         donation: '$3M+',
         alternatives: ['Marriott'],
-        image: 'images/blackstone.jpg',
       },
     ];
 
@@ -49,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 
     function init() {
-      animateSections();
       setupNavigation();
       setupCtaPopup();
       updateProgress();
@@ -57,12 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setupSearchAndFilter();
       setupPledge();
       setupForms();
-    }
-
-    function animateSections() {
-      document.querySelectorAll('.section-animate').forEach((section) => {
-        section.classList.add('visible');
-      });
     }
 
     function setupNavigation() {
@@ -117,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const donorCard = document.createElement('article');
         donorCard.classList.add('donor');
         donorCard.innerHTML = `
-          <img src="${donor.image}" alt="${donor.name}" loading="lazy" width="280" height="180">
           <h3>${donor.name}</h3>
           <p><strong>Category:</strong> ${donor.category.charAt(0).toUpperCase() + donor.category.slice(1)}</p>
           <p><strong>Brands:</strong> ${donor.brands.join(', ')}</p>
