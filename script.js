@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
       popup: document.getElementById('ctaPopup'),
       closePopup: document.querySelector('.close-popup'),
       shareBtn: document.querySelector('.share-btn'),
-      megaDonorGrid: document.getElementById('megaDonorGrid'),
       donorList: document.getElementById('donorList'),
       searchInput: document.getElementById('searchInput'),
       filterButtons: document.querySelectorAll('.filter-btn'),
@@ -20,21 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
       shareFacebook: document.getElementById('shareFacebook'),
       copyPledge: document.querySelector('.copy-pledge'),
       volunteerForm: document.getElementById('volunteer-form'),
-      newsletterForm: document.getElementById('newsletter-form'),
       progressFill: document.getElementById('progressFill'),
-      progressText: document.getElementById('progressText'),
     };
 
-    // Static Fallback Data
-    const fallbackDonors = [
+    // Static Donor Data
+    const donors = [
       {
         name: 'Koch Industries',
         category: 'energy',
         brands: ['Georgia-Pacific', 'Molex'],
         donation: '$5M+',
         alternatives: ['NextEra Energy'],
-        image: 'images/koch.webp',
-        imageFallback: 'images/koch.jpg',
+        image: 'images/koch.jpg',
       },
       {
         name: 'Blackstone Group',
@@ -42,8 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         brands: ['Hilton Hotels'],
         donation: '$3M+',
         alternatives: ['Marriott'],
-        image: 'images/blackstone.webp',
-        imageFallback: 'images/blackstone.jpg',
+        image: 'images/blackstone.jpg',
       },
     ];
 
@@ -58,11 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
       setupNavigation();
       setupCtaPopup();
       updateProgress();
-      renderDonors(fallbackDonors); // Use fallback data
+      renderDonors();
       setupSearchAndFilter();
       setupPledge();
       setupForms();
-      loadDynamicData();
     }
 
     function animateSections() {
@@ -92,6 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
       elements.shareBtn.addEventListener('click', () => {
         elements.popup.style.display = 'none';
         elements.popup.setAttribute('hidden', '');
+        if (typeof confetti === 'function') {
+          confetti({ particleCount: 100, spread: 70, colors: ['#d32f2f', '#ffffff', '#212121'] });
+        }
       });
     }
 
@@ -99,10 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const totalImpact = Object.values(pledgeCounts).reduce((sum, val) => sum + val, 0) * 1_000_000;
       const progressPercent = Math.min((totalImpact / GOAL) * 100, 100);
       elements.progressFill.style.width = `${progressPercent}%`;
-      elements.progressText.textContent = `$${totalImpact.toLocaleString()} of $${GOAL.toLocaleString()} Goal`;
     }
 
-    function renderDonors(donors, filter = 'all', search = '') {
+    function renderDonors(filter = 'all', search = '') {
       elements.donorList.innerHTML = '';
       const filteredDonors = donors.filter((donor) => {
         const matchesFilter = filter === 'all' || donor.category === filter;
@@ -121,10 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const donorCard = document.createElement('article');
         donorCard.classList.add('donor');
         donorCard.innerHTML = `
-          <picture class="donor-picture">
-            <source srcset="${donor.image}" type="image/webp">
-            <img src="${donor.imageFallback}" alt="${donor.name}" loading="lazy" width="280" height="180">
-          </picture>
+          <img src="${donor.image}" alt="${donor.name}" loading="lazy" width="280" height="180">
           <h3>${donor.name}</h3>
           <p><strong>Category:</strong> ${donor.category.charAt(0).toUpperCase() + donor.category.slice(1)}</p>
           <p><strong>Brands:</strong> ${donor.brands.join(', ')}</p>
@@ -138,14 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupSearchAndFilter() {
       elements.searchInput.addEventListener('input', () => {
         const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
-        renderDonors(fallbackDonors, activeFilter, elements.searchInput.value);
+        renderDonors(activeFilter, elements.searchInput.value);
       });
 
       elements.filterButtons.forEach((btn) => {
         btn.addEventListener('click', () => {
           elements.filterButtons.forEach((b) => b.classList.remove('active'));
           btn.classList.add('active');
-          renderDonors(fallbackDonors, btn.dataset.filter, elements.searchInput.value);
+          renderDonors(btn.dataset.filter, elements.searchInput.value);
         });
       });
     }
@@ -181,34 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
           elements.volunteerForm.reset();
         }
       });
-
-      elements.newsletterForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const email = document.getElementById('newsletter-email').value;
-        if (email) {
-          alert('Thank you for subscribing!');
-          elements.newsletterForm.reset();
-        }
-      });
-    }
-
-    function loadDynamicData() {
-      fetch('data/donors.json')
-        .then((res) => {
-          if (!res.ok) throw new Error('Failed to load donors.json');
-          return res.json();
-        })
-        .then((data) => {
-          renderDonors(data.donors);
-        })
-        .catch((e) => {
-          console.error('Error loading donor data:', e);
-        });
     }
   } catch (e) {
     console.error('Script error:', e);
-    document.querySelectorAll('.section-animate').forEach((section) => {
-      section.classList.add('visible');
-    });
   }
 });
