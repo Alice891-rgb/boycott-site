@@ -8,7 +8,7 @@
   --transition: all 0.3s ease;
   --border-radius: 8px;
   --padding: 1.5rem;
-  --max-width: 1200px;
+  --max-width: 800px; /* Reduced for simplicity */
 }
 
 * {
@@ -34,6 +34,7 @@ body {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: var(--padding);
+  text-align: center;
 }
 
 /* Progress Bar */
@@ -98,51 +99,31 @@ body {
 
 /* Hero Section */
 .hero {
-  position: relative;
+  background: var(--primary-color);
   color: var(--accent-color);
   text-align: center;
-  min-height: 80vh;
+  padding: 4rem 1rem;
+  min-height: 60vh;
   display: flex;
   align-items: center;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-}
-
-.hero img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
+  justify-content: center;
 }
 
 .hero-content {
-  background: rgba(211, 47, 47, 0.85);
-  padding: 2rem;
-  border-radius: var(--border-radius);
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
 .hero h1 {
   font-family: 'Montserrat', sans-serif;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 900;
   margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 .hero p {
-  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   margin-bottom: 1.5rem;
 }
 
@@ -156,6 +137,8 @@ body {
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 700;
+  text-transform: uppercase;
   transition: var(--transition);
 }
 
@@ -171,7 +154,7 @@ body {
   position: fixed;
   bottom: 1.5rem;
   right: 1.5rem;
-  border-radius: 1.5rem;
+  border-radius: var(--border-radius);
   z-index: 1000;
 }
 
@@ -200,51 +183,18 @@ body {
 /* Grid Containers */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  padding: var(--padding);
-}
-
-.donor,
-.story-item,
-.stat-item {
-  background: var(--accent-color);
-  border-radius: var(--border-radius);
-  padding: 1.5rem;
-  border: 1px solid var(--secondary-accent);
-  box-shadow: var(--shadow);
-}
-
-.donor img,
-.story-item img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-radius: var(--border-radius);
-  margin-bottom: 1rem;
-}
-
-/* Stats Grid */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
   padding: var(--padding);
 }
 
-.stat-item {
-  text-align: center;
-}
-
-.stat-item i {
-  font-size: 1.8rem;
-  color: var(--primary-color);
-  margin-bottom: 0.8rem;
-}
-
-.stat-item h3 {
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
-  font-weight: 700;
+.donor,
+.story-item {
+  background: var(--accent-color);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  border: 1px solid var(--secondary-accent);
+  box-shadow: var(--shadow);
 }
 
 /* Search and Filter */
@@ -253,6 +203,7 @@ body {
   flex-wrap: wrap;
   gap: 0.8rem;
   padding: var(--padding);
+  justify-content: center;
 }
 
 #searchInput {
@@ -291,19 +242,17 @@ body {
 }
 
 /* Lists */
-.guide-list,
 .why-list,
 .action-list {
   padding: var(--padding);
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.guide-list li,
 .why-list li,
 .action-list li {
   margin-bottom: 1rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
 }
 
 .why-list li strong {
@@ -345,24 +294,12 @@ body {
 .ticker-content span {
   margin-right: 1.5rem;
   font-family: 'Montserrat', sans-serif;
-}
-
-/* Animations */
-.section-animate {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.section-animate.visible {
-  opacity: 1;
-  transform: translateY(0);
+  font-weight: 700;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .grid-container,
-  .stats-grid {
+  .grid-container {
     grid-template-columns: 1fr;
   }
 
@@ -381,7 +318,7 @@ body {
   }
 
   .hero h1 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-size: clamp(2rem, 5vw, 3rem);
   }
 }
 
